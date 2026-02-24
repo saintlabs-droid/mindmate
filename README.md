@@ -119,6 +119,110 @@ MindMate is a web-based platform designed specifically for Kenyan university stu
 
 ---
 
+## Project Structure
+
+```
+mindmate/
+├── ai/                          # AI/ML module for chatbot and sentiment analysis
+│   ├── chatbot_logic.py         # Core chatbot conversation logic
+│   ├── model_config.py          # AI model configuration settings
+│   ├── sentiment_analysis.py    # Sentiment analysis for user messages
+│   ├── models/                  # Trained ML models storage
+│   ├── services/                # AI service layer
+│   └── utils/                   # AI utility functions
+│
+├── backend/                     # Django REST API backend
+│   ├── apps/                    # Django applications
+│   │   ├── ai_service/          # AI chatbot API endpoints
+│   │   ├── authentication/      # User auth (login, register, JWT)
+│   │   ├── insights/            # Mood analytics and visualizations
+│   │   ├── mood_tracking/       # Mood logging CRUD operations
+│   │   ├── resources/           # Static resources management
+│   │   ├── support_resources/   # Mental health resources directory
+│   │   └── users/               # User profile management
+│   ├── config/                  # Django project settings
+│   │   ├── settings.py          # Main configuration
+│   │   ├── urls.py              # URL routing
+│   │   └── wsgi.py / asgi.py    # Server interfaces
+│   ├── middleware/              # Custom middleware (auth, logging)
+│   ├── utils/                   # Shared backend utilities
+│   ├── manage.py                # Django CLI
+│   └── requirements.txt         # Python dependencies
+│
+├── frontend/                    # React frontend application
+│   ├── public/                  # Static assets (index.html, favicon)
+│   ├── src/
+│   │   ├── components/          # Reusable UI components
+│   │   │   ├── ai-chat/         # Chat interface components
+│   │   │   ├── auth/            # Login/register forms
+│   │   │   ├── common/          # Shared components (buttons, modals)
+│   │   │   ├── insights/        # Charts and analytics components
+│   │   │   ├── layout/          # Header, footer, navigation
+│   │   │   ├── mood/            # Mood logging components
+│   │   │   └── resources/       # Resource display components
+│   │   ├── pages/               # Page-level components
+│   │   │   ├── About/           # About page
+│   │   │   ├── Account/         # User profile page
+│   │   │   ├── AIAssistant/     # Chat with MindAI page
+│   │   │   ├── Dashboard/       # Main dashboard
+│   │   │   ├── Insights/        # Analytics page
+│   │   │   ├── Landing/         # Home/landing page
+│   │   │   ├── LogMood/         # Mood entry page
+│   │   │   └── Support/         # Support resources page
+│   │   ├── context/             # React context providers
+│   │   ├── hooks/               # Custom React hooks
+│   │   ├── services/            # API service layer (Axios)
+│   │   ├── styles/              # Global CSS/Tailwind styles
+│   │   ├── utils/               # Frontend utility functions
+│   │   └── App.js               # Main app component
+│   └── package.json             # Node.js dependencies
+│
+├── design/                      # UI/UX design assets
+│   └── mockups/                 # Page mockups (HTML + screenshots)
+│       ├── about page/
+│       ├── Account/
+│       ├── Ai assistant/
+│       ├── dashboard page/
+│       ├── insights/
+│       ├── landing page/
+│       ├── log mood page/
+│       └── support/
+│
+├── docs/                        # Project documentation
+│   ├── BIT420-Project-Proposal.md
+│   ├── api.md                   # API endpoint documentation
+│   ├── ai-integration.md        # AI/Gemini integration guide
+│   ├── deployment.md            # Deployment instructions
+│   ├── frontend-guide.md        # Frontend development guide
+│   ├── setup.md                 # Local setup instructions
+│   └── images/                  # Documentation images
+│
+├── scripts/                     # Automation scripts
+│   ├── setup.sh                 # Initial project setup
+│   └── deploy.sh                # Deployment automation
+│
+├── tests/                       # Test suites
+│   ├── backend-tests/           # Django/API tests
+│   ├── frontend-tests/          # React component tests
+│   ├── e2e/                     # End-to-end tests
+│   ├── integration/             # Integration tests
+│   └── unit/                    # Unit tests
+│       ├── backend/
+│       └── frontend/
+│
+├── .github/                     # GitHub configuration
+│   ├── workflows/               # CI/CD pipelines
+│   │   └── django-tests.yml     # Automated testing
+│   ├── ISSUE_TEMPLATE.md
+│   └── PULL_REQUEST_TEMPLATE.md
+│
+├── .gitignore
+├── LICENSE
+└── README.md
+```
+
+---
+
 ## Getting Started
 
 ### Prerequisites
