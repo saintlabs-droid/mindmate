@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Mood Insights &amp; Trends - MindMate</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#e2715a",
+                        "primary-dark": "#c55a45",
+                        "background-light": "#f8f6f6",
+                        "background-dark": "#201412",
+                        "neutral-warm": "#8a7e7a",
+                        "surface-light": "#ffffff",
+                        "surface-dark": "#2d2422",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom chart styling simulation */
+        .chart-line {
+            stroke-dasharray: 1000;
+            stroke-dashoffset: 1000;
+            animation: dash 2s ease-out forwards;
+        }
+        @keyframes dash {
+            to {
+                stroke-dashoffset: 0;
+            }
+        }
+        .chart-tooltip {
+            opacity: 0;
+            transition: opacity 0.2s;
+        }
+        .chart-point:hover + .chart-tooltip {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-gray-800 dark:text-gray-100 font-display antialiased min-h-screen flex overflow-hidden">
+<!-- Sidebar -->
+<aside class="w-64 bg-surface-light dark:bg-surface-dark border-r border-primary/10 flex flex-col justify-between h-screen fixed left-0 top-0 z-20">
+<div>
+<!-- Logo -->
+<div class="p-8 flex items-center gap-3">
+<div class="w-8 h-8 rounded-lg bg-primary flex items-center justify-center text-white">
+<span class="material-icons text-lg">spa</span>
+</div>
+<h1 class="text-xl font-bold tracking-tight text-gray-900 dark:text-white">MindMate</h1>
+</div>
+<!-- Navigation -->
+<nav class="px-4 space-y-2">
+<a class="flex items-center gap-3 px-4 py-3 text-neutral-warm dark:text-gray-400 hover:bg-primary/5 hover:text-primary rounded-xl transition-colors group" href="#">
+<span class="material-icons text-[20px] group-hover:text-primary">dashboard</span>
+<span class="font-medium">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-neutral-warm dark:text-gray-400 hover:bg-primary/5 hover:text-primary rounded-xl transition-colors group" href="#">
+<span class="material-icons text-[20px] group-hover:text-primary">edit_note</span>
+<span class="font-medium">Journal</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 bg-primary/10 text-primary rounded-xl transition-colors relative" href="#">
+<div class="absolute left-0 w-1 h-8 bg-primary rounded-r-full"></div>
+<span class="material-icons text-[20px]">insights</span>
+<span class="font-semibold">Insights</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-neutral-warm dark:text-gray-400 hover:bg-primary/5 hover:text-primary rounded-xl transition-colors group" href="#">
+<span class="material-icons text-[20px] group-hover:text-primary">groups</span>
+<span class="font-medium">Community</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-neutral-warm dark:text-gray-400 hover:bg-primary/5 hover:text-primary rounded-xl transition-colors group" href="#">
+<span class="material-icons text-[20px] group-hover:text-primary">extension</span>
+<span class="font-medium">Resources</span>
+</a>
+</nav>
+</div>
+<!-- User Profile & Settings -->
+<div class="p-4 border-t border-primary/10">
+<a class="flex items-center gap-3 p-2 hover:bg-primary/5 rounded-xl transition-colors mb-2" href="#">
+<img alt="Portrait of a young Kenyan student smiling warmly" class="w-10 h-10 rounded-full object-cover ring-2 ring-primary/20" data-alt="Portrait of a young Kenyan student smiling warmly" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD_wssMUEYEPgQpN8p6D1Ar1QX5moqhxYptrJG5EQptPyN5Kxmchk-Zy3HfILy_uv3R26KdfMNuaBMCu8ZZBhRS-ShQQgFz43doKRfIVpTTVRwYE7rTJ5-L87ZKvMx1dqJof74I6TPRAN6ZLqCTu8WGhnnuP0KZJ4D34KCT1X8-ZpbTUdk8zS4NdlaPUpOPSQUzDXyh_mqPImp2PO2ddCWJYC1eMwi6--WHsPFubSo6wYFLLn8mhWhgzUmUdWC21jqbXiHOAbRz28Y"/>
+<div class="flex-1 min-w-0">
+<p class="text-sm font-semibold text-gray-900 dark:text-white truncate">Wanjiku K.</p>
+<p class="text-xs text-neutral-warm truncate">Free Plan</p>
+</div>
+<span class="material-icons text-neutral-warm text-lg">settings</span>
+</a>
+<div class="flex items-center gap-2 justify-center mt-4">
+<span class="material-icons text-xs text-primary">lock</span>
+<span class="text-[10px] text-neutral-warm uppercase tracking-wider font-medium">Private &amp; Encrypted</span>
+</div>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="ml-64 flex-1 p-8 h-screen overflow-y-auto">
+<!-- Header Section -->
+<header class="flex justify-between items-center mb-10">
+<div>
+<h2 class="text-2xl font-bold text-gray-900 dark:text-white">Mood Insights</h2>
+<p class="text-neutral-warm mt-1">Track your emotional journey and discover patterns.</p>
+</div>
+<div class="flex items-center gap-4">
+<!-- Date Range Picker -->
+<div class="relative group">
+<button class="flex items-center gap-2 bg-white dark:bg-surface-dark px-4 py-2.5 rounded-xl border border-primary/20 shadow-sm hover:border-primary/50 transition-colors">
+<span class="material-icons text-primary text-sm">calendar_today</span>
+<span class="text-sm font-medium text-gray-700 dark:text-gray-200">Last 7 Days</span>
+<span class="material-icons text-gray-400 text-sm ml-2">expand_more</span>
+</button>
+<!-- Dropdown simulation -->
+<div class="absolute right-0 top-full mt-2 w-48 bg-white dark:bg-surface-dark rounded-xl shadow-lg border border-primary/10 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-10 transform translate-y-2 group-hover:translate-y-0">
+<div class="py-1">
+<a class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-primary/5 hover:text-primary" href="#">This Month</a>
+<a class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-primary/5 hover:text-primary" href="#">Last 3 Months</a>
+<a class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-primary/5 hover:text-primary" href="#">Custom Range</a>
+</div>
+</div>
+</div>
+<!-- Export Button -->
+<button class="bg-primary text-white p-2.5 rounded-xl hover:bg-primary-dark transition-colors shadow-lg shadow-primary/20">
+<span class="material-icons text-lg">download</span>
+</button>
+</div>
+</header>
+<!-- Stats Grid -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+<!-- Stat 1 -->
+<div class="bg-white dark:bg-surface-dark p-6 rounded-2xl shadow-sm border border-primary/10 flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-orange-100 dark:bg-orange-900/30 flex items-center justify-center text-orange-600 dark:text-orange-400">
+<span class="material-icons">sentiment_satisfied_alt</span>
+</div>
+<div>
+<p class="text-sm text-neutral-warm font-medium">Average Mood</p>
+<div class="flex items-baseline gap-2">
+<h3 class="text-2xl font-bold text-gray-900 dark:text-white">Good</h3>
+<span class="text-xs font-medium text-green-600 bg-green-100 dark:bg-green-900/30 px-2 py-0.5 rounded-full">+12%</span>
+</div>
+</div>
+</div>
+<!-- Stat 2 -->
+<div class="bg-white dark:bg-surface-dark p-6 rounded-2xl shadow-sm border border-primary/10 flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center text-blue-600 dark:text-blue-400">
+<span class="material-icons">local_fire_department</span>
+</div>
+<div>
+<p class="text-sm text-neutral-warm font-medium">Longest Streak</p>
+<div class="flex items-baseline gap-2">
+<h3 class="text-2xl font-bold text-gray-900 dark:text-white">5 Days</h3>
+<span class="text-xs text-neutral-warm">Journaling</span>
+</div>
+</div>
+</div>
+<!-- Stat 3 -->
+<div class="bg-white dark:bg-surface-dark p-6 rounded-2xl shadow-sm border border-primary/10 flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-purple-100 dark:bg-purple-900/30 flex items-center justify-center text-purple-600 dark:text-purple-400">
+<span class="material-icons">psychology</span>
+</div>
+<div>
+<p class="text-sm text-neutral-warm font-medium">Top Emotion</p>
+<div class="flex items-baseline gap-2">
+<h3 class="text-2xl font-bold text-gray-900 dark:text-white">Productive</h3>
+<span class="text-xs text-neutral-warm">34% of logs</span>
+</div>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-12 gap-8">
+<!-- Main Chart Section -->
+<div class="col-span-12 lg:col-span-8 space-y-6">
+<div class="bg-white dark:bg-surface-dark p-6 md:p-8 rounded-2xl shadow-sm border border-primary/10">
+<div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 gap-4">
+<h3 class="font-bold text-lg text-gray-900 dark:text-white">Your Mood Timeline</h3>
+<!-- Filter Toggles -->
+<div class="flex flex-wrap gap-2">
+<button class="px-3 py-1.5 text-xs font-medium rounded-full bg-primary text-white shadow-md shadow-primary/20">
+                                Mood
+                            </button>
+<button class="px-3 py-1.5 text-xs font-medium rounded-full bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition">
+                                Sleep
+                            </button>
+<button class="px-3 py-1.5 text-xs font-medium rounded-full bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition">
+                                Social
+                            </button>
+<button class="px-3 py-1.5 text-xs font-medium rounded-full bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition">
+                                Exercise
+                            </button>
+</div>
+</div>
+<!-- Chart Container -->
+<div class="relative h-[350px] w-full">
+<!-- Y-Axis Labels -->
+<div class="absolute left-0 top-0 bottom-8 flex flex-col justify-between text-xs text-neutral-warm font-medium pr-2">
+<span>Great</span>
+<span>Good</span>
+<span>Okay</span>
+<span>Low</span>
+<span>Bad</span>
+</div>
+<!-- Chart SVG -->
+<svg class="absolute left-10 top-2 w-[calc(100%-40px)] h-[calc(100%-32px)] overflow-visible" preserveaspectratio="none" viewbox="0 0 800 300">
+<!-- Grid Lines -->
+<line class="text-gray-500" stroke="currentColor" stroke-opacity="0.05" x1="0" x2="800" y1="0" y2="0"></line>
+<line class="text-gray-500" stroke="currentColor" stroke-opacity="0.05" x1="0" x2="800" y1="75" y2="75"></line>
+<line class="text-gray-500" stroke="currentColor" stroke-opacity="0.05" x1="0" x2="800" y1="150" y2="150"></line>
+<line class="text-gray-500" stroke="currentColor" stroke-opacity="0.05" x1="0" x2="800" y1="225" y2="225"></line>
+<line class="text-gray-500" stroke="currentColor" stroke-opacity="0.05" x1="0" x2="800" y1="300" y2="300"></line>
+<!-- Gradient Defs -->
+<defs>
+<lineargradient id="chartGradient" x1="0" x2="0" y1="0" y2="1">
+<stop offset="0%" stop-color="#e2715a" stop-opacity="0.2"></stop>
+<stop offset="100%" stop-color="#e2715a" stop-opacity="0"></stop>
+</lineargradient>
+</defs>
+<!-- Area Fill -->
+<path d="M0,150 C100,100 150,50 200,60 S300,180 400,150 S500,80 600,100 S700,200 800,220 V300 H0 Z" fill="url(#chartGradient)"></path>
+<!-- Line Path -->
+<path class="chart-line" d="M0,150 C100,100 150,50 200,60 S300,180 400,150 S500,80 600,100 S700,200 800,220" fill="none" stroke="#e2715a" stroke-linecap="round" stroke-width="3"></path>
+<!-- Data Points with Tooltips -->
+<!-- Point 1 -->
+<g class="group">
+<circle class="fill-white stroke-primary stroke-[3px] chart-point cursor-pointer hover:r-8 transition-all" cx="200" cy="60" r="6"></circle>
+<foreignobject class="chart-tooltip pointer-events-none" height="50" width="120" x="140" y="10">
+<div class="bg-gray-800 text-white text-xs p-2 rounded shadow-lg text-center" xmlns="http://www.w3.org/1999/xhtml">
+                                        Mon, 12th<br/>Feeling Great!
+                                    </div>
+</foreignobject>
+</g>
+<!-- Point 2 -->
+<g class="group">
+<circle class="fill-white stroke-primary stroke-[3px] chart-point cursor-pointer hover:r-8 transition-all" cx="400" cy="150" r="6"></circle>
+</g>
+<!-- Point 3 -->
+<g class="group">
+<circle class="fill-white stroke-primary stroke-[3px] chart-point cursor-pointer hover:r-8 transition-all" cx="600" cy="100" r="6"></circle>
+</g>
+</svg>
+<!-- X-Axis Labels -->
+<div class="absolute left-10 right-0 bottom-0 flex justify-between text-xs text-neutral-warm font-medium px-2">
+<span>Mon</span>
+<span>Tue</span>
+<span>Wed</span>
+<span>Thu</span>
+<span>Fri</span>
+<span>Sat</span>
+<span>Sun</span>
+</div>
+</div>
+</div>
+<!-- Monthly Summary -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="bg-white dark:bg-surface-dark p-6 rounded-2xl shadow-sm border border-primary/10">
+<h4 class="font-bold text-gray-900 dark:text-white mb-4">Positive Influences</h4>
+<div class="space-y-4">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="p-2 bg-green-100 dark:bg-green-900/30 rounded-lg text-green-600">
+<span class="material-icons text-sm">fitness_center</span>
+</div>
+<span class="text-sm font-medium text-gray-700 dark:text-gray-300">Morning Run</span>
+</div>
+<div class="h-2 w-24 bg-gray-100 rounded-full overflow-hidden">
+<div class="h-full bg-green-500 w-[85%]"></div>
+</div>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="p-2 bg-blue-100 dark:bg-blue-900/30 rounded-lg text-blue-600">
+<span class="material-icons text-sm">groups</span>
+</div>
+<span class="text-sm font-medium text-gray-700 dark:text-gray-300">Study Group</span>
+</div>
+<div class="h-2 w-24 bg-gray-100 rounded-full overflow-hidden">
+<div class="h-full bg-blue-500 w-[70%]"></div>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-white dark:bg-surface-dark p-6 rounded-2xl shadow-sm border border-primary/10">
+<h4 class="font-bold text-gray-900 dark:text-white mb-4">Stress Factors</h4>
+<div class="space-y-4">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="p-2 bg-red-100 dark:bg-red-900/30 rounded-lg text-red-600">
+<span class="material-icons text-sm">school</span>
+</div>
+<span class="text-sm font-medium text-gray-700 dark:text-gray-300">Assignments</span>
+</div>
+<div class="h-2 w-24 bg-gray-100 rounded-full overflow-hidden">
+<div class="h-full bg-red-500 w-[65%]"></div>
+</div>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="p-2 bg-orange-100 dark:bg-orange-900/30 rounded-lg text-orange-600">
+<span class="material-icons text-sm">bedtime</span>
+</div>
+<span class="text-sm font-medium text-gray-700 dark:text-gray-300">Late Nights</span>
+</div>
+<div class="h-2 w-24 bg-gray-100 rounded-full overflow-hidden">
+<div class="h-full bg-orange-500 w-[40%]"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: AI Insights -->
+<div class="col-span-12 lg:col-span-4 space-y-6">
+<!-- Pattern Detected Card -->
+<div class="bg-gradient-to-br from-primary/10 to-transparent dark:from-primary/20 dark:to-surface-dark border border-primary/20 p-6 rounded-2xl relative overflow-hidden">
+<!-- Decor element -->
+<div class="absolute -top-6 -right-6 w-24 h-24 bg-primary/10 rounded-full blur-2xl"></div>
+<div class="flex items-center gap-2 mb-4">
+<span class="material-icons text-primary animate-pulse">auto_awesome</span>
+<h3 class="font-bold text-gray-900 dark:text-white">Pattern Detected</h3>
+</div>
+<p class="text-gray-700 dark:text-gray-200 text-sm leading-relaxed mb-4">
+<span class="font-semibold">Hey Wanjiku,</span> it looks like your mood dips slightly every Tuesday. This correlates with your reported <span class="text-primary font-medium">'Heavy Workload'</span> tags.
+                    </p>
+<div class="bg-white/60 dark:bg-black/20 p-4 rounded-xl backdrop-blur-sm border border-primary/10">
+<h4 class="text-xs font-bold text-primary uppercase tracking-wide mb-1">Recommendation</h4>
+<p class="text-sm text-gray-600 dark:text-gray-300">Consider scheduling a short "chai break" or walk on Tuesday afternoons to reset.</p>
+</div>
+<div class="mt-4 flex gap-2">
+<button class="text-xs text-neutral-warm hover:text-primary underline">Is this helpful?</button>
+</div>
+</div>
+<!-- Recent Logs Mini-List -->
+<div class="bg-white dark:bg-surface-dark p-6 rounded-2xl shadow-sm border border-primary/10">
+<div class="flex justify-between items-center mb-4">
+<h3 class="font-bold text-gray-900 dark:text-white">Recent Logs</h3>
+<a class="text-xs font-semibold text-primary hover:text-primary-dark" href="#">View Journal</a>
+</div>
+<div class="space-y-4">
+<!-- Log Item 1 -->
+<div class="flex gap-4 p-3 hover:bg-background-light dark:hover:bg-background-dark/50 rounded-xl transition-colors cursor-pointer group">
+<div class="flex flex-col items-center justify-center min-w-[50px] bg-primary/10 rounded-lg py-2">
+<span class="text-xs font-bold text-primary">OCT</span>
+<span class="text-lg font-bold text-gray-800 dark:text-white">24</span>
+</div>
+<div>
+<div class="flex items-center gap-2 mb-1">
+<span class="material-icons text-yellow-500 text-sm">sentiment_satisfied</span>
+<span class="font-semibold text-sm text-gray-900 dark:text-white">Feeling confident</span>
+</div>
+<p class="text-xs text-gray-500 line-clamp-2">Finally finished the project for CS. The team was great...</p>
+</div>
+</div>
+<!-- Log Item 2 -->
+<div class="flex gap-4 p-3 hover:bg-background-light dark:hover:bg-background-dark/50 rounded-xl transition-colors cursor-pointer group">
+<div class="flex flex-col items-center justify-center min-w-[50px] bg-neutral-warm/10 rounded-lg py-2">
+<span class="text-xs font-bold text-neutral-warm">OCT</span>
+<span class="text-lg font-bold text-gray-800 dark:text-white">23</span>
+</div>
+<div>
+<div class="flex items-center gap-2 mb-1">
+<span class="material-icons text-blue-400 text-sm">sentiment_neutral</span>
+<span class="font-semibold text-sm text-gray-900 dark:text-white">A bit tired</span>
+</div>
+<p class="text-xs text-gray-500 line-clamp-2">Long lectures today. Need to sleep early.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Call to Action / Resource -->
+<div class="bg-gray-900 text-white p-6 rounded-2xl shadow-lg relative overflow-hidden group cursor-pointer">
+<img alt="Abstract dark calming pattern with soft light" class="absolute inset-0 w-full h-full object-cover opacity-30 group-hover:opacity-40 transition-opacity" data-alt="Abstract dark calming pattern with soft light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD6EdtjVknnQreV0SvlMRe6AH5olC7dSOY5tx45F25LvPTjQ0n1rA0kQv0sJlIRCYmMOyjk5g7322zRLdISp-Bf3wJHFSHUXoH-EgUws03P89A6xVUcy_-FjphO91vpf49id8DeeNeSsjt58ACU8qnMjzG7e82KO8IewAob3TT6ZjTwZLBDsNDpI7cj-QBJR2phgK8djk2ZhXLTG0mF93RpapNT7A0ng0ntXfqVvEUA2QPvUGSaHrqimEJLCRGbjzhrjExoF7uubUs"/>
+<div class="relative z-10">
+<span class="bg-primary text-white text-[10px] font-bold px-2 py-1 rounded mb-3 inline-block">NEW RESOURCE</span>
+<h3 class="font-bold text-lg mb-2">Exam Stress Management</h3>
+<p class="text-gray-300 text-sm mb-4">Learn techniques to stay calm during finals week.</p>
+<button class="text-sm font-semibold flex items-center gap-2 hover:gap-3 transition-all">
+                            Read Article <span class="material-icons text-sm">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>

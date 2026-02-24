@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MindMate Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#e2715a",
+                        "primary-dark": "#c55e49",
+                        "primary-light": "#fcecea",
+                        "background-light": "#f8f6f6",
+                        "background-dark": "#201412",
+                        "surface-light": "#ffffff",
+                        "surface-dark": "#2d2422",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.375rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar for webkit */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background-color: rgba(226, 113, 90, 0.2);
+            border-radius: 20px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background-color: rgba(226, 113, 90, 0.5);
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-gray-800 dark:text-gray-100 font-display antialiased h-screen flex overflow-hidden">
+<!-- Sidebar -->
+<aside class="w-64 bg-surface-light dark:bg-surface-dark border-r border-gray-200 dark:border-gray-800 flex flex-col hidden md:flex z-20 shadow-sm">
+<div class="p-6 flex items-center gap-3">
+<div class="h-8 w-8 rounded-lg bg-primary flex items-center justify-center text-white font-bold text-xl">M</div>
+<span class="text-xl font-bold tracking-tight text-gray-900 dark:text-white">MindMate</span>
+</div>
+<nav class="flex-1 px-4 py-4 space-y-1 overflow-y-auto">
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-primary/10 text-primary font-medium transition-colors" href="#">
+<span class="material-icons-outlined">dashboard</span>
+                Dashboard
+            </a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-gray-100 transition-colors" href="#">
+<span class="material-icons-outlined">book</span>
+                Journal
+                <span class="material-icons-outlined text-xs ml-auto opacity-50">lock</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-gray-100 transition-colors" href="#">
+<span class="material-icons-outlined">spa</span>
+                Resources
+            </a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-gray-100 transition-colors" href="#">
+<span class="material-icons-outlined">people</span>
+                Community
+            </a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-gray-100 transition-colors" href="#">
+<span class="material-icons-outlined">analytics</span>
+                My Progress
+            </a>
+</nav>
+<div class="p-4 mt-auto border-t border-gray-200 dark:border-gray-800">
+<div class="bg-primary/5 dark:bg-primary/10 rounded-xl p-4 mb-4">
+<div class="flex items-center gap-2 mb-2 text-primary">
+<span class="material-icons-outlined text-sm">support_agent</span>
+<span class="text-xs font-semibold uppercase tracking-wider">Need Help?</span>
+</div>
+<p class="text-xs text-gray-600 dark:text-gray-400 mb-3">Speak to a counselor anonymously.</p>
+<button class="w-full text-xs bg-white dark:bg-surface-dark border border-primary/20 text-primary hover:bg-primary hover:text-white transition-colors py-2 rounded-lg font-medium">
+                    Call Helpline
+                </button>
+</div>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors" href="#">
+<img class="h-8 w-8 rounded-full object-cover border border-gray-200 dark:border-gray-700" data-alt="User profile picture of a smiling young woman" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBzCRtn8886F4lD4jo5AZwGFYYj0dwG517P6qgzvwUjic2Wmh3Vtg0gp47OmUWrQchX82aL3l3rzIY4bHj3-aNX79RYgvpSKyO1e3EOxvS9gQGIxvToWcdL1_0JMQXa64_jBVNFmkuhb1PRHXPtWsU4MJr8m35ZIxWyqLaeVrCRR5WRjCJ-8f58jiey_sKJF18LrCvcKjCmFvzznNQlle85g53948nPQzxfTVWhy7ccUz7NqEEn2SZeoAZXd6k5SnPgEmxHpfdhY8A"/>
+<div class="flex-1 min-w-0">
+<p class="text-sm font-medium text-gray-900 dark:text-white truncate">Imani O.</p>
+<p class="text-xs text-gray-500 truncate">View Profile</p>
+</div>
+</a>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="flex-1 flex flex-col h-screen overflow-hidden relative">
+<!-- Mobile Header -->
+<header class="md:hidden flex items-center justify-between p-4 bg-surface-light dark:bg-surface-dark border-b border-gray-200 dark:border-gray-800">
+<div class="flex items-center gap-2">
+<div class="h-8 w-8 rounded-lg bg-primary flex items-center justify-center text-white font-bold">M</div>
+<span class="font-bold text-gray-900 dark:text-white">MindMate</span>
+</div>
+<button class="text-gray-500 hover:text-gray-900 dark:hover:text-white">
+<span class="material-icons">menu</span>
+</button>
+</header>
+<!-- Desktop Header Area -->
+<div class="hidden md:flex items-center justify-between px-8 py-6">
+<div>
+<h1 class="text-2xl font-bold text-gray-900 dark:text-white">Jambo, Imani 👋</h1>
+<p class="text-gray-500 dark:text-gray-400 text-sm mt-1">Here's your daily well-being overview.</p>
+</div>
+<div class="flex items-center gap-4">
+<button class="relative p-2 text-gray-400 hover:text-primary transition-colors rounded-full hover:bg-primary/5">
+<span class="material-icons-outlined">notifications</span>
+<span class="absolute top-2 right-2 h-2 w-2 bg-primary rounded-full border-2 border-background-light dark:border-background-dark"></span>
+</button>
+<button class="p-2 text-gray-400 hover:text-primary transition-colors rounded-full hover:bg-primary/5">
+<span class="material-icons-outlined">settings</span>
+</button>
+</div>
+</div>
+<!-- Scrollable Content Area -->
+<div class="flex-1 overflow-y-auto px-4 md:px-8 pb-8">
+<div class="max-w-6xl mx-auto space-y-6">
+<!-- Hero Section: Mood Check-in -->
+<section class="bg-white dark:bg-surface-dark rounded-2xl p-6 md:p-8 shadow-sm border border-gray-100 dark:border-gray-800 relative overflow-hidden group">
+<!-- Background decoration -->
+<div class="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full -mr-16 -mt-16 blur-3xl transition-transform duration-700 group-hover:scale-110"></div>
+<div class="relative z-10 flex flex-col md:flex-row items-center justify-between gap-8">
+<div class="text-center md:text-left max-w-lg">
+<span class="inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-semibold mb-3">Daily Check-in</span>
+<h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-3">How are you feeling right now?</h2>
+<p class="text-gray-600 dark:text-gray-400 mb-6">Take a moment to reflect. Tracking your mood helps you understand your patterns better.</p>
+<div class="flex flex-wrap justify-center md:justify-start gap-3">
+<button class="flex flex-col items-center gap-2 p-3 rounded-xl hover:bg-primary/5 transition-all w-20 group/btn">
+<div class="text-3xl transform group-hover/btn:scale-110 transition-transform">😄</div>
+<span class="text-xs font-medium text-gray-600 dark:text-gray-400 group-hover/btn:text-primary">Great</span>
+</button>
+<button class="flex flex-col items-center gap-2 p-3 rounded-xl hover:bg-primary/5 transition-all w-20 group/btn">
+<div class="text-3xl transform group-hover/btn:scale-110 transition-transform">🙂</div>
+<span class="text-xs font-medium text-gray-600 dark:text-gray-400 group-hover/btn:text-primary">Good</span>
+</button>
+<button class="flex flex-col items-center gap-2 p-3 rounded-xl hover:bg-primary/5 transition-all w-20 group/btn">
+<div class="text-3xl transform group-hover/btn:scale-110 transition-transform">😐</div>
+<span class="text-xs font-medium text-gray-600 dark:text-gray-400 group-hover/btn:text-primary">Okay</span>
+</button>
+<button class="flex flex-col items-center gap-2 p-3 rounded-xl hover:bg-primary/5 transition-all w-20 group/btn">
+<div class="text-3xl transform group-hover/btn:scale-110 transition-transform">😔</div>
+<span class="text-xs font-medium text-gray-600 dark:text-gray-400 group-hover/btn:text-primary">Low</span>
+</button>
+<button class="flex flex-col items-center gap-2 p-3 rounded-xl hover:bg-primary/5 transition-all w-20 group/btn">
+<div class="text-3xl transform group-hover/btn:scale-110 transition-transform">😣</div>
+<span class="text-xs font-medium text-gray-600 dark:text-gray-400 group-hover/btn:text-primary">Bad</span>
+</button>
+</div>
+</div>
+<div class="hidden md:block">
+<img class="w-48 h-48 object-cover rounded-full border-4 border-white dark:border-surface-dark shadow-lg rotate-3 hover:rotate-0 transition-transform duration-500" data-alt="Abstract illustration representing calm and balance with soft organic shapes" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBvkKf7TBApEs7GyS2M_NGMrncnqBiLbQ9mMuJP35l4QJu2zytasn9Ede0IeV9RKq2JvOCkK-UjWtp3HZU6qvpN5E5Os2_Sk8wIbE54m0XSe8vnYp66We7Jdzs7xD9GN-GLK2VqavXzUjmI8Uxk8xdqQNeXPekIlxhsqjLL3eeEKYovrZHK1G7bYMPe0DvTT3tlP98porQhAOHPfxxNtm6MAJC0ROuTW0ann7czD-wev-469CBBKLuHDeWdndytdIW-70R9ktnVA70"/>
+</div>
+</div>
+</section>
+<!-- Grid Layout for Charts & Widgets -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+<!-- Main Chart Section (Spans 2 columns) -->
+<div class="lg:col-span-2 space-y-6">
+<!-- Mood Summary Chart -->
+<div class="bg-white dark:bg-surface-dark rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-800">
+<div class="flex items-center justify-between mb-6">
+<h3 class="font-bold text-lg text-gray-900 dark:text-white">Your Week in Review</h3>
+<select class="text-sm border-gray-200 dark:border-gray-700 rounded-lg bg-gray-50 dark:bg-gray-800 text-gray-600 dark:text-gray-300 py-1 pl-3 pr-8 focus:ring-primary focus:border-primary">
+<option>Last 7 Days</option>
+<option>Last 30 Days</option>
+</select>
+</div>
+<!-- Mock Chart Representation -->
+<div class="h-64 w-full flex items-end justify-between px-2 gap-2">
+<!-- Day 1 -->
+<div class="flex flex-col items-center gap-2 w-full group cursor-pointer">
+<div class="w-full max-w-[40px] bg-primary/20 rounded-t-lg relative h-32 group-hover:bg-primary/30 transition-colors">
+<div class="absolute bottom-0 w-full bg-primary rounded-t-lg h-[60%]"></div>
+</div>
+<span class="text-xs text-gray-500 font-medium">Mon</span>
+</div>
+<!-- Day 2 -->
+<div class="flex flex-col items-center gap-2 w-full group cursor-pointer">
+<div class="w-full max-w-[40px] bg-primary/20 rounded-t-lg relative h-32 group-hover:bg-primary/30 transition-colors">
+<div class="absolute bottom-0 w-full bg-primary rounded-t-lg h-[40%]"></div>
+</div>
+<span class="text-xs text-gray-500 font-medium">Tue</span>
+</div>
+<!-- Day 3 -->
+<div class="flex flex-col items-center gap-2 w-full group cursor-pointer">
+<div class="w-full max-w-[40px] bg-primary/20 rounded-t-lg relative h-32 group-hover:bg-primary/30 transition-colors">
+<div class="absolute bottom-0 w-full bg-primary rounded-t-lg h-[80%]"></div>
+</div>
+<span class="text-xs text-gray-500 font-medium">Wed</span>
+</div>
+<!-- Day 4 -->
+<div class="flex flex-col items-center gap-2 w-full group cursor-pointer">
+<div class="w-full max-w-[40px] bg-primary/20 rounded-t-lg relative h-32 group-hover:bg-primary/30 transition-colors">
+<div class="absolute bottom-0 w-full bg-primary rounded-t-lg h-[55%]"></div>
+</div>
+<span class="text-xs text-gray-500 font-medium">Thu</span>
+</div>
+<!-- Day 5 -->
+<div class="flex flex-col items-center gap-2 w-full group cursor-pointer">
+<div class="w-full max-w-[40px] bg-primary/20 rounded-t-lg relative h-32 group-hover:bg-primary/30 transition-colors">
+<div class="absolute bottom-0 w-full bg-primary rounded-t-lg h-[70%]"></div>
+</div>
+<span class="text-xs text-gray-500 font-medium">Fri</span>
+</div>
+<!-- Day 6 -->
+<div class="flex flex-col items-center gap-2 w-full group cursor-pointer">
+<div class="w-full max-w-[40px] bg-primary/20 rounded-t-lg relative h-32 group-hover:bg-primary/30 transition-colors">
+<div class="absolute bottom-0 w-full bg-primary rounded-t-lg h-[45%]"></div>
+</div>
+<span class="text-xs text-gray-500 font-medium">Sat</span>
+</div>
+<!-- Day 7 -->
+<div class="flex flex-col items-center gap-2 w-full group cursor-pointer">
+<div class="w-full max-w-[40px] bg-primary/20 rounded-t-lg relative h-32 group-hover:bg-primary/30 transition-colors">
+<div class="absolute bottom-0 w-full bg-primary rounded-t-lg h-[75%]"></div>
+</div>
+<span class="text-xs text-gray-900 dark:text-white font-bold">Sun</span>
+</div>
+</div>
+<div class="mt-4 pt-4 border-t border-gray-100 dark:border-gray-800 flex items-center justify-between text-sm">
+<span class="text-gray-500">Average Mood: <span class="font-semibold text-gray-900 dark:text-white">Good</span></span>
+<a class="text-primary hover:text-primary-dark font-medium flex items-center gap-1" href="#">
+                                    View Detailed Report 
+                                    <span class="material-icons-outlined text-sm">arrow_forward</span>
+</a>
+</div>
+</div>
+<!-- Recommended Resources -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<div class="bg-white dark:bg-surface-dark p-5 rounded-2xl border border-gray-100 dark:border-gray-800 shadow-sm flex gap-4 hover:shadow-md transition-shadow cursor-pointer">
+<div class="h-16 w-16 flex-shrink-0 bg-blue-100 dark:bg-blue-900/30 rounded-xl flex items-center justify-center text-blue-600 dark:text-blue-400">
+<span class="material-icons-outlined text-3xl">school</span>
+</div>
+<div>
+<h4 class="font-semibold text-gray-900 dark:text-white mb-1">Exam Stress?</h4>
+<p class="text-xs text-gray-500 dark:text-gray-400 line-clamp-2">Learn 5 proven techniques to manage anxiety during finals week.</p>
+</div>
+</div>
+<div class="bg-white dark:bg-surface-dark p-5 rounded-2xl border border-gray-100 dark:border-gray-800 shadow-sm flex gap-4 hover:shadow-md transition-shadow cursor-pointer">
+<div class="h-16 w-16 flex-shrink-0 bg-green-100 dark:bg-green-900/30 rounded-xl flex items-center justify-center text-green-600 dark:text-green-400">
+<span class="material-icons-outlined text-3xl">self_improvement</span>
+</div>
+<div>
+<h4 class="font-semibold text-gray-900 dark:text-white mb-1">Guided Meditation</h4>
+<p class="text-xs text-gray-500 dark:text-gray-400 line-clamp-2">A 10-minute session to reset your mind between lectures.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Side Widgets Column -->
+<div class="space-y-6">
+<!-- Daily Affirmation Card -->
+<div class="bg-gradient-to-br from-primary to-primary-dark rounded-2xl p-6 text-white shadow-lg relative overflow-hidden">
+<span class="material-icons-outlined absolute top-4 right-4 text-white/30 text-5xl">format_quote</span>
+<span class="text-xs font-semibold uppercase tracking-wider text-white/80 mb-4 block">Daily Affirmation</span>
+<blockquote class="text-lg font-medium leading-relaxed mb-4">
+                                "You are capable of amazing things, even on the days you feel tired. One step at a time."
+                            </blockquote>
+<div class="flex items-center gap-2 mt-auto">
+<button class="p-2 bg-white/20 rounded-lg hover:bg-white/30 transition-colors backdrop-blur-sm">
+<span class="material-icons-outlined text-sm">favorite_border</span>
+</button>
+<button class="p-2 bg-white/20 rounded-lg hover:bg-white/30 transition-colors backdrop-blur-sm">
+<span class="material-icons-outlined text-sm">share</span>
+</button>
+</div>
+</div>
+<!-- Recent Journal -->
+<div class="bg-white dark:bg-surface-dark rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-800">
+<div class="flex items-center justify-between mb-4">
+<h3 class="font-bold text-gray-900 dark:text-white">Recent Journal</h3>
+<a class="text-primary text-xs font-semibold uppercase hover:underline" href="#">View All</a>
+</div>
+<div class="relative pl-4 border-l-2 border-primary/20 space-y-6">
+<div class="relative">
+<div class="absolute -left-[21px] top-1 h-3 w-3 rounded-full bg-primary ring-4 ring-white dark:ring-surface-dark"></div>
+<p class="text-xs text-gray-400 mb-1">Yesterday, 8:30 PM</p>
+<h4 class="text-sm font-medium text-gray-800 dark:text-gray-200 line-clamp-1">Feeling overwhelmed by assignments</h4>
+<p class="text-xs text-gray-500 mt-1 line-clamp-2">I have three deadlines next week and I'm not sure where to start...</p>
+</div>
+<div class="relative">
+<div class="absolute -left-[21px] top-1 h-3 w-3 rounded-full bg-gray-300 dark:bg-gray-600 ring-4 ring-white dark:ring-surface-dark"></div>
+<p class="text-xs text-gray-400 mb-1">2 days ago</p>
+<h4 class="text-sm font-medium text-gray-800 dark:text-gray-200 line-clamp-1">Had a great chat with mom</h4>
+</div>
+</div>
+<button class="mt-6 w-full flex items-center justify-center gap-2 py-2.5 rounded-xl border border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors text-sm font-medium">
+<span class="material-icons-outlined text-sm">edit</span>
+                                New Entry
+                            </button>
+</div>
+<!-- Quick Daily Tip -->
+<div class="bg-primary-light dark:bg-gray-800/50 rounded-2xl p-5 border border-primary/10 dark:border-gray-700">
+<div class="flex items-start gap-3">
+<span class="material-icons-outlined text-primary mt-1">lightbulb</span>
+<div>
+<h4 class="font-semibold text-gray-900 dark:text-white text-sm">Tip of the Day</h4>
+<p class="text-xs text-gray-600 dark:text-gray-400 mt-1 leading-relaxed">
+                                        Hydration affects mood. Drink a glass of water right now if you haven't in the last hour.
+                                    </p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer Spacer for scrolling -->
+<div class="h-8"></div>
+</div>
+</div>
+</main>
+</body></html>

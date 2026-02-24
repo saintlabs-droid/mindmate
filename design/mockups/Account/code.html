@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Account Settings - MindMate</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#e2715a",
+              "primary-light": "#fbdcd6", 
+              "primary-dark": "#b55a48",
+              "background-light": "#f8f6f6",
+              "background-dark": "#201412",
+              "surface-light": "#ffffff",
+              "surface-dark": "#2d2422",
+              "text-main": "#333333",
+              "text-muted": "#666666",
+            },
+            fontFamily: {
+              "display": ["Inter", "sans-serif"]
+            },
+            borderRadius: {
+              "DEFAULT": "0.5rem", // 8px
+              "lg": "0.5rem",
+              "xl": "0.75rem",
+              "full": "9999px"
+            },
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Custom scrollbar for cleaner look */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background-color: #e5e7eb;
+            border-radius: 20px;
+        }
+        .dark ::-webkit-scrollbar-thumb {
+            background-color: #4b5563;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-800 dark:text-slate-200 font-display transition-colors duration-200 min-h-screen flex flex-col">
+<!-- Top Navigation -->
+<nav class="sticky top-0 z-50 bg-surface-light/90 dark:bg-surface-dark/90 backdrop-blur-md border-b border-primary/10 dark:border-primary/20">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex justify-between h-16">
+<div class="flex items-center">
+<div class="flex-shrink-0 flex items-center gap-2">
+<span class="material-icons text-primary text-3xl">spa</span>
+<span class="font-bold text-xl tracking-tight dark:text-white">MindMate</span>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 text-slate-500 hover:text-primary dark:text-slate-400 dark:hover:text-primary transition-colors rounded-full hover:bg-primary/5">
+<span class="material-icons">notifications_none</span>
+</button>
+<div class="h-8 w-8 rounded-full bg-primary/20 overflow-hidden ring-2 ring-primary/20">
+<img alt="User Profile" class="h-full w-full object-cover" data-alt="Close up portrait of a young woman smiling" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDvyHnMtjFsyq-LCbv271oaOolJXvvbwHF8l5PxNrzo-z6VpHQzVyaBUbDx2WfhQxaPhoBZQRJWB9Qq4l3t3Pa2eL3im_bmSRi7-19a6pgjmPgDp0ZA3thOnoXPVR5xna_qJnE6MtOdK5F40FXnk6HR1N47Xdq8kuSu_EcT5hx0hV7qDgyjLi_Tg8-wQC4CKGY26j6o1g_5iRFN8W91HVeEXSHNvPHuoHPMyr1tHmTA03K0VNa4-zL5a7SnXFMblNXWrL82sZr-WDM"/>
+</div>
+</div>
+</div>
+</div>
+</nav>
+<div class="flex flex-1 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-8 gap-8">
+<!-- Sidebar Navigation -->
+<aside class="hidden lg:block w-64 flex-shrink-0">
+<nav class="space-y-1">
+<a class="group flex items-center px-3 py-2.5 text-sm font-medium rounded-md text-slate-600 dark:text-slate-300 hover:text-primary hover:bg-primary/5 transition-all" href="#">
+<span class="material-icons mr-3 text-xl text-slate-400 group-hover:text-primary transition-colors">dashboard</span>
+                    Dashboard
+                </a>
+<a class="group flex items-center px-3 py-2.5 text-sm font-medium rounded-md text-slate-600 dark:text-slate-300 hover:text-primary hover:bg-primary/5 transition-all" href="#">
+<span class="material-icons mr-3 text-xl text-slate-400 group-hover:text-primary transition-colors">calendar_today</span>
+                    Appointments
+                </a>
+<a class="group flex items-center px-3 py-2.5 text-sm font-medium rounded-md text-slate-600 dark:text-slate-300 hover:text-primary hover:bg-primary/5 transition-all" href="#">
+<span class="material-icons mr-3 text-xl text-slate-400 group-hover:text-primary transition-colors">chat_bubble_outline</span>
+                    Messages
+                </a>
+<a class="group flex items-center px-3 py-2.5 text-sm font-medium rounded-md text-slate-600 dark:text-slate-300 hover:text-primary hover:bg-primary/5 transition-all" href="#">
+<span class="material-icons mr-3 text-xl text-slate-400 group-hover:text-primary transition-colors">library_books</span>
+                    Resources
+                </a>
+<div class="pt-4 mt-4 border-t border-slate-200 dark:border-slate-700"></div>
+<a class="group flex items-center px-3 py-2.5 text-sm font-medium rounded-md bg-primary/10 text-primary" href="#">
+<span class="material-icons mr-3 text-xl">settings</span>
+                    Account Settings
+                </a>
+<a class="group flex items-center px-3 py-2.5 text-sm font-medium rounded-md text-slate-600 dark:text-slate-300 hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20 transition-all" href="#">
+<span class="material-icons mr-3 text-xl text-slate-400 group-hover:text-red-500 transition-colors">logout</span>
+                    Sign Out
+                </a>
+</nav>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1">
+<header class="mb-8">
+<h1 class="text-2xl font-bold text-slate-900 dark:text-white">Account Settings</h1>
+<p class="mt-1 text-sm text-slate-500 dark:text-slate-400">Manage your profile details and privacy preferences.</p>
+</header>
+<div class="grid grid-cols-1 xl:grid-cols-3 gap-8">
+<!-- Left Column: Profile & Security -->
+<div class="xl:col-span-2 space-y-8">
+<!-- Personal Information Card -->
+<div class="bg-surface-light dark:bg-surface-dark rounded-lg shadow-sm border border-slate-100 dark:border-slate-800 p-6">
+<div class="flex items-center justify-between mb-6">
+<h2 class="text-lg font-medium text-slate-900 dark:text-white flex items-center gap-2">
+<span class="material-icons text-primary text-xl">person</span>
+                                Personal Information
+                            </h2>
+</div>
+<!-- Avatar Section -->
+<div class="flex items-center gap-6 mb-8">
+<div class="relative group">
+<div class="h-24 w-24 rounded-full overflow-hidden ring-4 ring-primary/10 bg-slate-100 dark:bg-slate-800">
+<img alt="Current profile picture" class="h-full w-full object-cover" data-alt="Close up portrait of a young woman smiling" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAUR24rHbaEzNaZFZvIxj_uq5-nLzXbDu9vdN8mTxpfwFhoAa2BXBfRMvjGZguZg1brxtYFkqMgTS1feF90XB3KCsThdN518ZHBkWcLlAKdSYseiviLt3qZq-1cBKGi648Cu9Q6iKlPCcYEL-7K_mGKamEbvrfcUNm2reVXmTGdwZojnimo424IkPgwKXVDRjtrEEynOd1_yWl8Z7S1xUIP0jt5yaGombZoimb_Jx6aAhQtlwXxVBeXRFGd6cp970w2PsuLZ7Ihmn4"/>
+</div>
+<button class="absolute bottom-0 right-0 bg-primary hover:bg-primary-dark text-white p-1.5 rounded-full shadow-lg transition-colors border-2 border-white dark:border-surface-dark" title="Change photo">
+<span class="material-icons text-sm">edit</span>
+</button>
+</div>
+<div>
+<h3 class="font-medium text-slate-900 dark:text-white">Profile Photo</h3>
+<p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Accepts JPG, GIF or PNG. Max size of 800K.</p>
+</div>
+</div>
+<form class="space-y-6">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div>
+<label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1" for="fullName">Full Name</label>
+<input class="block w-full rounded-lg border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 text-slate-900 dark:text-white shadow-sm focus:border-primary focus:ring-primary sm:text-sm p-2.5 border" id="fullName" name="fullName" type="text" value="Jane Doe"/>
+</div>
+<div>
+<label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1" for="email">University Email</label>
+<input class="block w-full rounded-lg border-slate-300 dark:border-slate-600 bg-slate-50 dark:bg-slate-900/50 text-slate-500 dark:text-slate-400 shadow-sm focus:border-primary focus:ring-primary sm:text-sm p-2.5 border cursor-not-allowed" id="email" name="email" readonly="" type="email" value="jane.d@uon.ac.ke"/>
+<p class="mt-1 text-xs text-slate-400">Contact admin to change email.</p>
+</div>
+<div>
+<label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1" for="phone">Phone Number (Optional)</label>
+<input class="block w-full rounded-lg border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 text-slate-900 dark:text-white shadow-sm focus:border-primary focus:ring-primary sm:text-sm p-2.5 border" id="phone" name="phone" placeholder="+254 700 000000" type="tel"/>
+</div>
+<div>
+<label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1" for="university">Campus / University</label>
+<select class="block w-full rounded-lg border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 text-slate-900 dark:text-white shadow-sm focus:border-primary focus:ring-primary sm:text-sm p-2.5 border" id="university" name="university">
+<option selected="">University of Nairobi</option>
+<option>Kenyatta University</option>
+<option>Strathmore University</option>
+<option>JKUAT</option>
+<option>USIU Africa</option>
+</select>
+</div>
+</div>
+<div class="flex justify-end pt-4 border-t border-slate-100 dark:border-slate-800">
+<button class="bg-primary hover:bg-primary-dark text-white px-5 py-2 rounded-lg font-medium text-sm transition-colors shadow-sm shadow-primary/30" type="button">
+                                    Save Changes
+                                </button>
+</div>
+</form>
+</div>
+<!-- Security Card -->
+<div class="bg-surface-light dark:bg-surface-dark rounded-lg shadow-sm border border-slate-100 dark:border-slate-800 p-6">
+<div class="flex items-center justify-between mb-6">
+<h2 class="text-lg font-medium text-slate-900 dark:text-white flex items-center gap-2">
+<span class="material-icons text-primary text-xl">lock</span>
+                                Password &amp; Security
+                            </h2>
+</div>
+<form class="space-y-4 max-w-lg">
+<div>
+<label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1" for="currentPassword">Current Password</label>
+<input class="block w-full rounded-lg border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 text-slate-900 dark:text-white shadow-sm focus:border-primary focus:ring-primary sm:text-sm p-2.5 border" id="currentPassword" name="currentPassword" type="password"/>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+<div>
+<label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1" for="newPassword">New Password</label>
+<input class="block w-full rounded-lg border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 text-slate-900 dark:text-white shadow-sm focus:border-primary focus:ring-primary sm:text-sm p-2.5 border" id="newPassword" name="newPassword" type="password"/>
+</div>
+<div>
+<label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1" for="confirmPassword">Confirm New Password</label>
+<input class="block w-full rounded-lg border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 text-slate-900 dark:text-white shadow-sm focus:border-primary focus:ring-primary sm:text-sm p-2.5 border" id="confirmPassword" name="confirmPassword" type="password"/>
+</div>
+</div>
+<div class="pt-2">
+<button class="text-primary hover:text-primary-dark font-medium text-sm transition-colors" type="button">
+                                    Update Password
+                                </button>
+</div>
+</form>
+</div>
+</div>
+<!-- Right Column: Privacy Info -->
+<div class="xl:col-span-1 space-y-8">
+<!-- Data Privacy Card -->
+<div class="bg-primary/5 dark:bg-primary/10 rounded-lg border border-primary/20 p-6 relative overflow-hidden">
+<!-- Decorative bg element -->
+<div class="absolute top-0 right-0 -mt-4 -mr-4 w-24 h-24 bg-primary/10 rounded-full blur-2xl"></div>
+<div class="flex items-center gap-2 mb-4">
+<span class="material-icons text-primary">security</span>
+<h3 class="text-lg font-bold text-slate-900 dark:text-white">Your Privacy Matters</h3>
+</div>
+<p class="text-sm text-slate-600 dark:text-slate-300 mb-6 leading-relaxed">
+                            At MindMate, we understand that seeking help takes courage. Your mental health journey is private. Here is how we protect you:
+                        </p>
+<div class="space-y-4">
+<!-- Privacy Point 1 -->
+<div class="flex gap-3 items-start">
+<div class="mt-0.5 h-5 w-5 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center flex-shrink-0">
+<span class="material-icons text-green-600 dark:text-green-400 text-xs">check</span>
+</div>
+<div>
+<h4 class="text-sm font-semibold text-slate-800 dark:text-slate-200">University Independence</h4>
+<p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">We do not share your chat logs or session details with university administration.</p>
+</div>
+</div>
+<!-- Privacy Point 2 -->
+<div class="flex gap-3 items-start">
+<div class="mt-0.5 h-5 w-5 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center flex-shrink-0">
+<span class="material-icons text-green-600 dark:text-green-400 text-xs">check</span>
+</div>
+<div>
+<h4 class="text-sm font-semibold text-slate-800 dark:text-slate-200">End-to-End Encryption</h4>
+<p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">All messages and video calls are encrypted. Only you and your counselor have access.</p>
+</div>
+</div>
+<!-- Privacy Point 3 -->
+<div class="flex gap-3 items-start">
+<div class="mt-0.5 h-5 w-5 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center flex-shrink-0">
+<span class="material-icons text-green-600 dark:text-green-400 text-xs">check</span>
+</div>
+<div>
+<h4 class="text-sm font-semibold text-slate-800 dark:text-slate-200">Anonymous Mode</h4>
+<p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">You can choose to appear anonymous in community forums.</p>
+</div>
+</div>
+</div>
+<div class="mt-8 pt-6 border-t border-primary/20 space-y-3">
+<a class="flex items-center justify-between text-sm text-slate-700 dark:text-slate-300 hover:text-primary dark:hover:text-primary group bg-white dark:bg-slate-800 p-3 rounded-lg border border-slate-200 dark:border-slate-700 hover:border-primary/50 transition-all" href="#">
+<span>Privacy Policy</span>
+<span class="material-icons text-slate-400 text-sm group-hover:text-primary">arrow_forward</span>
+</a>
+<a class="flex items-center justify-between text-sm text-slate-700 dark:text-slate-300 hover:text-primary dark:hover:text-primary group bg-white dark:bg-slate-800 p-3 rounded-lg border border-slate-200 dark:border-slate-700 hover:border-primary/50 transition-all" href="#">
+<span>Terms of Service</span>
+<span class="material-icons text-slate-400 text-sm group-hover:text-primary">arrow_forward</span>
+</a>
+</div>
+</div>
+<!-- Data Management -->
+<div class="bg-surface-light dark:bg-surface-dark rounded-lg shadow-sm border border-slate-100 dark:border-slate-800 p-6">
+<h3 class="text-sm font-semibold text-slate-900 dark:text-white uppercase tracking-wider mb-4">Data Management</h3>
+<div class="space-y-4">
+<button class="w-full flex items-center justify-center gap-2 px-4 py-2 border border-slate-300 dark:border-slate-600 rounded-lg text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
+<span class="material-icons text-base">download</span>
+                                Download My Data
+                            </button>
+<div class="pt-2">
+<button class="w-full text-left text-xs text-red-500 hover:text-red-700 dark:hover:text-red-400 underline decoration-red-500/30 hover:decoration-red-500 transition-all">
+                                    Delete my account permanently
+                                </button>
+<p class="text-[10px] text-slate-400 mt-1">This action cannot be undone.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>
