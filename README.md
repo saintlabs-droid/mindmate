@@ -190,12 +190,25 @@ mindmate/
 │
 ├── docs/                        # Project documentation
 │   ├── BIT420-Project-Proposal.md
+│   ├── Chapter3-Methodology.md  # Requirements, design, schedule, budget
+│   ├── diagram-descriptions.md  # Mermaid code for all system diagrams
 │   ├── api.md                   # API endpoint documentation
 │   ├── ai-integration.md        # AI/Gemini integration guide
 │   ├── deployment.md            # Deployment instructions
 │   ├── frontend-guide.md        # Frontend development guide
 │   ├── setup.md                 # Local setup instructions
 │   └── images/                  # Documentation images
+│       └── system-diagrams/     # System design diagrams
+│           ├── architecture.png # 3-layer system architecture
+│           ├── use-case.png     # Actor-system interactions
+│           ├── erd.png          # Database entity relationships
+│           ├── dfd-level0.png   # High-level data flow (context)
+│           ├── dfd-level1.png   # Detailed process data flow
+│           ├── flow-registration.png    # User registration sequence
+│           ├── flow-mood-logging.png    # Mood entry sequence
+│           ├── flow-insights.png        # Analytics generation sequence
+│           ├── flow-ai-chat.png         # AI chatbot interaction sequence
+│           └── flow-resources.png       # Support resources sequence
 │
 ├── scripts/                     # Automation scripts
 │   ├── setup.sh                 # Initial project setup
