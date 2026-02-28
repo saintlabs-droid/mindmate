@@ -236,14 +236,42 @@ mindmate/
 
 ---
 
+## Current Status (Sprint 1 Complete)
+
+The core UI foundation and primary wellness workflows are now implemented and verified:
+- [x] **Global Design System**: Standardized "Terracotta" palette, "Inter" Sans-Serif typography, and high-density professional spacing.
+- [x] **Main Dashboard**: Integrated wellness overview with mood trends, daily quotes, and resource highlights.
+- [x] **Journaling (Log Mood)**: Fully functional mood-logging interface with influence tracking (Academics, Finances, etc.) and notes.
+- [x] **Sidebar Navigation**: Complete prioritized menu structure.
+- [x] **Placeholder System**: Clear "Being worked on" markers for the Insights, AI, Support, and Account teams.
+- [x] **Automated Testing**: Unit tests implemented for Backend models and Frontend smoke tests.
+
+---
+
+## Developer Guidelines (Clean Code Standards)
+
+To maintain the professional quality of the codebase, please follow these patterns:
+
+1. **Feature-Based Folder Structure**: Keep components in their respective feature folders (e.g., `src/pages/Dashboard/`).
+2. **Strict Separation of Concerns**: 
+   - **Logic**: (JS/TS) Stay in the component or custom hooks. No mixing business logic with UI where possible.
+   - **Structure**: (JSX) Focus on semantic HTML5.
+   - **Presentation**: (CSS) Use Tailwind utility classes. Avoid inline styles at all costs.
+3. **Reusable Design Tokens**: 
+   - Use the `primary` (Terracotta) color for all actions.
+   - Use `text-sm` for standard body/sidebar text to maintain a high-density professional look.
+4. **Testing**: Before pushing, run `python manage.py test` and `npm test` to ensure no regressions.
+
+---
+
 ## Getting Started
 
 ### Prerequisites
 - Python 3.11+
 - Node.js 18+
-- PostgreSQL 14+
+- Git
 
-### Installation
+### Installation & Run
 
 1. **Clone the repository**
 ```bash
@@ -255,39 +283,41 @@ cd mindmate
 ```bash
 cd backend
 python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
+# On Windows:
+.\venv\Scripts\activate
+# On Mac/Linux:
+source venv/bin/activate
+
 pip install -r requirements.txt
-cp .env.example .env
 python manage.py migrate
 python manage.py runserver
 ```
 
 3. **Frontend Setup**
 ```bash
-cd frontend
+cd ../frontend
 npm install
 npm start
 ```
 
-4. **Access the application**
-- Frontend: http://localhost:3000
-- Backend API: http://localhost:8000/api
+4. **Access**
+- Dashboard: [http://localhost:3000/dashboard](http://localhost:3000/dashboard)
+- API Docs: [http://localhost:8000/api](http://localhost:8000/api)
 
 ---
 
-## Documentation
+## Team Deliverables (Sprint 2)
 
-- [BIT 420 Proposal](docs/BIT420-Project-Proposal.md)
-- [API Documentation](docs/api.md)
-- [Setup Guide](docs/setup.md)
-- [Frontend Guide](docs/frontend-guide.md)
-- [AI Integration](docs/ai-integration.md)
+| Team | Task | Route |
+|------|------|-------|
+| **Insights Team** | Mood analytics and Chart.js | `/insights` |
+| **AI Service Team** | Gemini API for MindAI | `/ai-assistant` |
+| **Support Team** | Resources database | `/support` |
+| **Account Team** | Profile & Data export | `/account` |
 
 ---
 
-## Team
-
-**Group 5 - BIT 420 Final Year Project (Year 4.2)**
+## Group 5 - BIT 420 Final Year Project
 
 | Name | Registration Number |
 |------|---------------------|
@@ -297,12 +327,4 @@ npm start
 | Vincent Omondi | SIT/B/01-02924/2022 |
 | Enos Odondi | SIT/B/01-02913/2022 |
 
-**Supervisors:**
-- Academic Supervisor: [Name]
-- Industry Supervisor: [Name]
-
-**Institution:** Masinde Muliro University of Science and Technology (MMUST)
-
-**Course:** BIT 420 - Final Year Project
-
-**Academic Year:** 2025/2026
+**Masinde Muliro University of Science and Technology (MMUST)** - BIT 420 (Year 4.2)
