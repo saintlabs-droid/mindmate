@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Log Your Mood - MindMate</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#e2715a",
+                        "background-light": "#f8f6f6",
+                        "background-dark": "#201412",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom scrollbar for cleaner look */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background-color: #e5e7eb;
+            border-radius: 20px;
+        }
+        .dark ::-webkit-scrollbar-thumb {
+            background-color: #374151;
+        }
+        
+        /* Smooth selection transition */
+        .select-card {
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .select-card:hover {
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-800 dark:text-white font-display min-h-screen flex flex-col transition-colors duration-200">
+<!-- Navigation -->
+<nav class="sticky top-0 z-50 bg-white/80 dark:bg-[#2a1b18]/80 backdrop-blur-md border-b border-gray-200 dark:border-white/10">
+<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex justify-between items-center h-16">
+<!-- Logo -->
+<div class="flex items-center gap-2">
+<div class="w-8 h-8 rounded-lg bg-primary flex items-center justify-center text-white font-bold text-lg">M</div>
+<span class="font-bold text-xl tracking-tight text-gray-900 dark:text-white">MindMate</span>
+</div>
+<!-- Right Nav Elements -->
+<div class="flex items-center gap-6">
+<div class="hidden md:flex items-center text-sm font-medium text-gray-500 dark:text-gray-400">
+<span>Today is Tuesday, 24th Oct</span>
+</div>
+<div class="flex items-center gap-3 pl-6 border-l border-gray-200 dark:border-white/10">
+<div class="text-right hidden sm:block">
+<p class="text-sm font-semibold text-gray-900 dark:text-white">Juma O.</p>
+<p class="text-xs text-gray-500 dark:text-gray-400">Year 3, Computer Science</p>
+</div>
+<img alt="User Profile" class="h-10 w-10 rounded-full object-cover ring-2 ring-white dark:ring-white/10" data-alt="Profile picture of a young African student smiling" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBAhV7rVeUvHbMJqsEjez9KXkPh-QVWuxmm0dE7fCVlhAjJ0CQ3qnFLqBOOuF9f3oRdPwmxIqKjEKvfHS073oMWZJNhMnMKvDgvdvBRSegKaZ09v7j7Fc80mzJKDxHZCMK51EVB_ScZA51MSnZ71btgfeghwa4oFI2oMwnWYy1ksp5Uy9USjgWN4y9d-8DIKtuzBPJsKp5PgLswNTPwDxpjPz-MsKHljsHG0YW5NMVU3Xevp3zlV7qWBE-JL_9HPZr5o5jrMUnOpf8"/>
+</div>
+</div>
+</div>
+</div>
+</nav>
+<!-- Main Content -->
+<main class="flex-grow container max-w-4xl mx-auto px-4 py-8 sm:py-12">
+<!-- Header Section -->
+<div class="text-center mb-10">
+<span class="inline-flex items-center rounded-full bg-primary/10 px-3 py-1 text-xs font-medium text-primary ring-1 ring-inset ring-primary/20 mb-4">
+                Step 1 of 2
+            </span>
+<h1 class="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-3">Hi Juma, how are you feeling right now?</h1>
+<p class="text-gray-500 dark:text-gray-400 text-lg">Take a moment to check in with yourself.</p>
+</div>
+<!-- Form Card -->
+<div class="bg-white dark:bg-[#2a1b18] rounded-xl shadow-sm border border-gray-100 dark:border-white/5 p-6 sm:p-10">
+<!-- Section 1: Mood Scale -->
+<div class="mb-12">
+<label class="block text-sm font-semibold text-gray-700 dark:text-gray-200 mb-6 uppercase tracking-wide">Rate your mood (1-5)</label>
+<div class="grid grid-cols-5 gap-2 sm:gap-4">
+<!-- 1 - Struggling -->
+<button class="group flex flex-col items-center gap-3 p-2 rounded-xl transition-colors hover:bg-gray-50 dark:hover:bg-white/5 focus:outline-none">
+<div class="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-gray-100 dark:bg-white/5 flex items-center justify-center text-3xl transition-all group-hover:scale-110 group-focus:ring-4 group-focus:ring-primary/20 group-focus:bg-primary/20">
+                            😔
+                        </div>
+<span class="text-xs font-medium text-gray-500 dark:text-gray-400 group-hover:text-primary transition-colors">Struggling</span>
+</button>
+<!-- 2 - Low -->
+<button class="group flex flex-col items-center gap-3 p-2 rounded-xl transition-colors hover:bg-gray-50 dark:hover:bg-white/5 focus:outline-none">
+<div class="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-gray-100 dark:bg-white/5 flex items-center justify-center text-3xl transition-all group-hover:scale-110 group-focus:ring-4 group-focus:ring-primary/20 group-focus:bg-primary/20">
+                            😕
+                        </div>
+<span class="text-xs font-medium text-gray-500 dark:text-gray-400 group-hover:text-primary transition-colors">Low</span>
+</button>
+<!-- 3 - Okay (Selected State Example) -->
+<button class="group flex flex-col items-center gap-3 p-2 rounded-xl transition-colors hover:bg-gray-50 dark:hover:bg-white/5 focus:outline-none relative">
+<div class="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-primary text-white flex items-center justify-center text-3xl shadow-lg shadow-primary/30 transform scale-110 ring-4 ring-primary/20">
+                            😐
+                        </div>
+<span class="text-xs font-bold text-primary dark:text-primary transition-colors">Okay</span>
+</button>
+<!-- 4 - Good -->
+<button class="group flex flex-col items-center gap-3 p-2 rounded-xl transition-colors hover:bg-gray-50 dark:hover:bg-white/5 focus:outline-none">
+<div class="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-gray-100 dark:bg-white/5 flex items-center justify-center text-3xl transition-all group-hover:scale-110 group-focus:ring-4 group-focus:ring-primary/20 group-focus:bg-primary/20">
+                            🙂
+                        </div>
+<span class="text-xs font-medium text-gray-500 dark:text-gray-400 group-hover:text-primary transition-colors">Good</span>
+</button>
+<!-- 5 - Thriving -->
+<button class="group flex flex-col items-center gap-3 p-2 rounded-xl transition-colors hover:bg-gray-50 dark:hover:bg-white/5 focus:outline-none">
+<div class="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-gray-100 dark:bg-white/5 flex items-center justify-center text-3xl transition-all group-hover:scale-110 group-focus:ring-4 group-focus:ring-primary/20 group-focus:bg-primary/20">
+                            😁
+                        </div>
+<span class="text-xs font-medium text-gray-500 dark:text-gray-400 group-hover:text-primary transition-colors">Thriving</span>
+</button>
+</div>
+</div>
+<!-- Divider -->
+<div class="h-px bg-gray-100 dark:bg-white/10 w-full mb-10"></div>
+<!-- Section 2: Stress Categories -->
+<div class="mb-10">
+<div class="flex justify-between items-end mb-6">
+<label class="block text-sm font-semibold text-gray-700 dark:text-gray-200 uppercase tracking-wide">What's influencing your mood?</label>
+<span class="text-xs text-gray-400 dark:text-gray-500">Select all that apply</span>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-5 gap-4">
+<!-- Academics Card (Selected) -->
+<button class="select-card group relative p-4 h-32 flex flex-col justify-between items-start rounded-lg border-2 border-primary bg-primary/5 dark:bg-primary/10 text-left focus:outline-none">
+<div class="w-8 h-8 rounded-full bg-white dark:bg-[#2a1b18] text-primary flex items-center justify-center">
+<span class="material-icons-round text-lg">school</span>
+</div>
+<div>
+<span class="block text-sm font-bold text-primary">Academics</span>
+</div>
+<div class="absolute top-3 right-3 w-4 h-4 bg-primary rounded-full flex items-center justify-center">
+<span class="material-icons-round text-white text-[10px]">check</span>
+</div>
+</button>
+<!-- Finances Card -->
+<button class="select-card group p-4 h-32 flex flex-col justify-between items-start rounded-lg border border-gray-200 dark:border-white/10 bg-white dark:bg-[#2a1b18] hover:border-primary/50 hover:bg-gray-50 dark:hover:bg-white/5 text-left focus:outline-none">
+<div class="w-8 h-8 rounded-full bg-gray-100 dark:bg-white/10 text-gray-500 dark:text-gray-400 group-hover:text-primary group-hover:bg-primary/10 flex items-center justify-center transition-colors">
+<span class="material-icons-round text-lg">account_balance_wallet</span>
+</div>
+<div>
+<span class="block text-sm font-medium text-gray-600 dark:text-gray-300 group-hover:text-gray-900 dark:group-hover:text-white transition-colors">Finances</span>
+</div>
+</button>
+<!-- Relationships Card -->
+<button class="select-card group p-4 h-32 flex flex-col justify-between items-start rounded-lg border border-gray-200 dark:border-white/10 bg-white dark:bg-[#2a1b18] hover:border-primary/50 hover:bg-gray-50 dark:hover:bg-white/5 text-left focus:outline-none">
+<div class="w-8 h-8 rounded-full bg-gray-100 dark:bg-white/10 text-gray-500 dark:text-gray-400 group-hover:text-primary group-hover:bg-primary/10 flex items-center justify-center transition-colors">
+<span class="material-icons-round text-lg">favorite</span>
+</div>
+<div>
+<span class="block text-sm font-medium text-gray-600 dark:text-gray-300 group-hover:text-gray-900 dark:group-hover:text-white transition-colors">Relationships</span>
+</div>
+</button>
+<!-- Family Card -->
+<button class="select-card group p-4 h-32 flex flex-col justify-between items-start rounded-lg border border-gray-200 dark:border-white/10 bg-white dark:bg-[#2a1b18] hover:border-primary/50 hover:bg-gray-50 dark:hover:bg-white/5 text-left focus:outline-none">
+<div class="w-8 h-8 rounded-full bg-gray-100 dark:bg-white/10 text-gray-500 dark:text-gray-400 group-hover:text-primary group-hover:bg-primary/10 flex items-center justify-center transition-colors">
+<span class="material-icons-round text-lg">home</span>
+</div>
+<div>
+<span class="block text-sm font-medium text-gray-600 dark:text-gray-300 group-hover:text-gray-900 dark:group-hover:text-white transition-colors">Family</span>
+</div>
+</button>
+<!-- Career Card -->
+<button class="select-card group p-4 h-32 flex flex-col justify-between items-start rounded-lg border border-gray-200 dark:border-white/10 bg-white dark:bg-[#2a1b18] hover:border-primary/50 hover:bg-gray-50 dark:hover:bg-white/5 text-left focus:outline-none">
+<div class="w-8 h-8 rounded-full bg-gray-100 dark:bg-white/10 text-gray-500 dark:text-gray-400 group-hover:text-primary group-hover:bg-primary/10 flex items-center justify-center transition-colors">
+<span class="material-icons-round text-lg">work</span>
+</div>
+<div>
+<span class="block text-sm font-medium text-gray-600 dark:text-gray-300 group-hover:text-gray-900 dark:group-hover:text-white transition-colors">Career</span>
+</div>
+</button>
+</div>
+</div>
+<!-- Optional: Notes Field -->
+<div class="mb-10">
+<label class="block text-sm font-semibold text-gray-700 dark:text-gray-200 mb-2" for="notes">Add a quick note (optional)</label>
+<textarea class="w-full rounded-lg border-gray-200 dark:border-white/10 bg-gray-50 dark:bg-white/5 text-gray-900 dark:text-white placeholder-gray-400 focus:border-primary focus:ring-primary/20 dark:focus:ring-primary/20 transition-all resize-none p-3 text-sm" id="notes" placeholder="Anything specific happening? E.g. 'Upcoming exams are stressing me out...'" rows="3"></textarea>
+</div>
+<!-- Action Bar -->
+<div class="flex items-center justify-between pt-4 border-t border-gray-100 dark:border-white/10">
+<a class="text-sm font-medium text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white transition-colors" href="#">Cancel</a>
+<button class="bg-primary hover:bg-primary/90 text-white font-semibold py-3 px-8 rounded-lg shadow-lg shadow-primary/30 transform transition hover:-translate-y-0.5 active:translate-y-0 flex items-center gap-2">
+<span>Log Entry</span>
+<span class="material-icons-round text-sm">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Supportive Text -->
+<div class="mt-8 text-center">
+<p class="text-xs text-gray-400 dark:text-gray-500 flex items-center justify-center gap-1">
+<span class="material-icons-round text-sm">lock</span>
+                Your entries are private and secure.
+            </p>
+</div>
+</main>
+</body></html>

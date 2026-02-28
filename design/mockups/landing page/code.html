@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MindMate - Your Student Journey, Balanced</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<style type="text/tailwindcss">
+        :root {
+            --terracotta: #E2725B;
+            --deep-charcoal: #2D2D2D;
+        }
+        @layer base {
+            .btn-signup {
+                background-color: var(--terracotta);
+                border-radius: 8px;
+            }
+            .btn-login {
+                color: var(--deep-charcoal);
+            }
+        }
+    </style>
+<script id="tailwind-config">
+          tailwind.config = {
+            darkMode: "class",
+            theme: {
+              extend: {
+                colors: {
+                  "primary": "#e2715a",
+                  "primary-dark": "#c55e49", 
+                  "background-light": "#F5F5F0",
+                  "background-dark": "#201412",
+                  "text-main": "#2D2D2D",
+                  "surface-light": "#FFFFFF",
+                  "surface-dark": "#2C2422",
+                  "terracotta": "#E2725B",
+                  "deep-charcoal": "#2D2D2D",
+                },
+                fontFamily: {
+                  "display": ["Inter", "sans-serif"]
+                },
+                borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+              },
+            },
+          }
+    </script>
+</head>
+<body class="font-display bg-background-light dark:bg-background-dark text-text-main dark:text-gray-100 antialiased overflow-x-hidden">
+<div class="flex flex-col min-h-screen w-full">
+<header class="sticky top-0 z-50 w-full bg-surface-light/95 dark:bg-surface-dark/95 backdrop-blur-sm border-b border-primary/10 dark:border-primary/20 shadow-sm">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex justify-between items-center h-20">
+<div class="flex-shrink-0 flex items-center gap-3">
+<div class="w-10 h-10 rounded bg-primary flex items-center justify-center text-white">
+<span class="material-icons text-xl">spa</span>
+</div>
+<span class="text-2xl font-bold tracking-tight text-primary">MindMate</span>
+</div>
+<nav class="hidden md:flex space-x-8 items-center">
+<a class="text-text-main dark:text-white hover:text-primary dark:hover:text-primary font-medium transition-colors" href="#">Home</a>
+<a class="text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary font-medium transition-colors" href="#">How it Works</a>
+<a class="text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary font-medium transition-colors" href="#">Resources</a>
+<a class="text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary font-medium transition-colors" href="#">Community</a>
+</nav>
+<div class="hidden md:flex items-center gap-4">
+<a class="btn-login text-deep-charcoal dark:text-gray-200 hover:opacity-70 font-semibold px-3 py-2 transition-all" href="#">Login</a>
+<a class="btn-signup text-white px-6 py-2.5 font-bold shadow-md hover:brightness-110 transition-all" href="#">
+                        Sign Up
+                    </a>
+<div class="w-px h-6 bg-gray-200 dark:bg-gray-700 mx-1"></div>
+<a class="bg-[#E2725B] hover:bg-[#c95e4a] text-white px-5 py-2.5 rounded-lg font-bold shadow-md hover:shadow-lg transition-all flex items-center gap-2 animate-pulse" href="#">
+<span class="material-icons text-white text-sm">notifications_active</span>
+                        Crisis Mode
+                    </a>
+</div>
+<div class="md:hidden flex items-center">
+<button class="text-gray-600 dark:text-gray-300 hover:text-primary focus:outline-none" type="button">
+<span class="material-icons text-2xl">menu</span>
+</button>
+</div>
+</div>
+</div>
+</header>
+<main class="flex-1">
+<div class="max-w-7xl mx-auto px-6 py-12 md:py-20 md:px-12 space-y-24">
+<section class="grid md:grid-cols-2 gap-12 items-center min-h-[500px]">
+<div class="space-y-8 md:pr-8">
+<div class="inline-flex items-center px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium border border-primary/20">
+<span class="w-2 h-2 rounded-full bg-primary mr-2 animate-pulse"></span>
+                        Mental Wellness for Students
+                    </div>
+<h1 class="text-4xl md:text-5xl lg:text-7xl font-bold leading-tight text-text-main dark:text-white">
+                        Your Student Journey, <span class="text-primary relative inline-block">
+                            Balanced.
+                            <svg class="absolute w-full h-3 -bottom-1 left-0 text-primary opacity-30" preserveAspectRatio="none" viewBox="0 0 100 10">
+<path d="M0 5 Q 50 10 100 5" fill="none" stroke="currentColor" stroke-width="8"></path>
+</svg>
+</span>
+</h1>
+<p class="text-xl text-gray-600 dark:text-gray-300 leading-relaxed max-w-lg">
+                        Navigating university life in Kenya can be overwhelming. MindMate is your safe space to track your mood, reflect on your day, and find resources tailored just for you.
+                    </p>
+<div class="flex flex-col sm:flex-row gap-4 pt-4">
+<button class="bg-primary hover:bg-primary-dark text-white px-8 py-4 rounded-lg font-semibold shadow-lg shadow-primary/30 transition-all hover:-translate-y-0.5 flex items-center justify-center gap-2 text-lg">
+                            Start Your Journey
+                            <span class="material-icons text-sm">arrow_forward</span>
+</button>
+<button class="bg-white dark:bg-surface-dark border border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-200 px-8 py-4 rounded-lg font-semibold hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors flex items-center justify-center gap-2 text-lg">
+<span class="material-icons text-primary">play_circle</span>
+                            See How It Works
+                        </button>
+</div>
+<div class="flex items-center gap-4 pt-8">
+<div class="flex -space-x-4">
+<img alt="Student avatar 1" class="w-12 h-12 rounded-full border-2 border-white dark:border-background-dark object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCvcMCXxnT_xRydQ1Wlnt-Bnuee-lPczlkqjFvyX8dON53uZA_lDKYuRLqDwApIOkw9Oe6qo0ZejYQegVngQt8YBQS4IxqZh1xEUAXacA2WzeDCbz_ED-cYjZwl6j4xWRoMKpixOWALx09AtOEnl68Qlnimfs15uLg_Z1GczLoOwWso7I9D08f8un594vSCFn4PkmmzWKr5W9kYmCzrbe9KPy8ZgYWvwFhZi8MVw5rc4gCod6JDpu56GpZfLMLoETbk2YbowB_r39M"/>
+<img alt="Student avatar 2" class="w-12 h-12 rounded-full border-2 border-white dark:border-background-dark object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCFHGWiHo85y-Mb9J6yb1CGAS87VHmpQ3ddfkewhJ2vWy3uIaXyfiosvmmlhAedUT_G2OSu6WiM1P-Utr9Kr-CBQbG4Wdqn2guhAhI9uD3w8sEMLGm7uy9CbKDrASYPW7NG2of644RzJV6BVFBWdrL0A34nF_QI5PVYl7vG0mihPOII4r-GUYmvjr3O53_vTMzTxfL_mDT6Mbvt1LXF5wRBNMDcVM8cX42oN3z7yruYda6ZThrzFJdCLq3gaOaRzXEKS25le7dka9k"/>
+<img alt="Student avatar 3" class="w-12 h-12 rounded-full border-2 border-white dark:border-background-dark object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDtAV-SOLHLWMCCfo9a62fj7koQbt-G0s5ucN8SJDxybkb61WlmxNfsixCAhOqGOdpsawCRozwaxfuU_wsMUceEkrzya-hrJ37DWZLMgBquRJ-uLnHQKzIBlZd7F84RqvrjYPZpwx1c_LnoOnomH73XmMQ77Jchmtl4r5aguiJ7cPfyRbIYYXEjs3CYXtD7wqW8xYaeQCOKtH7Mp10tVRaAjT_5XzuGQ73s4gKOLIww-qDRMBOMjZev-CCZ2WeyJQCRjgiUx6PGrOA"/>
+</div>
+<p class="text-base text-gray-500 dark:text-gray-400">Trusted by students across <span class="font-semibold text-text-main dark:text-gray-200">12 campuses</span></p>
+</div>
+</div>
+<div class="relative h-full min-h-[500px] w-full rounded-2xl overflow-hidden shadow-2xl bg-primary/5">
+<img alt="Two university students talking and laughing on a campus lawn" class="absolute inset-0 w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB6-dxBb-8i4M-Ace-wthFPiAS_Zv7Fx8aN2BuF08LHoDy4THiJeYpUazCGgSE4qMg8lxnHMkCm6LbcsPvNdcEoB_Dvdmk66xNg6d7PbYSnltEq5m-d35awcF3lXXPHWaSuMWPTaW35uf0Knp-iFJM5R4KqSiQ0n_uM-GAPH1AjNwT-QBbbmwwwODeFntdqGcXui1oCNFR-2BbnyCII1UoWB3HKGB80vj1enyVhgf3q96oG5NwM20790GscOU4WBp1dTY9goz9fWz0"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+<div class="absolute bottom-8 left-8 right-8 bg-surface-light/95 dark:bg-surface-dark/95 backdrop-blur-sm p-6 rounded-xl border border-white/20 shadow-lg">
+<div class="flex items-start gap-4">
+<span class="material-icons text-primary text-4xl">format_quote</span>
+<div>
+<p class="text-base text-gray-700 dark:text-gray-200 italic mb-3">
+                                    "It's easier to focus on my studies when I'm not carrying all my stress alone. MindMate helps me unpack my day."
+                                </p>
+<p class="text-sm font-bold text-text-main dark:text-white uppercase tracking-wider">— Sarah O., UoN</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="py-12 border-t border-primary/10">
+<div class="text-center mb-16">
+<h2 class="text-3xl md:text-4xl font-bold text-text-main dark:text-white mb-6">Simple Steps to Balance</h2>
+<p class="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">Build a healthy routine with our proven 3-step framework designed for the busy student lifestyle.</p>
+</div>
+<div class="grid md:grid-cols-3 gap-12 relative">
+<div class="hidden md:block absolute top-12 left-[16%] right-[16%] h-0.5 bg-gradient-to-r from-primary/20 via-primary/40 to-primary/20 -z-10"></div>
+<div class="group flex flex-col items-center text-center">
+<div class="w-24 h-24 rounded-2xl bg-white dark:bg-surface-dark border border-gray-100 dark:border-gray-700 shadow-md group-hover:shadow-xl group-hover:border-primary/30 transition-all duration-300 flex items-center justify-center mb-8 relative z-10">
+<div class="w-16 h-16 rounded-xl bg-primary/10 flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
+<span class="material-icons text-3xl">edit</span>
+</div>
+<div class="absolute -top-3 -right-3 w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center font-bold shadow-sm border-2 border-white dark:border-background-dark">1</div>
+</div>
+<h3 class="text-xl font-bold text-text-main dark:text-white mb-3">Log</h3>
+<p class="text-base text-gray-500 dark:text-gray-400 leading-relaxed px-4">
+                            Take a moment each day to record your mood and thoughts in a private, secure journal.
+                        </p>
+</div>
+<div class="group flex flex-col items-center text-center">
+<div class="w-24 h-24 rounded-2xl bg-white dark:bg-surface-dark border border-gray-100 dark:border-gray-700 shadow-md group-hover:shadow-xl group-hover:border-primary/30 transition-all duration-300 flex items-center justify-center mb-8 relative z-10">
+<div class="w-16 h-16 rounded-xl bg-primary/10 flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
+<span class="material-icons text-3xl">bar_chart</span>
+</div>
+<div class="absolute -top-3 -right-3 w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center font-bold shadow-sm border-2 border-white dark:border-background-dark">2</div>
+</div>
+<h3 class="text-xl font-bold text-text-main dark:text-white mb-3">View</h3>
+<p class="text-base text-gray-500 dark:text-gray-400 leading-relaxed px-4">
+                            Visualize your emotional patterns over the semester to understand your triggers better.
+                        </p>
+</div>
+<div class="group flex flex-col items-center text-center">
+<div class="w-24 h-24 rounded-2xl bg-white dark:bg-surface-dark border border-gray-100 dark:border-gray-700 shadow-md group-hover:shadow-xl group-hover:border-primary/30 transition-all duration-300 flex items-center justify-center mb-8 relative z-10">
+<div class="w-16 h-16 rounded-xl bg-primary/10 flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
+<span class="material-icons text-3xl">self_improvement</span>
+</div>
+<div class="absolute -top-3 -right-3 w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center font-bold shadow-sm border-2 border-white dark:border-background-dark">3</div>
+</div>
+<h3 class="text-xl font-bold text-text-main dark:text-white mb-3">Reflect</h3>
+<p class="text-base text-gray-500 dark:text-gray-400 leading-relaxed px-4">
+                            Get personalized prompts and local support resources to help you regain your balance.
+                        </p>
+</div>
+</div>
+</section>
+<section class="space-y-8">
+<div class="flex items-center justify-between">
+<h2 class="text-3xl font-bold text-text-main dark:text-white">Recent Articles</h2>
+<a class="text-primary font-semibold hover:underline flex items-center gap-1" href="#">
+                        View All Resources <span class="material-icons text-sm">arrow_forward</span>
+</a>
+</div>
+<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+<div class="bg-surface-light dark:bg-surface-dark rounded-xl shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all overflow-hidden border border-gray-100 dark:border-gray-700 flex flex-col group">
+<div class="h-48 bg-gray-200 relative overflow-hidden">
+<img alt="Close up of a notebook and pen on a desk" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDirZHI9f5DgGwUQ8sn_pwhg-t5I2T1FYLUlxA5DByP53a7KP5PNRfo9sEPacNSHWOlI3LCSELKMEa1oXAksxQRLabw2VMWNstfBx0oxDpVfNlUZfXbWFQOXydf9cnnfygbYQ8HLdGqWRkJ57zb_WywFEEhOFVyI4bb6zPylX_aGNPdYk5X3RZ-1vnsgX1ES8r1o15zGJXNGWlMKxQppugUCNbDxVBRWauysZiD8we3ugeFWglOngOYjDIHJn6i5JQxAMKdkgALqiU"/>
+</div>
+<div class="p-6 flex-1 flex flex-col">
+<div class="text-xs font-bold text-primary mb-3 uppercase tracking-wide">Study Tips</div>
+<h3 class="text-xl font-semibold text-text-main dark:text-white mb-3 group-hover:text-primary transition-colors">Managing Exam Anxiety</h3>
+<p class="text-base text-gray-500 dark:text-gray-400 mb-6 flex-1">Practical breathing techniques to help you stay calm during finals week.</p>
+<a class="text-sm font-bold text-text-main dark:text-gray-200 hover:text-primary flex items-center gap-2" href="#">
+                                Read more <span class="material-icons text-xs">arrow_forward</span>
+</a>
+</div>
+</div>
+<div class="bg-surface-light dark:bg-surface-dark rounded-xl shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all overflow-hidden border border-gray-100 dark:border-gray-700 flex flex-col group">
+<div class="h-48 bg-gray-200 relative overflow-hidden">
+<img alt="Group of friends hanging out outdoors at sunset" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDqXMayBOOfSNDOHklr0zlwL2Q2JkmLfhKsToIJKxkTSLlecvG3yqBOgfJwsky4RIHKyjnKUJOFAH5YtHYxu8PCxiLYwUARI_EBWm-Wlg0oCY8B5RbCi9S30SW7vFtfHUHIGXTAdzrRT3y31l9lf8YQ0GHI7Ed6SXRch04LqfAhv1-IUwgEY_pUwOKTuk3XU4-7ZjiJ4fmUj4ry1Oy5D4tn4leqKlOXdLglc-bFnSoGZZrQrjyQWiCUBH4An3Rx3Iuu-ttgn-gxaW8"/>
+</div>
+<div class="p-6 flex-1 flex flex-col">
+<div class="text-xs font-bold text-primary mb-3 uppercase tracking-wide">Community</div>
+<h3 class="text-xl font-semibold text-text-main dark:text-white mb-3 group-hover:text-primary transition-colors">Finding Your Tribe</h3>
+<p class="text-base text-gray-500 dark:text-gray-400 mb-6 flex-1">How connecting with peers can improve your mental resilience on campus.</p>
+<a class="text-sm font-bold text-text-main dark:text-gray-200 hover:text-primary flex items-center gap-2" href="#">
+                                Read more <span class="material-icons text-xs">arrow_forward</span>
+</a>
+</div>
+</div>
+<div class="bg-surface-light dark:bg-surface-dark rounded-xl shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all overflow-hidden border border-gray-100 dark:border-gray-700 flex flex-col group">
+<div class="h-48 bg-gray-200 relative overflow-hidden">
+<img alt="Person doing yoga meditation outdoors" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBq1NygJ--piNM5_tLBU0UxSz2HqUUaZRktksGE3cZ3e4Di31hfd2J4buJN3vak_7_Qv73HcOlPGkHKonEsoNJZDS0Dj4lJHq6gwdoXizRTbNy8RR1ZqJ0egtxgEECtFgmI07gRGGVO7t2ae-9QZ6d2KVPnTUSyrmeRA6AsfoCeYKvEleiUe3a8zGWHi60TlIwqpzWfAnAx4fCRIsZAU5pwrdfKrW3aGTbRylz9MoQ__-ELNFM24Wcf-cHSuwkYCZUhhQfGjK7w414"/>
+</div>
+<div class="p-6 flex-1 flex flex-col">
+<div class="text-xs font-bold text-primary mb-3 uppercase tracking-wide">Wellness</div>
+<h3 class="text-xl font-semibold text-text-main dark:text-white mb-3 group-hover:text-primary transition-colors">Sleep Better</h3>
+<p class="text-base text-gray-500 dark:text-gray-400 mb-6 flex-1">Why sleep is critical for memory retention and emotional regulation.</p>
+<a class="text-sm font-bold text-text-main dark:text-gray-200 hover:text-primary flex items-center gap-2" href="#">
+                                Read more <span class="material-icons text-xs">arrow_forward</span>
+</a>
+</div>
+</div>
+</div>
+</section>
+</div>
+</main>
+<footer class="bg-surface-light dark:bg-surface-dark border-t border-primary/10 dark:border-primary/20">
+<div class="max-w-7xl mx-auto px-6 py-12 lg:px-8">
+<div class="flex flex-col md:flex-row justify-between items-center gap-6">
+<div class="flex items-center gap-2 mb-4 md:mb-0">
+<div class="w-8 h-8 rounded bg-primary flex items-center justify-center text-white">
+<span class="material-icons text-sm">spa</span>
+</div>
+<span class="font-bold text-primary text-lg">MindMate</span>
+</div>
+<div class="flex flex-wrap justify-center gap-8 text-sm font-medium text-gray-500">
+<a class="hover:text-primary transition-colors" href="#">About Us</a>
+<a class="hover:text-primary transition-colors" href="#">Features</a>
+<a class="hover:text-primary transition-colors" href="#">University Partners</a>
+<a class="hover:text-primary transition-colors" href="#">Contact</a>
+</div>
+</div>
+<div class="mt-8 pt-8 border-t border-gray-200 dark:border-gray-800 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-500">
+<p>© 2023 MindMate Kenya. All rights reserved.</p>
+<div class="flex gap-6">
+<a class="hover:text-primary transition-colors" href="#">Privacy Policy</a>
+<a class="hover:text-primary transition-colors" href="#">Terms of Service</a>
+</div>
+</div>
+</div>
+</footer>
+</div>
+
+</body></html>
