@@ -1,7 +1,9 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import { useUser } from '../../context/UserContext';
 
 const Sidebar = () => {
+    const { user } = useUser();
     const menuItems = [
         { name: 'Dashboard', icon: 'dashboard', path: '/dashboard' },
         { name: 'Journal', icon: 'book', path: '/log-mood' },
@@ -54,11 +56,11 @@ const Sidebar = () => {
                 <div className="flex items-center gap-2 px-2 py-1.5 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors cursor-pointer ring-1 ring-transparent hover:ring-gray-200">
                     <img
                         className="h-7 w-7 rounded-full object-cover border border-gray-200 dark:border-gray-700"
-                        src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=100"
+                        src={user.profilePic}
                         alt="User profile"
                     />
                     <div className="flex-1 min-w-0">
-                        <p className="text-sm font-semibold text-gray-900 dark:text-white truncate">Imani O.</p>
+                        <p className="text-sm font-semibold text-gray-900 dark:text-white truncate">{user.fullName}</p>
                         <p className="text-xs text-gray-500 truncate">View Profile</p>
                     </div>
                 </div>
