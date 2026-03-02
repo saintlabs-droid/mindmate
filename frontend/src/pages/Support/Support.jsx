@@ -1,133 +1,11 @@
 import React, { useState } from 'react';
+import CounselingCard from './components/CounselingCard';
+import HelplineCard from './components/HelplineCard';
 
-const CounselingCard = ({ title, subtitle, location, locationNote, time, type }) => {
-    const [isOpen, setIsOpen] = useState(false);
-
-    return (
-        <div
-            className="bg-white dark:bg-surface-dark border border-gray-100 dark:border-gray-800 rounded-2xl p-5 hover:shadow-md transition-shadow cursor-pointer"
-            onClick={() => setIsOpen(!isOpen)}
-        >
-            <div className="flex items-start justify-between mb-4">
-                <div className={`w-10 h-10 rounded-xl flex items-center justify-center ${type === 'health' ? 'bg-orange-50 text-orange-500' :
-                    type === 'peer' ? 'bg-blue-50 text-blue-500' :
-                        'bg-purple-50 text-purple-500'
-                    }`}>
-                    <span className="material-icons-outlined">
-                        {type === 'health' ? 'medical_services' : type === 'peer' ? 'groups' : 'psychology'}
-                    </span>
-                </div>
-                <div className="flex items-center gap-2">
-                    <div className="opacity-10 dark:opacity-20 flex">
-                        <span className="material-icons text-5xl">
-                            {type === 'health' ? 'school' : type === 'peer' ? 'diversity_3' : 'person'}
-                        </span>
-                    </div>
-                    <span className={`material-icons text-gray-400 transition-transform ${isOpen ? '-rotate-180' : ''}`}>
-                        expand_more
-                    </span>
-                </div>
-            </div>
-            <h3 className="font-bold text-gray-900 dark:text-white mb-1 tracking-tight">{title}</h3>
-
-            {isOpen && (
-                <div className="mt-4 animate-fade-in cursor-default" onClick={(e) => e.stopPropagation()}>
-                    <p className="text-sm text-gray-500 dark:text-gray-400 mb-6 leading-relaxed">
-                        {subtitle}
-                    </p>
-
-                    <div className="space-y-3 mb-6">
-                        <div className="flex items-start gap-3">
-                            <span className="material-icons-outlined text-gray-400 text-sm mt-0.5">
-                                {type === 'peer' ? 'location_on' : 'location_on'}
-                            </span>
-                            <div>
-                                <p className="text-sm font-medium text-gray-700 dark:text-gray-300">{location}</p>
-                                <p className="text-xs text-gray-400">{locationNote}</p>
-                            </div>
-                        </div>
-                        <div className="flex items-center gap-3">
-                            <span className="material-icons-outlined text-gray-400 text-sm">schedule</span>
-                            <p className="text-sm font-medium text-gray-700 dark:text-gray-300">{time}</p>
-                        </div>
-                    </div>
-
-                    <button className={`w-full py-2.5 rounded-lg font-semibold text-sm transition-colors flex items-center justify-center gap-2 ${type === 'peer'
-                        ? 'bg-white border border-orange-500/20 text-orange-500 hover:bg-orange-50 dark:bg-transparent dark:hover:bg-orange-500/10'
-                        : 'bg-orange-500 hover:bg-orange-600 text-white'
-                        }`}>
-                        {type === 'peer' ? (
-                            <>
-                                <span className="material-icons-outlined text-[18px]">info</span>
-                                View Schedule
-                            </>
-                        ) : (
-                            <>
-                                <span className="material-icons-outlined text-[18px]">event</span>
-                                Book Appointment
-                            </>
-                        )}
-                    </button>
-                </div>
-            )}
-        </div>
-    );
-};
-
-const HelplineCard = ({ title, status, description, buttonColor, badgeColor, badgeText, callNumber, timeInfo, isEmergency }) => {
-    const [isOpen, setIsOpen] = useState(false);
-
-    return (
-        <div
-            className={`bg-white dark:bg-surface-dark border-l-4 rounded-xl p-5 hover:shadow-md transition-shadow relative overflow-hidden cursor-pointer ${title.includes('Befrienders') ? 'border-l-green-500 border-y border-r border-gray-100 dark:border-gray-800' :
-                title.includes('Red Cross') ? 'border-l-red-600 border-y border-r border-gray-100 dark:border-gray-800' :
-                    'border-l-purple-500 border-y border-r border-gray-100 dark:border-gray-800'
-                }`}
-            onClick={() => setIsOpen(!isOpen)}
-        >
-            <div className="flex justify-between items-start mb-2">
-                <div>
-                    <h3 className="font-bold text-gray-900 dark:text-white text-lg tracking-tight mb-2">{title}</h3>
-                    <span className={`text-[10px] font-bold uppercase tracking-wider px-2 py-1 rounded-md ${badgeColor}`}>
-                        {badgeText}
-                    </span>
-                </div>
-                <div className="flex items-center gap-2">
-                    <div className="w-8 h-8 rounded-full bg-gray-50 flex items-center justify-center text-gray-400">
-                        <span className="material-icons-outlined text-[18px]">
-                            {title.includes('Befrienders') ? 'favorite' :
-                                title.includes('Red Cross') ? 'local_hospital' :
-                                    'shield'}
-                        </span>
-                    </div>
-                    <span className={`material-icons text-gray-400 transition-transform ${isOpen ? '-rotate-180' : ''}`}>
-                        expand_more
-                    </span>
-                </div>
-            </div>
-
-            {isOpen && (
-                <div className="mt-4 animate-fade-in cursor-default" onClick={(e) => e.stopPropagation()}>
-                    <p className="text-sm text-gray-600 dark:text-gray-400 mb-6 leading-relaxed">
-                        {description}
-                    </p>
-
-                    <button className={`w-full py-2.5 rounded-lg font-semibold text-sm text-white transition-colors flex items-center justify-center gap-2 mb-4 ${buttonColor}`}>
-                        <span className="material-icons text-[18px]">phone</span>
-                        {callNumber}
-                    </button>
-
-                    <div className="flex items-center gap-2 text-xs text-gray-500 pt-4 border-t border-gray-100 dark:border-gray-800">
-                        <span className="material-icons-outlined text-[14px]">schedule</span>
-                        {timeInfo}
-                    </div>
-                </div>
-            )}
-        </div>
-    );
-};
-
-
+/**
+ * Support Directory Page
+ * Provides access to campus counseling and national helplines.
+ */
 const Support = () => {
     const [searchQuery, setSearchQuery] = useState('');
 
@@ -137,7 +15,7 @@ const Support = () => {
             {/* Emergency Banner */}
             <div className="bg-red-50 dark:bg-red-900/10 border-l-4 border-red-500 rounded-lg p-4 mb-8 flex items-center justify-between">
                 <div className="flex items-center gap-3 text-red-700 dark:text-red-400">
-                    <span className="material-icons-outlined">warning</span>
+                    <span className="material-icons-round">warning</span>
                     <p className="font-medium text-sm">In immediate danger? Please don't wait.</p>
                 </div>
                 <button className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg text-sm font-semibold shadow-sm transition-colors flex items-center gap-2">
@@ -158,7 +36,7 @@ const Support = () => {
 
                     <div className="relative w-full md:w-80">
                         <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                            <span className="material-icons-outlined text-gray-400">search</span>
+                            <span className="material-icons-round text-gray-400">search</span>
                         </div>
                         <input
                             type="text"
@@ -174,10 +52,10 @@ const Support = () => {
             {/* Campus Counseling Section */}
             <div className="mb-12">
                 <div className="flex items-center gap-3 mb-6">
-                    <div className="w-1 h-6 bg-orange-500 rounded-full"></div>
+                    <div className="w-1 h-6 bg-primary rounded-full"></div>
                     <h2 className="text-xl font-bold text-gray-900 dark:text-white tracking-tight flex items-center gap-3">
                         Campus Counseling
-                        <span className="bg-orange-50 text-orange-600 text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md">
+                        <span className="bg-primary/10 text-primary text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md">
                             Internal
                         </span>
                     </h2>
@@ -214,7 +92,7 @@ const Support = () => {
             {/* National Helplines Section */}
             <div>
                 <div className="flex items-center gap-3 mb-6">
-                    <div className="w-1 h-6 bg-orange-500 rounded-full"></div>
+                    <div className="w-1 h-6 bg-primary rounded-full"></div>
                     <h2 className="text-xl font-bold text-gray-900 dark:text-white tracking-tight flex items-center gap-3">
                         National Helplines (Kenya)
                         <span className="bg-green-50 text-green-600 dark:bg-green-900/20 dark:text-green-400 text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md">
