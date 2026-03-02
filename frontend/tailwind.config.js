@@ -1,28 +1,38 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-    content: [
-        "./src/**/*.{js,jsx,ts,tsx}",
-    ],
-    darkMode: 'class',
-    theme: {
-        extend: {
-            colors: {
-                "primary": "#e2715a",
-                "primary-dark": "#c55e49",
-                "background-light": "#F5F5F0",
-                "background-dark": "#201412",
-                "text-main": "#2D2D2D",
-                "surface-light": "#FFFFFF",
-                "surface-dark": "#2C2422",
-                "terracotta": "#E2725B",
-                "deep-charcoal": "#2D2D2D",
-            },
-            fontFamily: {
-                "display": ["Inter", "sans-serif"]
-            },
-        },
+  darkMode: ["class"],
+  content: [
+    "./pages/**/*.{js,jsx}",
+    "./components/**/*.{js,jsx}",
+    "./app/**/*.{js,jsx}",
+    "./src/**/*.{js,jsx}",
+  ],
+  prefix: "",
+  theme: {
+    container: {
+      center: true,
+      padding: "2rem",
+      screens: {
+        "2xl": "1400px",
+      },
     },
-    plugins: [
-        require('@tailwindcss/forms'),
-    ],
-}
+    extend: {
+      fontFamily: {
+        sans: ["Inter", "system-ui", "-apple-system", "sans-serif"],
+      },
+      colors: {
+        border: "hsl(var(--border))",
+        input: "hsl(var(--input))",
+        ring: "hsl(var(--ring))",
+        background: "hsl(var(--background))",
+        foreground: "hsl(var(--foreground))",
+        primary: {
+          DEFAULT: "hsl(var(--primary))",
+          foreground: "hsl(var(--primary-foreground))",
+        },
+        // keep the rest exactly the same
+      },
+    },
+  },
+  plugins: [require("tailwindcss-animate")],
+};
