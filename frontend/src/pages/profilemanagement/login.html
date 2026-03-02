@@ -1,0 +1,22 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="{% static 'styles/styles.css' %}">
+</head>
+<body class="mindmate-bg flex items-center justify-center p-4">
+    <div class="auth-card p-10 w-full max-w-md text-center">
+        <h1 class="text-2xl font-bold text-gray-800">MindMate</h1>
+        <p class="text-sm text-gray-500 mb-8">Welcome back, let's check in.</p>
+
+        <form method="POST" class="space-y-4 text-left">
+            {% csrf_token %}
+            <input type="email" name="email" placeholder="name@student.ac.ke" class="mindmate-input">
+            <input type="password" name="password" placeholder="Password" class="mindmate-input">
+            <button type="submit" class="btn-primary w-full">Login to Dashboard →</button>
+        </form>
+        <p class="mt-6 text-sm text-gray-600">New here? <a href="{% url 'signup' %}" class="text-orange-500 font-bold">Sign Up</a></p>
+    </div>
+</body>
+</html>
