@@ -1,70 +1,165 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
+/**
+ * =============================================================================
+ * Sidebar Component - MindMate Dashboard Navigation
+ * =============================================================================
+ *
+ * PURPOSE:
+ * Renders the left-hand navigation sidebar with logo, menu items, and user
+ * profile card. Fixed on desktop, collapsible drawer on mobile.
+ *
+ * HOW TO MAKE DYNAMIC:
+ * - Replace the static `menuItems` array with data from an API or config file.
+ * - Use React Router's `NavLink` for real routing (currently uses static active state).
+ * - User profile data (name, plan) can come from an auth context or user API.
+ *
+ * HOW TO ADD ROUTING:
+ * - Wrap menu items in <NavLink to="/path"> from react-router-dom.
+ * - The `active` field can be removed and replaced with NavLink's built-in
+ *   `isActive` prop for automatic active styling.
+ *
+ * LAYOUT:
+ * - Fixed width (240px) on desktop, hidden by default on mobile.
+ * - Toggle button (hamburger) shows on mobile to open/close sidebar.
+ * =============================================================================
+ */
+
+import { useState } from "react";
+import {
+  LayoutDashboard,
+  BookOpen,
+  BarChart3,
+  Users,
+  BookMarked,
+  Lock,
+  Menu,
+  X,
+} from "lucide-react";
+
+/**
+ * Static menu items for the sidebar.
+ * TO MAKE DYNAMIC: Fetch from config or API and map over the result.
+ */
+const menuItems = [
+  { icon: LayoutDashboard, label: "Dashboard", active: false },
+  { icon: BookOpen, label: "Journal", active: false },
+  { icon: BarChart3, label: "Insights", active: true },
+  { icon: Users, label: "Community", active: false },
+  { icon: BookMarked, label: "Resources", active: false },
+];
 
 const Sidebar = () => {
-    const menuItems = [
-        { name: 'Dashboard', icon: 'dashboard', path: '/dashboard' },
-        { name: 'Journal', icon: 'book', path: '/log-mood' },
-        { name: 'Insights', icon: 'analytics', path: '/insights' },
-        { name: 'MindAI', icon: 'smart_toy', path: '/ai-assistant' },
-        { name: 'Support', icon: 'spa', path: '/support' },
-        { name: 'Account', icon: 'person', path: '/account' },
-    ];
+  // Controls mobile sidebar visibility
+  const [mobileOpen, setMobileOpen] = useState(false);
 
-    return (
-        <aside className="w-56 bg-surface-light dark:bg-surface-dark border-r border-gray-200 dark:border-gray-800 flex flex-col hidden md:flex z-20 shadow-sm h-screen sticky top-0 transition-all duration-300">
-            <div className="p-5 flex items-center gap-2">
-                <div className="h-7 w-7 rounded bg-primary flex items-center justify-center text-white font-bold text-lg">M</div>
-                <span className="text-lg font-bold tracking-tight text-gray-900 dark:text-white">MindMate</span>
+  return (
+    <>
+      {/* --- Mobile hamburger toggle button --- */}
+      <button
+        onClick={() => setMobileOpen(true)}
+        className="fixed top-4 left-4 z-50 lg:hidden rounded-lg bg-card p-2 shadow-md"
+        aria-label="Open navigation menu"
+      >
+        <Menu className="h-5 w-5 text-foreground" />
+      </button>
+
+      {/* --- Mobile overlay backdrop --- */}
+      {mobileOpen && (
+        <div
+          className="fixed inset-0 z-40 bg-foreground/20 backdrop-blur-sm lg:hidden"
+          onClick={() => setMobileOpen(false)}
+          aria-hidden="true"
+        />
+      )}
+
+      {/* --- Sidebar panel --- */}
+      <aside
+        className={`
+          fixed top-0 left-0 z-50 h-screen w-60 bg-sidebar border-r border-sidebar-border
+          flex flex-col justify-between transition-transform duration-300
+          lg:translate-x-0 lg:static lg:z-auto lg:min-h-screen
+          ${mobileOpen ? "translate-x-0" : "-translate-x-full"}
+        `}
+        role="navigation"
+        aria-label="Main navigation"
+      >
+        {/* --- Logo / Brand --- */}
+        <div className="flex items-center justify-between px-5 py-6">
+          <div className="flex items-center gap-2">
+            {/* Brand icon circle */}
+            <div className="h-8 w-8 rounded-lg bg-primary flex items-center justify-center">
+              <span className="text-primary-foreground font-bold text-sm">M</span>
             </div>
+            <span className="text-lg font-bold text-foreground">MindMate</span>
+          </div>
+          {/* Close button on mobile */}
+          <button
+            onClick={() => setMobileOpen(false)}
+            className="lg:hidden"
+            aria-label="Close navigation menu"
+          >
+            <X className="h-5 w-5 text-muted-foreground" />
+          </button>
+        </div>
 
-            <nav className="flex-1 px-3 py-2 space-y-0.5 overflow-y-auto">
-                {menuItems.map((item) => (
-                    <NavLink
-                        key={item.name}
-                        to={item.path}
-                        className={({ isActive }) =>
-                            `flex items-center gap-3 px-3 py-2 rounded-lg transition-all font-medium text-sm ${isActive
-                                ? 'bg-primary/10 text-primary'
-                                : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-gray-100'
-                            }`
-                        }
-                    >
-                        <span className="material-icons-outlined text-[20px]">{item.icon}</span>
-                        {item.name}
-                        {item.name === 'Journal' && (
-                            <span className="material-icons-outlined text-[10px] ml-auto opacity-50">lock</span>
-                        )}
-                    </NavLink>
-                ))}
-            </nav>
+        {/* --- Navigation Links --- */}
+        <nav className="flex-1 px-3 space-y-1">
+          {menuItems.map((item) => (
+            <a
+              key={item.label}
+              href="#"
+              className={`
+                flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium
+                transition-colors duration-150
+                ${
+                  item.active
+                    ? "bg-sidebar-accent text-sidebar-accent-foreground"
+                    : "text-sidebar-foreground hover:bg-muted"
+                }
+              `}
+              /**
+               * TO ADD ROUTING:
+               * Replace <a href="#"> with <NavLink to="/insights"> etc.
+               * Use NavLink's className callback for active styling:
+               * className={({ isActive }) => isActive ? activeClasses : defaultClasses}
+               */
+              aria-current={item.active ? "page" : undefined}
+            >
+              <item.icon className="h-4.5 w-4.5" />
+              {item.label}
+            </a>
+          ))}
+        </nav>
 
-            <div className="p-3 mt-auto border-t border-gray-200 dark:border-gray-800">
-                <div className="bg-primary/5 dark:bg-primary/10 rounded-lg p-3 mb-3">
-                    <div className="flex items-center gap-2 mb-1.5 text-primary">
-                        <span className="material-icons-outlined text-sm">support_agent</span>
-                        <span className="text-[10px] font-bold uppercase tracking-wider">Need Help?</span>
-                    </div>
-                    <p className="text-[11px] text-gray-600 dark:text-gray-400 mb-2 leading-tight">Speak to a counselor anonymously.</p>
-                    <button className="w-full text-[11px] bg-white dark:bg-surface-dark border border-primary/20 text-primary hover:bg-primary hover:text-white transition-colors py-1.5 rounded-md font-semibold">
-                        Call Helpline
-                    </button>
-                </div>
-
-                <div className="flex items-center gap-2 px-2 py-1.5 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors cursor-pointer ring-1 ring-transparent hover:ring-gray-200">
-                    <img
-                        className="h-7 w-7 rounded-full object-cover border border-gray-200 dark:border-gray-700"
-                        src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=100"
-                        alt="User profile"
-                    />
-                    <div className="flex-1 min-w-0">
-                        <p className="text-sm font-semibold text-gray-900 dark:text-white truncate">Imani O.</p>
-                        <p className="text-xs text-gray-500 truncate">View Profile</p>
-                    </div>
-                </div>
+        {/* --- User Profile Card --- */}
+        <div className="px-4 pb-5">
+          {/*
+           * TO MAKE DYNAMIC:
+           * Pull user data from auth context (e.g., useAuth() hook).
+           * Display user.name, user.plan, user.avatar.
+           */}
+          <div className="flex items-center gap-3 rounded-lg bg-muted p-3">
+            {/* Avatar placeholder */}
+            <div className="h-9 w-9 rounded-full bg-primary/20 flex items-center justify-center text-sm font-semibold text-accent-foreground">
+              WK
             </div>
-        </aside>
-    );
+            <div className="flex-1 min-w-0">
+              <p className="text-sm font-medium text-foreground truncate">
+                Wanjiku K.
+              </p>
+              <p className="text-xs text-muted-foreground">Free Plan</p>
+            </div>
+          </div>
+          {/* Privacy indicator */}
+          <div className="flex items-center gap-1.5 mt-3 px-1">
+            <Lock className="h-3 w-3 text-muted-foreground" />
+            <span className="text-xs text-muted-foreground">
+              Private & Encrypted
+            </span>
+          </div>
+        </div>
+      </aside>
+    </>
+  );
 };
 
 export default Sidebar;
