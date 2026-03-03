@@ -1,82 +1,103 @@
-import React, { useState } from 'react';
+﻿import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-/**
- * LandingHeader: Navigation boundary for the landing experience.
- * Encapsulates brand identity, navigation links, and primary auth CTAs.
- */
 const LandingHeader = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [isSearchOpen, setIsSearchOpen] = useState(false);
+
+    const navLinks = [
+        { label: 'Programs', href: '#how-it-works' },
+        { label: 'Resources', href: '#resources' },
+        { label: 'About', href: '#about' },
+        { label: 'Contact', href: '#contact' },
+    ];
 
     return (
-        <header className="sticky top-0 z-50 w-full bg-surface-light/95 dark:bg-surface-dark/95 backdrop-blur-sm border-b border-primary/10 dark:border-primary/20 shadow-sm">
+        <header className="sticky top-0 z-50 w-full bg-white border-b border-gray-200">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="flex justify-between items-center h-20">
-                    <div className="flex-shrink-0 flex items-center gap-4">
-                        <div className="w-12 h-12 rounded-2xl bg-primary flex items-center justify-center text-white shadow-premium">
-                            <span className="material-icons-outlined text-2xl">psychology</span>
-                        </div>
-                        <span className="text-2xl font-bold tracking-tight text-text-main">
-                            MindMate
-                        </span>
-                    </div>
+                <div className="flex items-center h-14 gap-8">
 
-                    <nav className="hidden md:flex space-x-12 items-center">
-                        <Link className="text-text-main hover:text-primary transition-all font-semibold text-xs uppercase tracking-widest" to="/">Home</Link>
-                        <a className="text-neutral-warm hover:text-primary transition-all font-semibold text-xs uppercase tracking-widest" href="#how-it-works">How it Works</a>
-                        <a className="text-neutral-warm hover:text-primary transition-all font-semibold text-xs uppercase tracking-widest" href="#resources">Resources</a>
-                        <a className="text-neutral-warm hover:text-primary transition-all font-semibold text-xs uppercase tracking-widest" href="#about">About</a>
-                        <a className="text-neutral-warm hover:text-primary transition-all font-semibold text-xs uppercase tracking-widest" href="#contact">Contact</a>
+                    {/* Logo */}
+                    <Link to="/" className="flex items-center gap-2.5 flex-shrink-0 mr-2">
+                        <div className="w-7 h-7 rounded-lg bg-primary flex items-center justify-center">
+                            <span className="material-icons-outlined text-white" style={{ fontSize: '15px' }}>psychology</span>
+                        </div>
+                        <span className="text-[15px] font-semibold text-text-main tracking-tight">MindMate</span>
+                    </Link>
+
+                    {/* Desktop Nav */}
+                    <nav className="hidden md:flex items-center gap-1 flex-1">
+                        {navLinks.map(({ label, href }) => (
+                            <a
+                                key={label}
+                                href={href}
+                                className="px-3 py-1.5 text-[13.5px] font-normal text-[#3c4043] hover:text-primary hover:bg-gray-50 rounded transition-colors whitespace-nowrap"
+                            >
+                                {label}
+                            </a>
+                        ))}
                     </nav>
 
-                    <div className="hidden md:flex items-center gap-8">
-                        <a
-                            className="text-text-main hover:text-primary font-black px-2 py-2 transition-all uppercase tracking-[0.2em] text-[10px]"
-                            href="/login/"
+                    {/* Right actions */}
+                    <div className="hidden md:flex items-center gap-1 ml-auto">
+                        <button
+                            onClick={() => setIsSearchOpen(!isSearchOpen)}
+                            className="w-9 h-9 flex items-center justify-center rounded-full text-[#5f6368] hover:bg-gray-100 transition-colors"
+                            aria-label="Search"
                         >
+                            <span className="material-icons-outlined" style={{ fontSize: '20px' }}>search</span>
+                        </button>
+                        <a href="/login/" className="ml-2 px-4 py-1.5 text-[13.5px] font-normal text-[#3c4043] hover:text-primary hover:bg-gray-50 rounded transition-colors">
                             Login
                         </a>
-                        <a
-                            className="bg-primary text-white px-8 py-3.5 rounded-2xl font-black shadow-premium hover:brightness-105 hover:-translate-y-0.5 active:scale-95 transition-all uppercase tracking-[0.2em] text-[10px]"
-                            href="/signup/"
-                        >
+                        <a href="/signup/" className="ml-1 px-5 py-2 bg-primary text-white text-[13px] font-semibold rounded-full hover:brightness-105 transition-all shadow-sm">
                             Sign Up
                         </a>
-                        <div className="w-px h-8 bg-gray-100 dark:bg-gray-800 mx-2"></div>
-                        <Link
-                            className="bg-crisis hover:bg-crisis/90 text-white px-6 py-3.5 rounded-2xl font-black shadow-lg hover:shadow-crisis/20 transition-all flex items-center gap-2 animate-pulse uppercase tracking-[0.2em] text-[9px]"
-                            to="/support"
-                        >
-                            <span className="material-icons-outlined text-white text-xs">emergency</span>
-                            Crisis Mode
-                        </Link>
                     </div>
 
-                    <div className="md:hidden flex items-center">
+                    {/* Mobile hamburger */}
+                    <div className="md:hidden flex items-center ml-auto">
                         <button
                             onClick={() => setIsMenuOpen(!isMenuOpen)}
-                            className="p-2 text-gray-600 dark:text-gray-300 hover:text-primary transition-colors focus:outline-none"
+                            className="w-9 h-9 flex items-center justify-center text-[#5f6368] hover:bg-gray-100 rounded-full transition-colors"
                         >
-                            <span className="material-icons-outlined text-2xl">
+                            <span className="material-icons-outlined" style={{ fontSize: '22px' }}>
                                 {isMenuOpen ? 'close' : 'menu'}
                             </span>
                         </button>
                     </div>
                 </div>
+
+                {/* Expandable search */}
+                {isSearchOpen && (
+                    <div className="hidden md:block pb-3 animate-in fade-in duration-200">
+                        <input
+                            autoFocus
+                            type="search"
+                            placeholder="Search MindMate..."
+                            className="w-full max-w-md border border-gray-200 rounded-full px-5 py-2 text-sm text-text-main placeholder-gray-400 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/20"
+                        />
+                    </div>
+                )}
             </div>
 
             {/* Mobile Menu */}
             {isMenuOpen && (
-                <div className="md:hidden bg-white/95 dark:bg-surface-dark/95 backdrop-blur-xl border-b border-gray-100 dark:border-white/5 animate-in slide-in-from-top duration-300">
-                    <div className="px-6 py-10 space-y-6">
-                        <Link className="block text-sm font-black text-gray-900 dark:text-white uppercase tracking-widest" to="/">Home</Link>
-                        <a className="block text-sm font-black text-gray-500 dark:text-gray-400 uppercase tracking-widest" href="#how-it-works">How it Works</a>
-                        <a className="block text-sm font-black text-gray-500 dark:text-gray-400 uppercase tracking-widest" href="#resources">Resources</a>
-                        <a className="block text-sm font-black text-gray-500 dark:text-gray-400 uppercase tracking-widest" href="#about">About</a>
-                        <a className="block text-sm font-black text-gray-500 dark:text-gray-400 uppercase tracking-widest" href="#contact">Contact</a>
-                        <div className="pt-6 flex flex-col gap-4">
-                            <a className="block w-full text-center text-gray-900 dark:text-white font-black uppercase tracking-widest text-xs py-4 border border-gray-100 dark:border-white/5 rounded-2xl" href="/login/">Login</a>
-                            <a className="block w-full text-center bg-primary text-white py-5 rounded-2xl font-black shadow-xl shadow-primary/20 uppercase tracking-[0.2em] text-xs" href="/signup/">Join MindMate</a>
+                <div className="md:hidden bg-white border-t border-gray-100 animate-in slide-in-from-top duration-200">
+                    <div className="px-4 py-4 space-y-1">
+                        {navLinks.map(({ label, href }) => (
+                            <a
+                                key={label}
+                                href={href}
+                                onClick={() => setIsMenuOpen(false)}
+                                className="block px-3 py-2.5 text-sm text-[#3c4043] hover:text-primary hover:bg-gray-50 rounded transition-colors"
+                            >
+                                {label}
+                            </a>
+                        ))}
+                        <div className="pt-3 grid grid-cols-2 gap-3">
+                            <a href="/login/" className="text-center py-2.5 text-sm font-semibold text-text-main border border-gray-200 rounded-full hover:bg-gray-50 transition-colors">Login</a>
+                            <a href="/signup/" className="text-center py-2.5 text-sm font-semibold text-white bg-primary rounded-full hover:brightness-105 transition-colors">Sign Up</a>
                         </div>
                     </div>
                 </div>
