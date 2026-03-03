@@ -1,18 +1,15 @@
 import React from 'react';
+import SectionHeader from './SectionHeader';
 
-/**
- * ContactSection: Professional support and inquiry boundary.
- * Features a direct contact form and university-specific support links.
- */
 const ContactSection = () => {
     return (
-        <section id="contact" className="py-24 animate-in fade-in duration-1000">
+        <section id="contact" className="py-12 animate-in fade-in duration-1000">
             <div className="grid lg:grid-cols-3 gap-20 items-start">
                 <div className="lg:col-span-2 space-y-12">
-                    <div className="space-y-6">
-                        <h2 className="text-3xl md:text-5xl font-bold text-text-main">Let's Talk Wellness</h2>
-                        <p className="text-lg text-neutral-warm max-w-xl">Whether you're a student seeking help, a university partner, or a wellness advocate, your voice matters to us. Reach out today.</p>
-                    </div>
+                    <SectionHeader
+                        title="Let's Talk Wellness"
+                        subtitle="Whether you're a student seeking help, a university partner, or a wellness advocate, your voice matters to us. Reach out today."
+                    />
 
                     <form className="grid grid-cols-1 md:grid-cols-2 gap-8 p-12 bg-white dark:bg-surface-dark rounded-[2.5rem] border border-gray-100 dark:border-white/5 shadow-premium">
                         <div className="space-y-3">

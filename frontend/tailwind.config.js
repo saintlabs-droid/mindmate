@@ -33,6 +33,15 @@ module.exports = {
             },
             boxShadow: {
                 'premium': '0 20px 50px -12px rgba(106, 142, 127, 0.12)',
+            },
+            animation: {
+                'scroll-left': 'scroll-left 30s linear infinite',
+            },
+            keyframes: {
+                'scroll-left': {
+                    '0%': { transform: 'translateX(0)' },
+                    '100%': { transform: 'translateX(-50%)' },
+                }
             }
         },
     },

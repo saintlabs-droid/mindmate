@@ -6,59 +6,86 @@ import React from 'react';
  */
 const LandingFooter = () => {
     return (
-        <footer className="bg-white dark:bg-surface-dark border-t border-gray-100 dark:border-gray-800">
-            <div className="max-w-7xl mx-auto px-6 py-20 lg:px-8">
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-16 mb-20">
-                    <div className="col-span-1 md:col-span-1 space-y-6">
+        <footer className="bg-[#fcfbf9] border-t border-gray-100">
+            <div className="max-w-7xl mx-auto px-6 py-24 lg:px-12">
+                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-12 mb-20">
+                    <div className="col-span-2 lg:col-span-2 space-y-8">
                         <div className="flex items-center gap-3">
-                            <div className="w-10 h-10 rounded-2xl bg-primary flex items-center justify-center text-white shadow-premium">
+                            <div className="w-10 h-10 rounded-xl bg-primary flex items-center justify-center text-white shadow-lg shadow-primary/20">
                                 <span className="material-icons-outlined text-xl">psychology</span>
                             </div>
                             <span className="font-bold text-text-main text-2xl tracking-tight">MindMate</span>
                         </div>
-                        <p className="text-sm text-neutral-warm leading-relaxed max-w-xs font-medium">
-                            Your dedicated companion for the mental wellness journey in university. Built for Kenyan students, by students.
+                        <p className="text-base text-neutral-warm leading-relaxed max-w-sm">
+                            Redefining student wellness across Kenya with evidence-based AI support, peer networks, and clinical integration.
                         </p>
+                        <div className="flex gap-4">
+                            {['facebook', 'instagram', 'alternate_email'].map(icon => (
+                                <div key={icon} className="w-10 h-10 rounded-lg border border-gray-200 flex items-center justify-center text-neutral-warm hover:bg-primary hover:text-white transition-all cursor-pointer">
+                                    <span className="material-icons-outlined text-lg">{icon}</span>
+                                </div>
+                            ))}
+                        </div>
                     </div>
 
                     <div className="space-y-6">
-                        <h4 className="font-black text-text-main uppercase tracking-[0.2em] text-[10px]">Quick Links</h4>
+                        <h4 className="font-black text-text-main uppercase tracking-[0.2em] text-[11px]">Platform</h4>
                         <ul className="space-y-4 text-sm text-neutral-warm font-medium">
-                            <li><a className="hover:text-primary transition-all flex items-center gap-2 group" href="/"><span className="w-1 h-1 rounded-full bg-primary/20 group-hover:w-3 transition-all"></span>Home</a></li>
-                            <li><a className="hover:text-primary transition-all flex items-center gap-2 group" href="#about"><span className="w-1 h-1 rounded-full bg-primary/20 group-hover:w-3 transition-all"></span>About Us</a></li>
-                            <li><a className="hover:text-primary transition-all flex items-center gap-2 group" href="#resources"><span className="w-1 h-1 rounded-full bg-primary/20 group-hover:w-3 transition-all"></span>Resources</a></li>
+                            <li><a className="hover:text-primary transition-colors" href="#">AI Companion</a></li>
+                            <li><a className="hover:text-primary transition-colors" href="#">Mood Journal</a></li>
+                            <li><a className="hover:text-primary transition-colors" href="#">Clinical Support</a></li>
+                            <li><a className="hover:text-primary transition-colors" href="#">Peer Support</a></li>
                         </ul>
                     </div>
 
                     <div className="space-y-6">
-                        <h4 className="font-black text-text-main uppercase tracking-[0.2em] text-[10px]">Contact & Support</h4>
+                        <h4 className="font-black text-text-main uppercase tracking-[0.2em] text-[11px]">Resources</h4>
                         <ul className="space-y-4 text-sm text-neutral-warm font-medium">
-                            <li><a className="hover:text-primary transition-all" href="mailto:support@mindmate.ke">hello@mindmate.co.ke</a></li>
-                            <li><a className="hover:text-primary transition-all" href="#">University Liaisons</a></li>
-                            <li><a className="hover:text-primary transition-all" href="#">General Inquiry</a></li>
+                            <li><a className="hover:text-primary transition-colors" href="#">Wellness Guides</a></li>
+                            <li><a className="hover:text-primary transition-colors" href="#">Exam Stress Tips</a></li>
+                            <li><a className="hover:text-primary transition-colors" href="#">Clinical Blog</a></li>
+                            <li><a className="hover:text-primary transition-colors" href="#">FAQs</a></li>
                         </ul>
                     </div>
 
-                    <div className="p-8 bg-secondary/5 rounded-3xl border border-secondary/10 space-y-6">
-                        <h4 className="font-black text-secondary uppercase tracking-[0.2em] text-[10px]">Emergency Support</h4>
-                        <ul className="space-y-4 text-sm text-neutral-warm">
-                            <li className="font-black text-secondary text-lg font-mono">24/7 Helpline: +254 700 000</li>
-                            <li><a className="inline-flex items-center gap-2 bg-secondary text-white px-4 py-2 rounded-xl text-[10px] font-black uppercase tracking-widest hover:brightness-110 transition-all shadow-md" href="/support">View Crisis Contacts</a></li>
-                            <li className="text-[10px] leading-tight font-bold italic text-secondary/60">Monitored by medical professionals.</li>
+                    <div className="space-y-6">
+                        <h4 className="font-black text-text-main uppercase tracking-[0.2em] text-[11px]">Institution</h4>
+                        <ul className="space-y-4 text-sm text-neutral-warm font-medium">
+                            <li><a className="hover:text-primary transition-colors" href="#">Partner Universities</a></li>
+                            <li><a className="hover:text-primary transition-colors" href="#">Department Portal</a></li>
+                            <li><a className="hover:text-primary transition-colors" href="#">Research & Data</a></li>
+                            <li><a className="hover:text-primary transition-colors" href="#">Contact Us</a></li>
                         </ul>
                     </div>
                 </div>
 
-                <div className="pt-10 border-t border-gray-100 dark:border-gray-800 flex flex-col md:flex-row justify-between items-center gap-6 text-xs font-black uppercase tracking-widest text-neutral-warm/60">
-                    <p>© 2026 MindMate Kenya. All rights reserved.</p>
+                <div className="p-8 md:p-12 bg-secondary/5 rounded-[2.5rem] border border-secondary/10 flex flex-col md:flex-row items-center justify-between gap-8 mb-20">
+                    <div className="space-y-2 text-center md:text-left">
+                        <h4 className="font-black text-secondary uppercase tracking-[0.3em] text-[11px]">Immediate Crisis Support</h4>
+                        <p className="text-sm font-medium text-neutral-warm">If you are in immediate danger, please reach out to our 24/7 clinical helpline.</p>
+                    </div>
+                    <div className="flex flex-col sm:flex-row items-center gap-6">
+                        <div className="text-2xl font-black text-secondary font-mono tracking-tighter tabular-nums">
+                            0700 000 000
+                        </div>
+                        <a href="/support" className="bg-secondary text-white px-8 py-3.5 rounded-xl text-[11px] font-black uppercase tracking-widest shadow-lg shadow-secondary/20 hover:brightness-105 active:scale-95 transition-all">
+                            Emergency Contacts
+                        </a>
+                    </div>
+                </div>
+
+                <div className="flex flex-col md:flex-row justify-between items-center gap-6 text-[10px] font-black uppercase tracking-[0.3em] text-neutral-warm/40">
+                    <p>© 2026 MindMate Clinical Systems. Made with ❤️ in Kenya.</p>
                     <div className="flex gap-8">
-                        <a className="hover:text-primary transition-colors" href="#">Privacy Policy</a>
-                        <a className="hover:text-primary transition-colors" href="#">Terms of Service</a>
+                        <a className="hover:text-primary transition-colors" href="#">Privacy & Anonymity</a>
+                        <a className="hover:text-primary transition-colors" href="#">Clinical Governance</a>
+                        <a className="hover:text-primary transition-colors" href="#">Terms</a>
                     </div>
                 </div>
             </div>
         </footer>
     );
 };
+
 
 export default LandingFooter;

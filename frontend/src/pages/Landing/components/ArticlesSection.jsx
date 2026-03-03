@@ -1,4 +1,5 @@
 import React from 'react';
+import SectionHeader from './SectionHeader';
 
 /**
  * ArticlesSection: Resource previews for the wellness ecosystem.
@@ -26,20 +27,21 @@ const ArticlesSection = () => {
         },
     ];
 
+    const viewAllLink = (
+        <a href="#" className="flex items-center gap-3 text-primary font-black uppercase tracking-widest text-xs hover:gap-5 transition-all group">
+            View All Resources
+            <span className="material-icons-outlined group-hover:translate-x-1 transition-transform">east</span>
+        </a>
+    );
+
     return (
-        <section id="resources" className="py-24 animate-in fade-in duration-700">
-            <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
-                <div className="max-w-2xl">
-                    <h2 className="text-3xl md:text-5xl font-bold text-text-main mb-6">Resources for Your Growth</h2>
-                    <p className="text-lg text-neutral-warm">
-                        Curated articles and practical guides designed to help you navigate the unique challenges of Kenyan university life.
-                    </p>
-                </div>
-                <a href="#" className="flex items-center gap-3 text-primary font-black uppercase tracking-widest text-xs hover:gap-5 transition-all group">
-                    View All Resources
-                    <span className="material-icons-outlined group-hover:translate-x-1 transition-transform">east</span>
-                </a>
-            </div>
+        <section id="resources" className="py-12 animate-in fade-in duration-700">
+            <SectionHeader
+                title="Resources for Your Growth"
+                subtitle="Curated articles and practical guides designed to help you navigate the unique challenges of Kenyan university life."
+                actions={viewAllLink}
+                className="mb-16"
+            />
 
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
                 {articles.map((article, idx) => (
