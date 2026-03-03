@@ -14,10 +14,10 @@ import LandingFooter from "./components/LandingFooter";
  */
 const Landing = () => {
     return (
-        <div className="font-display bg-background-light text-text-main antialiased overflow-x-hidden min-h-screen selection:bg-primary/20 selection:text-primary">
+        <div className="font-display bg-background-light text-text-main antialiased min-h-screen selection:bg-primary/20 selection:text-primary">
             <LandingHeader />
 
-            <main className="flex-1">
+            <main className="flex-1 pt-14">
                 {/* Hero is handled separately for full-bleed background effects if needed */}
                 <div className="max-w-7xl mx-auto px-6 md:px-12">
                     <HeroSection />
