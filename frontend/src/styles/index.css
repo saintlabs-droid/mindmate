@@ -2,15 +2,21 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-    --terracotta: #E2725B;
-    --deep-charcoal: #2D2D2D;
-}
-
 @layer base {
+    :root {
+        --terracotta: #E2725B;
+        --deep-charcoal: #2D2D2D;
+    }
+
+    html {
+        scroll-behavior: smooth;
+    }
+
     body {
-        @apply font-display text-deep-charcoal antialiased;
+        @apply font-display antialiased;
+        color: var(--deep-charcoal);
         margin: 0;
+        background-color: #fcfcfc;
     }
 }
 

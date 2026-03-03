@@ -1,56 +1,51 @@
-import React, { useState } from 'react';
+import React from 'react';
 
-const HelplineCard = ({ title, description, buttonColor, badgeColor, badgeText, callNumber, timeInfo }) => {
-    const [isOpen, setIsOpen] = useState(false);
+/**
+ * HelplineCard Component
+ * Restored to exact mockup specifications.
+ */
+const HelplineCard = ({ title, description, buttonColor, badgeColor, badgeText, callNumber, timeInfo, type }) => {
+    const getIcon = () => {
+        if (title.includes('Befrienders')) return 'favorite';
+        if (title.includes('Red Cross')) return 'add_box';
+        return 'shield';
+    };
+
+    const sideColor = title.includes('Befrienders') ? 'border-l-green-500' :
+        title.includes('Red Cross') ? 'border-l-red-500' :
+            'border-l-purple-500';
 
     return (
-        <div
-            className={`bg-white dark:bg-surface-dark border-l-4 rounded-xl p-5 hover:shadow-md transition-all relative overflow-hidden cursor-pointer ${title.includes('Befrienders') ? 'border-l-green-500 border-y border-r border-gray-100 dark:border-gray-800' :
-                title.includes('Red Cross') ? 'border-l-red-600 border-y border-r border-gray-100 dark:border-gray-800' :
-                    'border-l-purple-500 border-y border-r border-gray-100 dark:border-gray-800'
-                }`}
-            onClick={() => setIsOpen(!isOpen)}
-        >
-            <div className="flex justify-between items-start mb-2">
-                <div>
-                    <h3 className="font-bold text-gray-900 dark:text-white text-lg tracking-tight mb-2">{title}</h3>
-                    <span className={`text-[10px] font-bold uppercase tracking-wider px-2 py-1 rounded-md ${badgeColor}`}>
+        <div className={`bg-white dark:bg-surface-dark rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-white/5 border-l-4 ${sideColor} flex flex-col h-full hover:shadow-md transition-shadow`}>
+            <div className="flex justify-between items-start mb-4">
+                <div className="flex-1">
+                    <h3 className="font-bold text-gray-900 dark:text-white text-lg mb-1">{title}</h3>
+                    <span className={`text-[10px] font-bold uppercase tracking-wider px-2 py-1 rounded ${badgeColor}`}>
                         {badgeText}
                     </span>
                 </div>
-                <div className="flex items-center gap-2">
-                    <div className="w-8 h-8 rounded-full bg-gray-50 dark:bg-white/5 flex items-center justify-center text-gray-400">
-                        <span className="material-icons-round text-[18px]">
-                            {title.includes('Befrienders') ? 'favorite' :
-                                title.includes('Red Cross') ? 'local_hospital' :
-                                    'shield'}
-                        </span>
-                    </div>
-                    <span className={`material-icons-round text-gray-400 transition-transform duration-300 ${isOpen ? '-rotate-180' : ''}`}>
-                        expand_more
-                    </span>
+                <div className="w-10 h-10 rounded-full bg-gray-50 dark:bg-white/10 flex items-center justify-center text-gray-400">
+                    <span className="material-icons text-xl">{getIcon()}</span>
                 </div>
             </div>
 
-            {isOpen && (
-                <div className="mt-4 animate-fade-in cursor-default" onClick={(e) => e.stopPropagation()}>
-                    <p className="text-sm text-gray-600 dark:text-gray-400 mb-6 leading-relaxed">
-                        {description}
-                    </p>
+            <p className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed mb-6 italic flex-1">
+                {description}
+            </p>
 
-                    <button className={`w-full py-2.5 rounded-lg font-semibold text-sm text-white transition-colors flex items-center justify-center gap-2 mb-4 ${buttonColor}`}>
-                        <span className="material-icons text-[18px]">phone</span>
-                        {callNumber}
-                    </button>
+            <button className={`w-full py-3 rounded-xl font-bold text-sm text-white flex items-center justify-center gap-2 mb-4 shadow-lg ${buttonColor} hover:brightness-110 transition-all`}>
+                <span className="material-icons text-sm">call</span>
+                {callNumber}
+            </button>
 
-                    <div className="flex items-center gap-2 text-xs text-gray-500 pt-4 border-t border-gray-100 dark:border-gray-800">
-                        <span className="material-icons-round text-[14px]">schedule</span>
-                        {timeInfo}
-                    </div>
-                </div>
-            )}
+            <div className="flex items-center gap-2 text-[10px] font-bold text-gray-400 uppercase tracking-widest pt-4 border-t border-gray-50 dark:border-white/5">
+                <span className="material-icons text-sm">schedule</span>
+                {timeInfo}
+            </div>
         </div>
     );
 };
 
 export default HelplineCard;
+
+
