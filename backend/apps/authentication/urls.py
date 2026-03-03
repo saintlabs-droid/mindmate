@@ -1,13 +1,19 @@
 from django.urls import path
+from django.contrib.auth.views import LogoutView
+from django.shortcuts import redirect
 from . import views
 
 urlpatterns = [
-    # http://127.0.0.1:8000/login/
-    path('login/', views.login_view, name='login'),
-    
-    # http://127.0.0.1:8000/signup/
+    # Auth Routes
+    path('login/', views.MindMateLoginView.as_view(), name='login'),
     path('signup/', views.signup_view, name='signup'),
+    path('logout/', views.logout_view, name='logout'),
+    path('me/', views.user_me_view, name='user_me'),
     
-    # This makes the base URL (http://127.0.0.1:8000/) go to the login page
-    path('', views.login_view, name='base_login'),
+    # Bridge to React Frontend (Local Dev only)
+    path('dashboard/', lambda r: redirect('http://localhost:3000/dashboard'), name='dashboard'),
+    
+    # Root redirect
+    path('', views.MindMateLoginView.as_view(), name='base_login'),
 ]
+
