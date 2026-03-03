@@ -6,7 +6,7 @@ import React from 'react';
  */
 const AboutSection = () => {
     return (
-        <section id="about" className="py-24 space-y-16 animate-in fade-in duration-1000">
+        <section id="about" className="space-y-16 animate-in fade-in duration-1000">
             <div className="grid md:grid-cols-2 gap-16 items-center">
                 <div className="order-2 md:order-1 relative rounded-2xl overflow-hidden shadow-2xl bg-primary/5 aspect-square md:aspect-auto md:h-full">
                     <img

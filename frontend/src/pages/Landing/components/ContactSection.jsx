@@ -6,7 +6,7 @@ import React from 'react';
  */
 const ContactSection = () => {
     return (
-        <section id="contact" className="py-24 border-t border-primary/10 animate-in fade-in duration-1000">
+        <section id="contact" className="border-t border-primary/10 pt-16 animate-in fade-in duration-1000">
             <div className="grid md:grid-cols-3 gap-16 items-start">
                 <div className="md:col-span-2 space-y-8">
                     <div className="space-y-4">

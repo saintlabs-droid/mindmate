@@ -27,7 +27,7 @@ const StepsSection = () => {
     ];
 
     return (
-        <section id="how-it-works" className="py-12 border-t border-primary/10">
+        <section id="how-it-works" className="pt-16 border-t border-primary/10">
             <div className="text-center mb-16">
                 <h2 className="text-3xl md:text-4xl font-bold text-text-main dark:text-white mb-6">
                     Simple Steps to Balance
