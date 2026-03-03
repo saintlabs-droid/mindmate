@@ -46,7 +46,7 @@ const RecentLogs = ({ logs: data }) => {
             </div>
             <div>
               <div className="flex items-center gap-2 mb-1">
-                <span className={`material-icons ${log.iconColor} text-sm`}>{log.icon}</span>
+                <span className={`material-icons-outlined ${log.iconColor} text-sm`}>mood</span>
                 <span className="font-semibold text-sm text-gray-900 dark:text-white">{log.mood}</span>
               </div>
               <p className="text-xs text-gray-500 line-clamp-2">{log.preview}</p>

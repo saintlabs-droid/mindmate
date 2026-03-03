@@ -13,7 +13,7 @@ import JournalPreview from './components/JournalPreview';
 const Dashboard = () => {
     const navigate = useNavigate();
     const { user } = useUser();
-    const firstName = user?.fullName?.split(' ')[0] || 'Imani';
+    const firstName = user?.fullName?.split(' ')[0] || 'Student';
 
     // Mock data matching mockup visuals
     const weekData = [
@@ -47,102 +47,105 @@ const Dashboard = () => {
     ];
 
     return (
-        <div className="flex-1 flex flex-col h-full overflow-hidden">
+        <div className="flex-1 flex flex-col h-full overflow-hidden bg-background-light">
             {/* Desktop Header Area */}
-            <div className="hidden md:flex items-center justify-between px-8 py-6">
+            <div className="hidden md:flex items-center justify-between px-10 py-10">
                 <div>
-                    <h1 className="text-2xl font-bold text-gray-900 dark:text-white">Jambo, {firstName} 👋</h1>
-                    <p className="text-gray-500 dark:text-gray-400 text-sm mt-1">Here's your daily well-being overview.</p>
+                    <h1 className="text-4xl font-black text-text-main dark:text-white tracking-tight">Jambo, {firstName} 👋</h1>
+                    <p className="text-neutral-warm font-medium mt-2">Here's your daily well-being overview.</p>
                 </div>
-                <div className="flex items-center gap-4">
-                    <button className="relative p-2 text-gray-400 hover:text-primary transition-colors rounded-full hover:bg-primary/5">
-                        <span className="material-icons-outlined">notifications</span>
-                        <span className="absolute top-2 right-2 h-2 w-2 bg-primary rounded-full border-2 border-background-light dark:border-background-dark"></span>
+                <div className="flex items-center gap-6">
+                    <button className="relative p-4 text-neutral-warm hover:text-primary transition-all rounded-2xl bg-white shadow-sm hover:shadow-md border border-gray-50">
+                        <span className="material-icons-outlined text-xl">notifications</span>
+                        <span className="absolute top-4 right-4 h-2 w-2 bg-secondary rounded-full border-2 border-white"></span>
                     </button>
-                    <button className="p-2 text-gray-400 hover:text-primary transition-colors rounded-full hover:bg-primary/5">
-                        <span className="material-icons-outlined">settings</span>
+                    <button className="p-4 text-neutral-warm hover:text-primary transition-all rounded-2xl bg-white shadow-sm hover:shadow-md border border-gray-50">
+                        <span className="material-icons-outlined text-xl">settings</span>
                     </button>
                 </div>
             </div>
 
             {/* Scrollable Content Area */}
-            <div className="flex-1 overflow-y-auto px-4 md:px-8 pb-10">
-                <div className="max-w-6xl mx-auto space-y-6">
+            <div className="flex-1 overflow-y-auto px-6 md:px-10 pb-16">
+                <div className="max-w-7xl mx-auto space-y-10">
 
                     {/* Hero Section: Mood Check-in */}
-                    <div className="animate-in fade-in slide-in-from-bottom-4 duration-700">
+                    <div className="animate-in fade-in slide-in-from-bottom-6 duration-1000">
                         <MoodHero moods={moods} />
                     </div>
 
                     {/* Grid Layout for Charts & Widgets */}
-                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
 
                         {/* Main Chart Section (Spans 2 columns) */}
-                        <div className="lg:col-span-2 space-y-6">
+                        <div className="lg:col-span-2 space-y-10">
 
                             {/* Mood Summary Chart */}
-                            <div className="animate-in fade-in zoom-in-95 duration-700 delay-100">
+                            <div className="animate-in fade-in zoom-in-95 duration-1000 delay-100">
                                 <WeekReviewChart data={weekData} />
                             </div>
 
                             {/* Recommended Resources */}
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                <div className="bg-white dark:bg-surface-dark p-5 rounded-2xl border border-gray-100 dark:border-gray-800 shadow-sm flex gap-4 hover:shadow-md transition-shadow cursor-pointer group">
-                                    <div className="h-16 w-16 flex-shrink-0 bg-blue-100 dark:bg-blue-900/30 rounded-xl flex items-center justify-center text-blue-600 dark:text-blue-400">
-                                        <span className="material-icons-outlined text-3xl">school</span>
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div className="bg-white p-8 rounded-[2.5rem] border border-gray-50 shadow-premium flex flex-col gap-6 hover:translate-y-[-4px] transition-all cursor-pointer group">
+                                    <div className="h-16 w-16 bg-primary/10 rounded-2xl flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all">
+                                        <span className="material-icons-outlined text-3xl">local_library</span>
                                     </div>
                                     <div>
-                                        <h4 className="font-semibold text-gray-900 dark:text-white mb-1">Exam Stress?</h4>
-                                        <p className="text-xs text-gray-500 dark:text-gray-400 line-clamp-2">Learn 5 proven techniques to manage anxiety during finals week.</p>
+                                        <h4 className="font-black text-text-main text-lg mb-2">Academic Wellness</h4>
+                                        <p className="text-sm text-neutral-warm font-medium leading-relaxed">Learn 5 proven techniques to manage anxiety during campus finals.</p>
                                     </div>
                                 </div>
-                                <div className="bg-white dark:bg-surface-dark p-5 rounded-2xl border border-gray-100 dark:border-gray-800 shadow-sm flex gap-4 hover:shadow-md transition-shadow cursor-pointer group">
-                                    <div className="h-16 w-16 flex-shrink-0 bg-green-100 dark:bg-green-900/30 rounded-xl flex items-center justify-center text-green-600 dark:text-green-400">
+                                <div className="bg-white p-8 rounded-[2.5rem] border border-gray-50 shadow-premium flex flex-col gap-6 hover:translate-y-[-4px] transition-all cursor-pointer group">
+                                    <div className="h-16 w-16 bg-secondary/10 rounded-2xl flex items-center justify-center text-secondary group-hover:bg-secondary group-hover:text-white transition-all">
                                         <span className="material-icons-outlined text-3xl">self_improvement</span>
                                     </div>
                                     <div>
-                                        <h4 className="font-semibold text-gray-900 dark:text-white mb-1">Guided Meditation</h4>
-                                        <p className="text-xs text-gray-500 dark:text-gray-400 line-clamp-2">A 10-minute session to reset your mind between lectures.</p>
+                                        <h4 className="font-black text-text-main text-lg mb-2">Mindful Reset</h4>
+                                        <p className="text-sm text-neutral-warm font-medium leading-relaxed">A specialized 10-minute session to reset your focus between lectures.</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
                         {/* Side Widgets Column */}
-                        <div className="space-y-6">
+                        <div className="space-y-10">
 
                             {/* MindAI Companion Shortcut Card */}
-                            <div className="bg-white dark:bg-surface-dark rounded-2xl p-5 border border-primary/10 shadow-sm relative overflow-hidden group cursor-pointer hover:shadow-md transition-all animate-in fade-in slide-in-from-right-4 duration-700" onClick={() => navigate('/ai-assistant')}>
-                                <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full -mr-16 -mt-16 blur-2xl group-hover:scale-110 transition-transform"></div>
-                                <div className="relative z-10 flex items-center gap-4">
-                                    <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary to-[#ff9f8a] flex items-center justify-center shadow-lg shadow-primary/20">
-                                        <span className="material-icons text-white">auto_awesome</span>
+                            <div className="bg-white rounded-[2.5rem] p-8 border border-primary/10 shadow-premium relative overflow-hidden group cursor-pointer hover:shadow-2xl transition-all animate-in fade-in slide-in-from-right-6 duration-1000" onClick={() => navigate('/ai-assistant')}>
+                                <div className="absolute top-0 right-0 w-48 h-48 bg-primary/5 rounded-full -mr-24 -mt-24 blur-3xl group-hover:scale-125 transition-transform duration-700"></div>
+                                <div className="relative z-10 space-y-6">
+                                    <div className="w-16 h-16 rounded-2xl bg-primary flex items-center justify-center shadow-lg shadow-primary/20">
+                                        <span className="material-icons-outlined text-white text-3xl">smart_toy</span>
                                     </div>
                                     <div>
-                                        <h4 className="font-bold text-gray-900 dark:text-white">MindAI Companion</h4>
-                                        <p className="text-xs text-gray-500 dark:text-gray-400">Feeling overwhelmed? Let's chat.</p>
+                                        <p className="text-[10px] font-black uppercase tracking-[0.2em] text-primary mb-2">AI Companion</p>
+                                        <h4 className="text-2xl font-black text-text-main mb-2">Need to talk?</h4>
+                                        <p className="text-sm text-neutral-warm font-medium">MindAI is ready to listen and provide support anytime.</p>
                                     </div>
                                 </div>
                             </div>
 
                             {/* Daily Affirmation Card */}
-                            <div className="animate-in fade-in slide-in-from-right-4 duration-700 delay-200">
-                                <DailyQuote quote="You are capable of amazing things, even on the days you feel tired. One step at a time." />
+                            <div className="animate-in fade-in slide-in-from-right-6 duration-1000 delay-200">
+                                <DailyQuote quote="You are resilient, capable, and exactly where you need to be to grow. Trust the process." />
                             </div>
 
                             {/* Recent Journal */}
-                            <div className="animate-in fade-in slide-in-from-right-4 duration-700 delay-300">
+                            <div className="animate-in fade-in slide-in-from-right-6 duration-1000 delay-300">
                                 <JournalPreview entries={journalEntries} />
                             </div>
 
                             {/* Quick Daily Tip */}
-                            <div className="bg-primary-light dark:bg-gray-800/50 rounded-2xl p-5 border border-primary/10 dark:border-gray-700">
-                                <div className="flex items-start gap-3">
-                                    <span className="material-icons-outlined text-primary mt-1">lightbulb</span>
+                            <div className="bg-primary/5 rounded-[2.5rem] p-8 border border-primary/10">
+                                <div className="flex flex-col gap-6">
+                                    <div className="w-12 h-12 bg-white rounded-2xl flex items-center justify-center text-primary shadow-sm">
+                                        <span className="material-icons-outlined text-xl">lightbulb</span>
+                                    </div>
                                     <div>
-                                        <h4 className="font-semibold text-gray-900 dark:text-white text-sm">Tip of the Day</h4>
-                                        <p className="text-xs text-gray-600 dark:text-gray-400 mt-1 leading-relaxed">
-                                            Hydration affects mood. Drink a glass of water right now if you haven't in the last hour.
+                                        <h4 className="font-black text-text-main text-sm uppercase tracking-widest mb-3">Campus Insight</h4>
+                                        <p className="text-sm text-neutral-warm font-medium leading-relaxed italic">
+                                            "Taking a 5-minute walk around the campus green spaces can reduce cortisol levels by up to 15%."
                                         </p>
                                     </div>
                                 </div>
@@ -157,11 +160,11 @@ const Dashboard = () => {
             {/* Floating Action Button for MindAI */}
             <button
                 onClick={() => navigate('/ai-assistant')}
-                className="fixed bottom-6 right-6 md:bottom-8 md:right-8 w-14 h-14 bg-primary text-white rounded-full shadow-2xl shadow-primary/40 flex items-center justify-center hover:scale-110 active:scale-95 transition-all z-50 group overflow-hidden"
+                className="fixed bottom-8 right-8 w-16 h-16 bg-primary text-white rounded-3xl shadow-2xl shadow-primary/40 flex items-center justify-center hover:scale-110 active:scale-95 transition-all z-50 group overflow-hidden"
                 aria-label="Chat with MindAI"
             >
                 <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/20 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000 ease-in-out"></div>
-                <span className="material-icons text-2xl relative z-10">psychology</span>
+                <span className="material-icons-outlined text-3xl relative z-10">psychology</span>
             </button>
         </div>
     );

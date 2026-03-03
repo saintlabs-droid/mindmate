@@ -7,29 +7,32 @@ module.exports = {
     theme: {
         extend: {
             colors: {
-                "primary": "#e2715a",
-                "primary-dark": "#c55e49",
-                "primary-light": "#fcecea",
-                "background-light": "#f8f6f6",
-                "background-dark": "#201412",
-                "surface-light": "#ffffff",
-                "surface-dark": "#2d2422",
-                "crisis": "#e11d48",
-                "neutral-warm": "#8a7e7a",
-                "deep-charcoal": "#2d2d2d",
+                "primary": "#6A8E7F", // Serene Sage Green
+                "primary-dark": "#506B60",
+                "primary-light": "#E8EFEC",
+                "secondary": "#E2725B", // Terracotta (Accent only)
+                "background-light": "#FBF9F7", // Warm Off-White
+                "background-dark": "#1A2421",
+                "surface-light": "#FFFFFF",
+                "surface-dark": "#242D2A",
+                "text-main": "#2D2D2D",
+                "crisis": "#E11D48",
+                "neutral-warm": "#7A8A83",
             },
             fontFamily: {
-                "display": ["Inter", "sans-serif"]
+                "display": ["Inter", "sans-serif"],
+                "body": ["Inter", "sans-serif"]
             },
             borderRadius: {
-                "DEFAULT": "0.375rem",
-                "lg": "0.5rem",
-                "xl": "0.75rem",
-                "2xl": "1rem",
+                "DEFAULT": "0.75rem",
+                "lg": "1rem",
+                "xl": "1.5rem",
+                "2xl": "2rem", // 32px
+                "3xl": "2.5rem", // 40px
                 "full": "9999px"
             },
             boxShadow: {
-                'soft': '0 2px 15px -3px rgba(0, 0, 0, 0.07), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
+                'premium': '0 20px 50px -12px rgba(106, 142, 127, 0.12)',
             }
         },
     },

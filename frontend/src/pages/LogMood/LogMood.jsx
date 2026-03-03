@@ -33,27 +33,27 @@ const LogMood = () => {
 
     return (
         <div className="flex-1 overflow-y-auto bg-background-light dark:bg-background-dark scroll-smooth">
-            <main className="container max-w-4xl mx-auto px-4 py-8 sm:py-12">
+            <main className="container max-w-4xl mx-auto px-6 py-12 sm:py-20">
                 {/* Header Section */}
-                <div className="text-center mb-10 animate-in fade-in slide-in-from-top-4 duration-700">
-                    <span className="inline-flex items-center rounded-full bg-primary/10 px-3 py-1 text-xs font-medium text-primary ring-1 ring-inset ring-primary/20 mb-4 uppercase tracking-wider">
+                <div className="text-center mb-14 animate-in fade-in slide-in-from-top-6 duration-1000">
+                    <span className="inline-flex items-center rounded-2xl bg-primary/10 px-6 py-2 text-[10px] font-black text-primary border border-primary/20 mb-8 uppercase tracking-[0.25em] shadow-sm">
                         Step 1 of 2
                     </span>
-                    <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-3 tracking-tight">
-                        Hi {firstName}, how are you feeling right now?
+                    <h1 className="text-4xl sm:text-5xl font-black text-text-main dark:text-white mb-4 tracking-tight leading-tight">
+                        Hi {firstName}, how are you feeling today?
                     </h1>
-                    <p className="text-gray-500 dark:text-gray-400 text-lg font-medium opacity-80">Take a moment to check in with yourself.</p>
+                    <p className="text-neutral-warm font-medium text-lg">Take a moment to check in with yourself. It matters.</p>
                 </div>
 
                 {/* Form Card */}
-                <div className="bg-white dark:bg-surface-dark rounded-xl shadow-sm border border-gray-100 dark:border-white/5 p-6 sm:p-10 animate-in fade-in zoom-in-95 duration-700">
+                <div className="bg-white dark:bg-surface-dark rounded-[2.5rem] shadow-premium border border-gray-50 dark:border-white/5 p-10 sm:p-16 animate-in fade-in zoom-in-95 duration-1000">
 
                     {/* Section 1: Mood Scale */}
-                    <div className="mb-12">
-                        <label className="block text-sm font-semibold text-gray-700 dark:text-gray-200 mb-6 uppercase tracking-widest">
-                            Rate your mood (1-5)
+                    <div className="mb-16">
+                        <label className="block text-[11px] font-black text-text-main dark:text-gray-200 mb-8 uppercase tracking-[0.25em]">
+                            How would you rate your mood today?
                         </label>
-                        <div className="grid grid-cols-5 gap-2 sm:gap-4">
+                        <div className="grid grid-cols-5 gap-4 sm:gap-6">
                             {MOODS.map((m) => (
                                 <MoodButton
                                     key={m.level}
@@ -66,15 +66,15 @@ const LogMood = () => {
                     </div>
 
                     {/* Divider */}
-                    <div className="h-px bg-gray-100 dark:bg-white/10 w-full mb-10"></div>
+                    <div className="h-px bg-gray-50 dark:bg-white/10 w-full mb-14"></div>
 
                     {/* Section 2: Influence Categories */}
-                    <div className="mb-10">
-                        <div className="flex justify-between items-end mb-6">
-                            <label className="block text-sm font-semibold text-gray-700 dark:text-gray-200 uppercase tracking-widest">
-                                What's influencing your mood?
+                    <div className="mb-14">
+                        <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3 mb-8">
+                            <label className="block text-[11px] font-black text-text-main dark:text-gray-200 uppercase tracking-[0.25em]">
+                                What's shaping your mood?
                             </label>
-                            <span className="text-[10px] font-bold text-gray-400 dark:text-gray-500 uppercase tracking-widest">Select all that apply</span>
+                            <span className="text-[10px] font-black text-neutral-warm/50 uppercase tracking-widest">Select all that apply</span>
                         </div>
                         <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
                             {INFLUENCES.map((inf) => (
@@ -89,43 +89,43 @@ const LogMood = () => {
                     </div>
 
                     {/* Optional: Notes Field */}
-                    <div className="mb-10">
-                        <label className="block text-sm font-semibold text-gray-700 dark:text-gray-200 mb-2" htmlFor="notes">
-                            Add a quick note (optional)
+                    <div className="mb-14">
+                        <label className="block text-[11px] font-black text-text-main dark:text-gray-200 mb-4 uppercase tracking-[0.25em]" htmlFor="notes">
+                            Add a private note (optional)
                         </label>
                         <textarea
                             id="notes"
-                            className="w-full rounded-lg border-gray-200 dark:border-white/10 bg-gray-50 dark:bg-white/5 text-gray-900 dark:text-white placeholder-gray-400 focus:border-primary focus:ring-primary/20 dark:focus:ring-primary/20 transition-all resize-none p-3 text-sm outline-none"
+                            className="w-full rounded-2xl border border-gray-100 dark:border-white/10 bg-gray-50/50 dark:bg-white/5 text-text-main dark:text-white placeholder-neutral-warm/40 focus:border-primary focus:ring-2 focus:ring-primary/10 dark:focus:ring-primary/20 transition-all resize-none p-6 text-sm font-medium outline-none leading-relaxed"
                             placeholder="Anything specific happening? E.g. 'Upcoming exams are stressing me out...'"
-                            rows="3"
+                            rows="4"
                             value={note}
                             onChange={(e) => setNote(e.target.value)}
                         ></textarea>
                     </div>
 
                     {/* Action Bar */}
-                    <div className="flex items-center justify-between pt-4 border-t border-gray-100 dark:border-white/10">
+                    <div className="flex items-center justify-between pt-8 border-t border-gray-50 dark:border-white/10">
                         <Link
-                            className="text-sm font-bold text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white transition-colors uppercase tracking-widest"
+                            className="text-[11px] font-black text-neutral-warm/50 hover:text-text-main dark:text-gray-400 dark:hover:text-white transition-colors uppercase tracking-widest"
                             to="/dashboard"
                         >
                             Cancel
                         </Link>
                         <button
                             onClick={handleLogEntry}
-                            className="bg-primary hover:bg-primary-dark text-white font-bold py-3 px-8 rounded-lg shadow-lg shadow-primary/30 transform transition hover:-translate-y-0.5 active:translate-y-0 flex items-center gap-2 uppercase tracking-widest text-xs"
+                            className="bg-primary hover:brightness-105 text-white font-black py-5 px-10 rounded-2xl shadow-premium shadow-primary/20 transform transition hover:-translate-y-1 active:translate-y-0 flex items-center gap-3 uppercase tracking-widest text-[11px]"
                         >
-                            <span>Log Entry</span>
-                            <span className="material-icons-round text-sm">arrow_forward</span>
+                            <span>Save Entry</span>
+                            <span className="material-icons-outlined text-sm">arrow_forward</span>
                         </button>
                     </div>
                 </div>
 
                 {/* Supportive Text */}
-                <div className="mt-8 text-center animate-in fade-in duration-1000 delay-500">
-                    <p className="text-[10px] font-bold text-gray-400 dark:text-gray-500 flex items-center justify-center gap-1 uppercase tracking-[0.2em]">
-                        <span className="material-icons-round text-sm">lock</span>
-                        Your entries are private and secure.
+                <div className="mt-12 text-center animate-in fade-in duration-1000 delay-700">
+                    <p className="text-[10px] font-black text-neutral-warm/40 dark:text-gray-500 flex items-center justify-center gap-2 uppercase tracking-[0.3em]">
+                        <span className="material-icons-outlined text-sm">lock</span>
+                        Your entries are 100% private and encrypted.
                     </p>
                 </div>
             </main>

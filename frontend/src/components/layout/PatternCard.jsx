@@ -14,7 +14,7 @@ const PatternCard = () => {
       <div className="absolute -top-6 -right-6 w-24 h-24 bg-primary/10 rounded-full blur-2xl"></div>
 
       <div className="flex items-center gap-2 mb-4 relative z-10">
-        <span className="material-icons text-primary animate-pulse text-lg">auto_awesome</span>
+        <span className="material-icons-outlined text-primary animate-pulse text-lg">temp_preferences_custom</span>
         <h3 className="font-bold text-gray-900 dark:text-white">Pattern Detected</h3>
       </div>
 

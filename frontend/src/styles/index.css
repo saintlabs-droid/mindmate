@@ -4,8 +4,9 @@
 
 @layer base {
     :root {
-        --terracotta: #E2725B;
-        --deep-charcoal: #2D2D2D;
+        --sage: #6A8E7F;
+        --warm-white: #FBF9F7;
+        --charcoal: #2D2D2D;
     }
 
     html {
@@ -14,9 +15,26 @@
 
     body {
         @apply font-display antialiased;
-        color: var(--deep-charcoal);
+        color: var(--charcoal);
         margin: 0;
-        background-color: #fcfcfc;
+        background-color: var(--warm-white);
+    }
+
+    /* Global Typography Consistency */
+    h1 {
+        @apply text-4xl md:text-5xl lg:text-7xl font-bold tracking-tight text-text-main leading-tight transition-all;
+    }
+
+    h2 {
+        @apply text-3xl md:text-4xl font-bold tracking-tight text-text-main transition-all;
+    }
+
+    h3 {
+        @apply text-xl md:text-2xl font-bold text-text-main transition-all;
+    }
+
+    p {
+        @apply text-base text-neutral-warm leading-relaxed transition-all;
     }
 }
 

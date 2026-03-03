@@ -27,53 +27,59 @@ const ArticlesSection = () => {
     ];
 
     return (
-        <section id="resources" className="space-y-8 animate-in fade-in duration-700">
-            <div className="flex items-center justify-between">
-                <h2 className="text-3xl font-bold text-text-main dark:text-white">
-                    Recent Articles
-                </h2>
-                <a
-                    className="text-primary font-semibold hover:underline flex items-center gap-1"
-                    href="#"
-                >
-                    View All Resources{" "}
-                    <span className="material-icons text-sm">arrow_forward</span>
+        <section id="resources" className="py-24 animate-in fade-in duration-700">
+            <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
+                <div className="max-w-2xl">
+                    <h2 className="text-3xl md:text-5xl font-bold text-text-main mb-6">Resources for Your Growth</h2>
+                    <p className="text-lg text-neutral-warm">
+                        Curated articles and practical guides designed to help you navigate the unique challenges of Kenyan university life.
+                    </p>
+                </div>
+                <a href="#" className="flex items-center gap-3 text-primary font-black uppercase tracking-widest text-xs hover:gap-5 transition-all group">
+                    View All Resources
+                    <span className="material-icons-outlined group-hover:translate-x-1 transition-transform">east</span>
                 </a>
             </div>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
                 {articles.map((article, idx) => (
-                    <div
+                    <article
                         key={idx}
-                        className="bg-surface-light dark:bg-surface-dark rounded-xl shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all overflow-hidden border border-gray-100 dark:border-gray-700 flex flex-col group"
+                        className="group bg-white dark:bg-surface-dark rounded-[2rem] overflow-hidden border border-gray-100 dark:border-gray-800 shadow-premium hover:-translate-y-2 transition-all duration-500 flex flex-col"
                     >
-                        <div className="h-48 bg-gray-200 relative overflow-hidden">
+                        <div className="relative h-56 overflow-hidden">
                             <img
-                                alt={article.title}
-                                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                                 src={article.img}
+                                alt={`Illustration for: ${article.title}`}
+                                className="w-full h-full object-cover grayscale-[0.2] group-hover:grayscale-0 group-hover:scale-110 transition-all duration-700"
                             />
-                        </div>
-                        <div className="p-6 flex-1 flex flex-col">
-                            <div className="text-xs font-bold text-primary mb-3 uppercase tracking-wide">
-                                {article.category}
+                            <div className="absolute top-6 left-6">
+                                <span className="bg-primary/95 text-white px-4 py-2 rounded-xl text-[10px] font-black uppercase tracking-widest backdrop-blur-sm shadow-lg">
+                                    {article.category}
+                                </span>
                             </div>
-                            <h3 className="text-xl font-semibold text-text-main dark:text-white mb-3 group-hover:text-primary transition-colors">
+                        </div>
+                        <div className="p-10 flex-1 flex flex-col space-y-6">
+                            <h3 className="text-2xl font-bold text-text-main leading-snug group-hover:text-primary transition-colors">
                                 {article.title}
                             </h3>
-                            <p className="text-base text-gray-500 dark:text-gray-400 mb-6 flex-1 text-sm leading-relaxed">
+                            <p className="text-neutral-warm leading-relaxed line-clamp-2 text-sm">
                                 {article.desc}
                             </p>
-                            <a
-                                className="text-sm font-bold text-text-main dark:text-gray-200 hover:text-primary flex items-center gap-2"
-                                href="#"
-                            >
-                                Read more{" "}
-                                <span className="material-icons text-xs">
-                                    arrow_forward
-                                </span>
-                            </a>
+                            <div className="pt-6 border-t border-gray-50 dark:border-gray-800 flex items-center justify-between">
+                                <span className="text-[10px] font-black text-secondary uppercase tracking-widest">5 min read</span>
+                                <a
+                                    className="text-[10px] font-black text-primary uppercase tracking-[0.2em] flex items-center gap-2 group/btn"
+                                    href="#"
+                                >
+                                    Read Article{" "}
+                                    <span className="material-icons-outlined text-xs group-hover/btn:translate-x-1 transition-transform">
+                                        east
+                                    </span>
+                                </a>
+                            </div>
                         </div>
-                    </div>
+                    </article>
                 ))}
             </div>
         </section>

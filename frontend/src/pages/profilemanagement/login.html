@@ -7,49 +7,93 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login | MindMate</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#6A8E7F',
+                        secondary: '#E2725B',
+                        'background-light': '#FBF9F7',
+                        'text-main': '#2D3436',
+                        'neutral-warm': '#636E72',
+                    },
+                    borderRadius: {
+                        '2xl': '2rem',
+                        '3xl': '2.5rem',
+                    },
+                    boxShadow: {
+                        'premium': '0 20px 50px -12px rgba(106, 142, 127, 0.12)',
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'styles/styles.css' %}">
     <style>
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: 'Outfit', sans-serif;
+            background-color: #FBF9F7;
+        }
+
+        .mindmate-input {
+            @apply w-full bg-[#F3F0ED] border-none rounded-2xl px-6 py-4 text-sm font-medium focus:ring-2 focus:ring-primary/20 transition-all outline-none;
+        }
+
+        .btn-primary {
+            @apply flex items-center justify-center gap-2 bg-primary text-white py-5 rounded-2xl font-black shadow-premium hover:brightness-105 active:scale-[0.98] transition-all text-xs uppercase tracking-[0.2em];
         }
     </style>
 </head>
 
-<body class="mindmate-bg flex items-center justify-center p-4 min-h-screen">
-    <div class="auth-card p-10 w-full max-w-md">
-        <div class="text-center mb-10">
-            <h1
-                class="text-3xl font-bold bg-gradient-to-r from-[#4f46e5] to-[#7c3aed] bg-clip-text text-transparent inline-block">
-                MindMate</h1>
-            <p class="text-gray-500 mt-2 text-sm">Welcome back! Let's check in on your wellness.</p>
+<body class="flex items-center justify-center p-6 min-h-screen">
+    <div class="bg-white p-12 md:p-16 rounded-[3rem] shadow-premium w-full max-w-lg border border-gray-100">
+        <div class="text-center mb-12">
+            <div class="inline-flex items-center justify-center w-16 h-16 rounded-3xl bg-primary/10 text-primary mb-6">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                </svg>
+            </div>
+            <h1 class="text-4xl font-black text-text-main tracking-tight mb-3">Welcome Back</h1>
+            <p class="text-neutral-warm font-medium">Please enter your details to access your wellness dashboard.</p>
         </div>
 
-        <form method="POST" class="space-y-6">
+        <form method="POST" class="space-y-8">
             {% csrf_token %}
 
             {% if form.non_field_errors %}
-            <div class="bg-red-50 text-red-500 p-3 rounded-lg text-sm border border-red-100">
+            <div
+                class="bg-secondary/10 text-secondary p-4 rounded-2xl text-[10px] font-black uppercase tracking-widest border border-secondary/20 text-center">
                 {{ form.non_field_errors }}
             </div>
             {% endif %}
 
-            <div class="space-y-2">
-                <label class="text-xs font-bold text-gray-400 uppercase tracking-wider ml-1">Email Address</label>
+            <div class="space-y-3">
+                <label class="text-[10px] font-black text-text-main uppercase tracking-[0.2em] ml-2">Email
+                    Address</label>
                 <input type="email" name="username" placeholder="name@student.ac.ke" class="mindmate-input" required>
             </div>
 
-            <div class="space-y-2">
+            <div class="space-y-3">
                 <div class="flex justify-between items-center px-1">
-                    <label class="text-xs font-bold text-gray-400 uppercase tracking-wider">Password</label>
-                    <a href="#" class="text-[10px] text-brand font-semibold hover:underline">Forgot password?</a>
+                    <label class="text-[10px] font-black text-text-main uppercase tracking-[0.2em] ml-1">Secure
+                        Password</label>
                 </div>
                 <input type="password" name="password" placeholder="••••••••" class="mindmate-input" required>
+                <div class="text-right px-2">
+                    <a href="#"
+                        class="text-[10px] text-primary font-black uppercase tracking-widest hover:underline">Forgot
+                        password?</a>
+                </div>
             </div>
 
-            <button type="submit" class="btn-primary w-full mt-2">
-                Sign In to Dashboard
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+            <button type="submit" class="btn-primary w-full">
+                Sign In to MindMate
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
                     <path fill-rule="evenodd"
                         d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
                         clip-rule="evenodd" />
@@ -57,11 +101,12 @@
             </button>
         </form>
 
-        <div class="mt-8 pt-8 border-t border-gray-100 text-center">
-            <p class="text-sm text-gray-600">
-                New to MindMate?
-                <a href="{% url 'signup' %}" class="text-brand font-bold text-brand-hover transition-colors ml-1">Create
-                    an account</a>
+        <div class="mt-12 pt-10 border-t border-gray-50 text-center">
+            <p class="text-[11px] font-black uppercase tracking-widest text-neutral-warm">
+                New to our community?
+                <a href="{% url 'signup' %}"
+                    class="text-primary hover:text-primary/80 transition-all ml-1 underline decoration-2 underline-offset-4">Create
+                    Account</a>
             </p>
         </div>
     </div>

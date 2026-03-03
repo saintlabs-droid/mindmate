@@ -14,15 +14,20 @@ import LandingFooter from "./components/LandingFooter";
  */
 const Landing = () => {
     return (
-        <div className="font-display bg-background-light dark:bg-background-dark text-text-main dark:text-gray-100 antialiased overflow-x-hidden min-h-screen">
+        <div className="font-display bg-background-light text-text-main antialiased overflow-x-hidden min-h-screen selection:bg-primary/20 selection:text-primary">
             <LandingHeader />
 
             <main className="flex-1">
-                <div className="max-w-7xl mx-auto px-6 py-12 md:py-20 md:px-12 space-y-32 md:space-y-48">
+                {/* Hero is handled separately for full-bleed background effects if needed */}
+                <div className="max-w-7xl mx-auto px-6 md:px-12">
                     <HeroSection />
+                </div>
+
+                {/* Standardized Section Spacing Wrapper */}
+                <div className="max-w-7xl mx-auto px-6 md:px-12 space-y-32 mb-32">
                     <StepsSection />
-                    <ArticlesSection />
                     <AboutSection />
+                    <ArticlesSection />
                     <ContactSection />
                 </div>
             </main>

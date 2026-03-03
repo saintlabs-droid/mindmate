@@ -5,36 +5,44 @@ import React from 'react';
  * Restored to exact mockup specifications with Material Icons.
  */
 const WeekReviewChart = ({ data }) => (
-    <div className="bg-white dark:bg-surface-dark rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-800">
-        <div className="flex items-center justify-between mb-6">
-            <h3 className="font-bold text-lg text-gray-900 dark:text-white">Your Week in Review</h3>
-            <select className="text-sm border-gray-200 dark:border-gray-700 rounded-lg bg-gray-50 dark:bg-gray-800 text-gray-600 dark:text-gray-300 py-1 pl-3 pr-8 focus:ring-primary focus:border-primary">
-                <option>Last 7 Days</option>
-                <option>Last 30 Days</option>
-            </select>
+    <div className="bg-white dark:bg-surface-dark rounded-[2.5rem] p-10 shadow-premium border border-gray-50 dark:border-gray-800">
+        <div className="flex items-center justify-between mb-10">
+            <h3 className="font-black text-xl text-text-main dark:text-white tracking-tight">Wellness Progress</h3>
+            <div className="relative group">
+                <select className="appearance-none text-[11px] font-black uppercase tracking-widest border-gray-100 dark:border-gray-700 rounded-xl bg-gray-50 dark:bg-gray-800 text-neutral-warm py-2.5 pl-4 pr-10 focus:ring-primary/20 focus:border-primary transition-all cursor-pointer outline-none">
+                    <option>Last 7 Days</option>
+                    <option>Last 30 Days</option>
+                </select>
+                <span className="material-icons-outlined absolute right-3 top-1/2 -translate-y-1/2 text-sm text-neutral-warm pointer-events-none transition-transform group-hover:translate-y-[-40%]">expand_more</span>
+            </div>
         </div>
 
-        <div className="h-64 w-full flex items-end justify-between px-2 gap-2">
+        <div className="h-64 w-full flex items-end justify-between px-4 gap-4">
             {data.map((d) => (
-                <div key={d.day} className="flex flex-col items-center gap-2 w-full group cursor-pointer">
-                    <div className="w-full max-w-[40px] bg-primary/20 rounded-t-lg relative h-32 group-hover:bg-primary/30 transition-colors">
+                <div key={d.day} className="flex flex-col items-center gap-4 w-full group cursor-pointer">
+                    <div className="w-full max-w-[48px] bg-primary/5 rounded-t-2xl relative h-full transition-all duration-500 overflow-hidden">
                         <div
-                            className="absolute bottom-0 w-full bg-primary rounded-t-lg transition-all duration-500"
+                            className="absolute bottom-0 w-full bg-primary rounded-t-2xl transition-all duration-700 shadow-lg shadow-primary/20 group-hover:brightness-110"
                             style={{ height: d.h }}
-                        ></div>
+                        >
+                            <div className="absolute top-0 left-0 w-full h-1/2 bg-gradient-to-b from-white/10 to-transparent"></div>
+                        </div>
                     </div>
-                    <span className={`text-xs font-medium ${d.bold ? 'text-gray-900 dark:text-white font-bold' : 'text-gray-500'}`}>
+                    <span className={`text-[10px] font-black uppercase tracking-widest transition-colors ${d.bold ? 'text-primary' : 'text-neutral-warm/60 group-hover:text-text-main'}`}>
                         {d.day}
                     </span>
                 </div>
             ))}
         </div>
 
-        <div className="mt-4 pt-4 border-t border-gray-100 dark:border-gray-800 flex items-center justify-between text-sm">
-            <span className="text-gray-500 text-xs">Average Mood: <span className="font-semibold text-gray-900 dark:text-white uppercase tracking-wider">Good</span></span>
-            <button className="text-primary hover:text-primary-dark font-medium flex items-center gap-1">
-                View Detailed Report
-                <span className="material-icons-outlined text-sm">arrow_forward</span>
+        <div className="mt-8 pt-8 border-t border-gray-50 dark:border-gray-800 flex items-center justify-between">
+            <div className="flex items-center gap-3">
+                <div className="h-2 w-2 rounded-full bg-primary"></div>
+                <span className="text-neutral-warm text-[10px] font-black uppercase tracking-widest">Growth: <span className="text-text-main">Positive</span></span>
+            </div>
+            <button className="text-primary hover:text-primary-dark font-black text-[10px] uppercase tracking-widest flex items-center gap-2 group transition-all">
+                Full Analysis
+                <span className="material-icons-outlined text-sm transition-transform group-hover:translate-x-1">arrow_forward</span>
             </button>
         </div>
     </div>

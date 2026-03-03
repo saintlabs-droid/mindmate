@@ -6,39 +6,39 @@ import { Link } from 'react-router-dom';
  * Restored to exact mockup specifications with Material Icons.
  */
 const JournalPreview = ({ entries = [] }) => (
-    <div className="bg-white dark:bg-surface-dark rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-gray-800 flex flex-col h-full">
-        <div className="flex items-center justify-between mb-4">
-            <h3 className="font-bold text-gray-900 dark:text-white">Recent Journal</h3>
-            <Link className="text-primary text-xs font-semibold uppercase hover:underline" to="/journal">
+    <div className="bg-white dark:bg-surface-dark rounded-[2.5rem] p-10 shadow-premium border border-gray-50 dark:border-gray-800 flex flex-col h-full">
+        <div className="flex items-center justify-between mb-8">
+            <h3 className="font-black text-xl text-text-main dark:text-white tracking-tight">Recent Journal</h3>
+            <Link className="text-primary text-[10px] font-black uppercase tracking-widest hover:underline" to="/journal">
                 View All
             </Link>
         </div>
 
-        <div className="relative pl-4 border-l-2 border-primary/20 space-y-6 flex-grow">
+        <div className="relative pl-6 border-l-2 border-primary/10 space-y-8 flex-grow">
             {entries.length > 0 ? entries.map((entry, index) => (
-                <div key={index} className="relative">
-                    <div className="absolute -left-[21px] top-1 h-3 w-3 rounded-full bg-primary ring-4 ring-white dark:ring-surface-dark"></div>
-                    <p className="text-xs text-gray-400 mb-1">{entry.time}</p>
-                    <h4 className="text-sm font-medium text-gray-800 dark:text-gray-200 line-clamp-1">{entry.title}</h4>
+                <div key={index} className="relative group cursor-pointer">
+                    <div className="absolute -left-[31px] top-1 h-3.5 w-3.5 rounded-full bg-primary ring-8 ring-white dark:ring-surface-dark group-hover:scale-125 transition-transform"></div>
+                    <p className="text-[10px] font-black uppercase tracking-widest text-neutral-warm/60 mb-2">{entry.time}</p>
+                    <h4 className="text-sm font-black text-text-main dark:text-gray-200 line-clamp-1 group-hover:text-primary transition-colors">{entry.title}</h4>
                     {entry.preview && (
-                        <p className="text-xs text-gray-500 mt-1 line-clamp-2">{entry.preview}</p>
+                        <p className="text-sm text-neutral-warm font-medium mt-2 line-clamp-2 leading-relaxed italic">"{entry.preview}"</p>
                     )}
                 </div>
             )) : (
                 <div className="relative">
-                    <div className="absolute -left-[21px] top-1 h-3 w-3 rounded-full bg-gray-300 dark:bg-gray-600 ring-4 ring-white dark:ring-surface-dark"></div>
-                    <p className="text-xs text-gray-400 mb-1">No recent entries</p>
-                    <h4 className="text-sm font-medium text-gray-800 dark:text-gray-200">Start your journey today</h4>
+                    <div className="absolute -left-[31px] top-1 h-3.5 w-3.5 rounded-full bg-gray-100 dark:bg-gray-600 ring-8 ring-white dark:ring-surface-dark"></div>
+                    <p className="text-[10px] font-black uppercase tracking-widest text-neutral-warm/60 mb-2">No recent entries</p>
+                    <h4 className="text-sm font-black text-text-main dark:text-gray-200">Start your journey today</h4>
                 </div>
             )}
         </div>
 
         <Link
             to="/log-mood"
-            className="mt-6 w-full flex items-center justify-center gap-2 py-2.5 rounded-xl border border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors text-sm font-medium"
+            className="mt-10 w-full flex items-center justify-center gap-3 py-4 rounded-2xl border border-primary/20 text-primary hover:bg-primary hover:text-white transition-all text-[11px] font-black uppercase tracking-widest shadow-sm hover:shadow-md"
         >
-            <span className="material-icons-outlined text-sm">edit</span>
-            New Entry
+            <span className="material-icons-outlined text-sm">edit_note</span>
+            Write Entry
         </Link>
     </div>
 );

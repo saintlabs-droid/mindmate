@@ -6,7 +6,7 @@ import React from 'react';
 const StatsCards = ({ data }) => {
   const stats = data || [
     {
-      icon: "sentiment_satisfied_alt",
+      icon: "mood",
       iconBg: "bg-orange-100 dark:bg-orange-900/30",
       iconColor: "text-orange-600 dark:text-orange-400",
       label: "Average Mood",
@@ -15,7 +15,7 @@ const StatsCards = ({ data }) => {
       changePositive: true,
     },
     {
-      icon: "local_fire_department",
+      icon: "workspace_premium",
       iconBg: "bg-blue-100 dark:bg-blue-900/30",
       iconColor: "text-blue-600 dark:text-blue-400",
       label: "Longest Streak",
@@ -40,7 +40,7 @@ const StatsCards = ({ data }) => {
           className="bg-white dark:bg-surface-dark p-6 rounded-2xl shadow-sm border border-primary/10 flex items-center gap-4 transition-all hover:shadow-md"
         >
           <div className={`w-12 h-12 rounded-full ${stat.iconBg} flex items-center justify-center ${stat.iconColor}`}>
-            <span className="material-icons">{stat.icon}</span>
+            <span className="material-icons-outlined">{stat.icon}</span>
           </div>
           <div>
             <p className="text-sm text-neutral-warm font-medium">{stat.label}</p>
