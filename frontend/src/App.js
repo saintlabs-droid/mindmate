@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Landing from './pages/Landing/Landing';
 import Dashboard from './pages/Dashboard/Dashboard';
@@ -11,6 +11,15 @@ import About from './pages/About/About';
 import MainLayout from './components/layout/MainLayout';
 import { UserProvider, useUser } from './context/UserContext';
 import { Construction, Loader2 } from 'lucide-react';
+
+/**
+ * DjangoRedirect: Escapes React Router and hands the browser to a
+ * Django-managed URL. Used for auth pages served by the backend.
+ */
+const DjangoRedirect = ({ to }) => {
+    useEffect(() => { window.location.replace(to); }, [to]);
+    return null;
+};
 
 /**
  * AuthGuard: Enforcement boundary for protected application states.
@@ -82,6 +91,12 @@ function App() {
 
                     <Route path="/ai-assistant" element={<AuthGuard><MainLayout><AIAssistant /></MainLayout></AuthGuard>} />
                     <Route path="/account" element={<AuthGuard><MainLayout><AccountSettings /></MainLayout></AuthGuard>} />
+
+                    {/* Django auth pages — escape React Router entirely */}
+                    <Route path="/login" element={<DjangoRedirect to="/login/" />} />
+                    <Route path="/login/" element={<DjangoRedirect to="/login/" />} />
+                    <Route path="/signup" element={<DjangoRedirect to="/signup/" />} />
+                    <Route path="/signup/" element={<DjangoRedirect to="/signup/" />} />
 
                     <Route path="*" element={<Navigate to="/" replace />} />
                 </Routes>
