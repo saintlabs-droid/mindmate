@@ -1,115 +1,48 @@
-/**
- * =============================================================================
- * InfluenceCards Component - Positive Influences & Stress Factors
- * =============================================================================
- *
- * PURPOSE:
- * Displays two side-by-side cards showing factors that positively or negatively
- * affect the user's mood, each with a progress bar indicating correlation strength.
- *
- * HOW TO MAKE DYNAMIC:
- * - Replace static arrays with API data.
- *   Example: GET /api/insights/influences
- *   Response: { positive: [...], stress: [...] }
- *
- * HOW TO CONNECT BACKEND:
- * - Use React Query to fetch and cache influence data.
- * - Progress bar `value` (0–100) represents correlation strength from the backend.
- *
- * LAYOUT:
- * - Two cards side by side on desktop, stacked on mobile.
- * - Each card contains a list of factors with color-coded progress bars.
- * =============================================================================
- */
-
-import { Sun, BookOpen, FileText, Moon } from "lucide-react";
+import React from "react";
 
 /**
- * Static influence data.
- * TO MAKE DYNAMIC: Fetch from /api/insights/influences
- * Shape: { icon, label, value (0-100), color }
+ * InfluenceCards: Restored to exact mockup specifications.
  */
-const positiveInfluences = [
-  { icon: Sun, label: "Morning Run", value: 72, color: "bg-success" },
-  { icon: BookOpen, label: "Study Group", value: 58, color: "bg-secondary" },
-];
-
-const stressFactors = [
-  { icon: FileText, label: "Assignments", value: 65, color: "bg-primary" },
-  { icon: Moon, label: "Late Nights", value: 48, color: "bg-foreground" },
-];
-
-/**
- * Reusable progress bar sub-component.
- * Renders a horizontal bar filled to the given percentage.
- */
-const ProgressBar = ({ value, colorClass }) => (
-  <div
-    className="h-2 w-full rounded-full bg-muted overflow-hidden"
-    role="progressbar"
-    aria-valuenow={value}
-    aria-valuemin={0}
-    aria-valuemax={100}
-  >
-    <div
-      className={`h-full rounded-full ${colorClass} transition-all duration-500`}
-      style={{ width: `${value}%` }}
-    />
-  </div>
-);
-
 const InfluenceCards = () => {
-  return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-      {/* --- Positive Influences Card --- */}
-      <article
-        className="rounded-xl bg-card border border-border p-5 shadow-sm"
-        role="region"
-        aria-label="Positive influences on mood"
-      >
-        <h3 className="text-sm font-semibold text-foreground mb-4">
-          Positive Influences
-        </h3>
-        <div className="space-y-4">
-          {positiveInfluences.map((item) => (
-            <div key={item.label} className="flex items-center gap-3">
-              <item.icon className="h-4 w-4 text-muted-foreground flex-shrink-0" />
-              <span className="text-sm text-foreground min-w-[100px]">
-                {item.label}
-              </span>
-              <div className="flex-1">
-                <ProgressBar value={item.value} colorClass={item.color} />
-              </div>
-            </div>
-          ))}
-        </div>
-      </article>
+  const data = {
+    positive: [
+      { icon: "fitness_center", label: "Morning Run", value: "85%", bgColor: "bg-green-100 dark:bg-green-900/30", textColor: "text-green-600", barColor: "bg-green-500" },
+      { icon: "groups", label: "Study Group", value: "70%", bgColor: "bg-blue-100 dark:bg-blue-900/30", textColor: "text-blue-600", barColor: "bg-blue-500" },
+    ],
+    stress: [
+      { icon: "school", label: "Assignments", value: "65%", bgColor: "bg-red-100 dark:bg-red-900/30", textColor: "text-red-600", barColor: "bg-red-500" },
+      { icon: "bedtime", label: "Late Nights", value: "40%", bgColor: "bg-orange-100 dark:bg-orange-900/30", textColor: "text-orange-600", barColor: "bg-orange-500" },
+    ]
+  };
 
-      {/* --- Stress Factors Card --- */}
-      <article
-        className="rounded-xl bg-card border border-border p-5 shadow-sm"
-        role="region"
-        aria-label="Stress factors affecting mood"
-      >
-        <h3 className="text-sm font-semibold text-foreground mb-4">
-          Stress Factors
-        </h3>
-        <div className="space-y-4">
-          {stressFactors.map((item) => (
-            <div key={item.label} className="flex items-center gap-3">
-              <item.icon className="h-4 w-4 text-muted-foreground flex-shrink-0" />
-              <span className="text-sm text-foreground min-w-[100px]">
-                {item.label}
-              </span>
-              <div className="flex-1">
-                <ProgressBar value={item.value} colorClass={item.color} />
+  const InfluenceSection = ({ title, items }) => (
+    <div className="bg-white dark:bg-surface-dark p-6 rounded-2xl shadow-sm border border-primary/10">
+      <h4 className="font-bold text-gray-900 dark:text-white mb-4">{title}</h4>
+      <div className="space-y-4">
+        {items.map((item, idx) => (
+          <div key={idx} className="flex items-center justify-between">
+            <div className="flex items-center gap-3">
+              <div className={`p-2 ${item.bgColor} rounded-lg ${item.textColor}`}>
+                <span className="material-icons text-sm">{item.icon}</span>
               </div>
+              <span className="text-sm font-medium text-gray-700 dark:text-gray-300">{item.label}</span>
             </div>
-          ))}
-        </div>
-      </article>
+            <div className="h-2 w-24 bg-gray-100 dark:bg-gray-800 rounded-full overflow-hidden">
+              <div className={`h-full ${item.barColor} transition-all duration-1000`} style={{ width: item.value }}></div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+
+  return (
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <InfluenceSection title="Positive Influences" items={data.positive} />
+      <InfluenceSection title="Stress Factors" items={data.stress} />
     </div>
   );
 };
 
 export default InfluenceCards;
+

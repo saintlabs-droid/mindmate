@@ -1,21 +1,29 @@
 import React from 'react';
 
+/**
+ * DailyQuote Component
+ * Restored to "Daily Affirmation" spec with Material Icons.
+ */
 const DailyQuote = ({ quote }) => (
-    <div className="bg-gradient-to-br from-primary to-primary-dark rounded-xl p-5 text-white shadow-md relative overflow-hidden">
-        <span className="material-icons-outlined absolute top-2 right-2 text-white/20 text-3xl">format_quote</span>
-        <span className="text-[11px] font-bold uppercase tracking-wider text-white/80 mb-3 block text-center">Daily Quote</span>
-        <blockquote className="text-sm font-medium leading-relaxed mb-4 italic text-center px-1">
-            "{quote}"
+    <div className="bg-gradient-to-br from-primary to-primary-dark rounded-2xl p-6 text-white shadow-lg relative overflow-hidden group">
+        <span className="material-icons-outlined absolute top-4 right-4 text-white/30 text-5xl">format_quote</span>
+        <span className="text-xs font-semibold uppercase tracking-wider text-white/80 mb-4 block">Daily Affirmation</span>
+
+        <blockquote className="text-lg font-medium leading-relaxed mb-4 relative z-10">
+            "{quote || "You are capable of amazing things, even on the days you feel tired. One step at a time."}"
         </blockquote>
-        <div className="flex justify-center gap-2">
-            <button className="p-1.5 bg-white/20 rounded hover:bg-white/30 transition-colors backdrop-blur-sm">
-                <span className="material-icons-outlined text-xs">favorite_border</span>
+
+        <div className="flex items-center gap-2 mt-auto relative z-10">
+            <button className="p-2 bg-white/20 rounded-lg hover:bg-white/30 transition-colors backdrop-blur-sm">
+                <span className="material-icons-outlined text-sm">favorite_border</span>
             </button>
-            <button className="p-1.5 bg-white/20 rounded hover:bg-white/30 transition-colors backdrop-blur-sm">
-                <span className="material-icons-outlined text-xs">share</span>
+            <button className="p-2 bg-white/20 rounded-lg hover:bg-white/30 transition-colors backdrop-blur-sm">
+                <span className="material-icons-outlined text-sm">share</span>
             </button>
         </div>
     </div>
 );
 
 export default DailyQuote;
+
+

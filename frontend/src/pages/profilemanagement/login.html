@@ -1,22 +1,70 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="{% static 'styles/styles.css' %}">
-</head>
-<body class="mindmate-bg flex items-center justify-center p-4">
-    <div class="auth-card p-10 w-full max-w-md text-center">
-        <h1 class="text-2xl font-bold text-gray-800">MindMate</h1>
-        <p class="text-sm text-gray-500 mb-8">Welcome back, let's check in.</p>
 
-        <form method="POST" class="space-y-4 text-left">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | MindMate</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'styles/styles.css' %}">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+
+<body class="mindmate-bg flex items-center justify-center p-4 min-h-screen">
+    <div class="auth-card p-10 w-full max-w-md">
+        <div class="text-center mb-10">
+            <h1
+                class="text-3xl font-bold bg-gradient-to-r from-[#4f46e5] to-[#7c3aed] bg-clip-text text-transparent inline-block">
+                MindMate</h1>
+            <p class="text-gray-500 mt-2 text-sm">Welcome back! Let's check in on your wellness.</p>
+        </div>
+
+        <form method="POST" class="space-y-6">
             {% csrf_token %}
-            <input type="email" name="email" placeholder="name@student.ac.ke" class="mindmate-input">
-            <input type="password" name="password" placeholder="Password" class="mindmate-input">
-            <button type="submit" class="btn-primary w-full">Login to Dashboard →</button>
+
+            {% if form.non_field_errors %}
+            <div class="bg-red-50 text-red-500 p-3 rounded-lg text-sm border border-red-100">
+                {{ form.non_field_errors }}
+            </div>
+            {% endif %}
+
+            <div class="space-y-2">
+                <label class="text-xs font-bold text-gray-400 uppercase tracking-wider ml-1">Email Address</label>
+                <input type="email" name="username" placeholder="name@student.ac.ke" class="mindmate-input" required>
+            </div>
+
+            <div class="space-y-2">
+                <div class="flex justify-between items-center px-1">
+                    <label class="text-xs font-bold text-gray-400 uppercase tracking-wider">Password</label>
+                    <a href="#" class="text-[10px] text-brand font-semibold hover:underline">Forgot password?</a>
+                </div>
+                <input type="password" name="password" placeholder="••••••••" class="mindmate-input" required>
+            </div>
+
+            <button type="submit" class="btn-primary w-full mt-2">
+                Sign In to Dashboard
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd"
+                        d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+                        clip-rule="evenodd" />
+                </svg>
+            </button>
         </form>
-        <p class="mt-6 text-sm text-gray-600">New here? <a href="{% url 'signup' %}" class="text-orange-500 font-bold">Sign Up</a></p>
+
+        <div class="mt-8 pt-8 border-t border-gray-100 text-center">
+            <p class="text-sm text-gray-600">
+                New to MindMate?
+                <a href="{% url 'signup' %}" class="text-brand font-bold text-brand-hover transition-colors ml-1">Create
+                    an account</a>
+            </p>
+        </div>
     </div>
 </body>
+
 </html>

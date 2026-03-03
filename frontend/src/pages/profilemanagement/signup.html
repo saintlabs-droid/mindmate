@@ -1,35 +1,117 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join MindMate | Student Wellness</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'styles/styles.css' %}">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .feature-item {
+            transition: all 0.3s ease;
+        }
+
+        .feature-item:hover {
+            transform: translateX(5px);
+        }
+    </style>
 </head>
-<body class="bg-gray-50 flex items-center justify-center min-h-screen p-4">
-    <div class="auth-card flex flex-col md:flex-row max-w-4xl w-full overflow-hidden">
-        
-        <div class="md:w-5/12 p-10" style="background: linear-gradient(135deg, #fff, #ffeae8);">
-            <h2 class="text-3xl font-bold text-gray-800">Your mental wellness journey begins here.</h2>
+
+<body class="mindmate-bg min-h-screen flex items-center justify-center p-4">
+    <div class="auth-card flex flex-col md:flex-row max-w-5xl w-full overflow-hidden">
+
+        <!-- Brand/Marketing Side -->
+        <div
+            class="md:w-5/12 p-12 bg-gradient-to-br from-[#4f46e5] to-[#7c3aed] text-white flex flex-col justify-between">
+            <div>
+                <h1 class="text-3xl font-bold mb-6">MindMate</h1>
+                <h2 class="text-4xl font-extrabold leading-tight mb-8">Your mental wellness journey starts here.</h2>
+
+                <div class="space-y-6">
+                    <div class="feature-item flex items-start gap-4">
+                        <div class="bg-white/20 p-2 rounded-lg">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                        </div>
+                        <p class="text-white/90 text-sm mt-1">Daily mood tracking and personalized insights.</p>
+                    </div>
+                    <div class="feature-item flex items-start gap-4">
+                        <div class="bg-white/20 p-2 rounded-lg">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                        </div>
+                        <p class="text-white/90 text-sm mt-1">24/7 access to student support resources.</p>
+                    </div>
+                    <div class="feature-item flex items-start gap-4">
+                        <div class="bg-white/20 p-2 rounded-lg">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M13 10V3L4 14h7v7l9-11h-7z" />
+                            </svg>
+                        </div>
+                        <p class="text-white/90 text-sm mt-1">AI-powered wellness assistant.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-12 text-white/70 text-xs">
+                &copy; 2026 MindMate. For higher education students.
+            </div>
         </div>
 
-        <div class="md:w-7/12 p-10 bg-white">
-            <h3 class="text-xl font-bold text-gray-800 mb-6">Create Account</h3>
-            <form method="POST" class="space-y-4" novalidate>
+        <!-- Form Side -->
+        <div class="md:w-7/12 p-12 bg-white/50">
+            <div class="mb-10">
+                <h3 class="text-2xl font-bold text-gray-800">Create Account</h3>
+                <p class="text-gray-500 text-sm mt-1">Join thousands of students prioritizing their mental health.</p>
+            </div>
+
+            <form method="POST" class="grid grid-cols-1 md:grid-cols-2 gap-6" novalidate>
                 {% csrf_token %}
-                
+
                 {% for field in form %}
-                    <div>
-                        <label class="text-[10px] font-bold text-gray-500 uppercase">{{ field.label }}</label>
-                        {{ field }}
-                        {% if field.errors %}
-                            <p class="text-red-500 text-[10px] mt-1">{{ field.errors.as_text }}</p>
-                        {% endif %}
-                    </div>
+                <div
+                    class="{% if field.name == 'full_name' or field.name == 'email' %}md:col-span-2{% endif %} space-y-2">
+                    <label class="text-xs font-bold text-gray-400 uppercase tracking-wider ml-1">
+                        {{ field.label }}
+                    </label>
+                    {{ field }}
+                    {% if field.errors %}
+                    <p class="text-red-500 text-[10px] font-medium mt-1 ml-1">{{ field.errors.as_text|cut:"* " }}</p>
+                    {% endif %}
+                </div>
                 {% endfor %}
 
-                <button type="submit" class="btn-primary w-full mt-4">Create Account →</button>
+                <div class="md:col-span-2 mt-4">
+                    <button type="submit" class="btn-primary w-full">
+                        Create Your Account
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd"
+                                d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+                                clip-rule="evenodd" />
+                        </svg>
+                    </button>
+
+                    <p class="mt-6 text-center text-sm text-gray-600">
+                        Already have an account?
+                        <a href="{% url 'login' %}"
+                            class="text-brand font-bold text-brand-hover transition-colors ml-1">Sign In</a>
+                    </p>
+                </div>
             </form>
         </div>
     </div>
 </body>
+
 </html>
