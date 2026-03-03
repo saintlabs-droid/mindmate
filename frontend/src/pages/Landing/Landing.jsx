@@ -18,15 +18,12 @@ const Landing = () => {
             <LandingHeader />
 
             <main className="flex-1">
-                <div className="max-w-7xl mx-auto px-6 py-12 md:py-20 md:px-12 space-y-32">
+                <div className="max-w-7xl mx-auto px-6 py-12 md:py-20 md:px-12 space-y-32 md:space-y-48">
                     <HeroSection />
-
-                    <div className="space-y-40">
-                        <StepsSection />
-                        <ArticlesSection />
-                        <AboutSection />
-                        <ContactSection />
-                    </div>
+                    <StepsSection />
+                    <ArticlesSection />
+                    <AboutSection />
+                    <ContactSection />
                 </div>
             </main>
 
