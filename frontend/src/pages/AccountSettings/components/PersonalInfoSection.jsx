@@ -1,19 +1,37 @@
 import React from 'react';
 
-const PersonalInfoSection = ({ user, fullName, phone, campus, setFullName, setPhone, setCampus, handleProfilePicChange, fileInputRef, handleSaveChanges }) => (
-    <section className="bg-surface-light dark:bg-surface-dark rounded-2xl shadow-sm border border-gray-100 dark:border-gray-800 p-6">
-        <div className="flex items-center gap-2 mb-6">
-            <span className="material-icons-round text-primary">person</span>
-            <h2 className="text-lg font-bold text-gray-900 dark:text-white">Personal Information</h2>
+/**
+ * PersonalInfoSection Component
+ * Restored to exact mockup specifications.
+ */
+const PersonalInfoSection = ({
+    user,
+    fullName,
+    phone,
+    campus,
+    setFullName,
+    setPhone,
+    setCampus,
+    handleProfilePicChange,
+    fileInputRef,
+    handleSaveChanges
+}) => (
+    <div className="bg-surface-light dark:bg-surface-dark rounded-lg shadow-sm border border-slate-100 dark:border-slate-800 p-6">
+        <div className="flex items-center justify-between mb-6">
+            <h2 className="text-lg font-medium text-slate-900 dark:text-white flex items-center gap-2">
+                <span className="material-icons text-primary text-xl">person</span>
+                Personal Information
+            </h2>
         </div>
 
-        <div className="flex flex-col md:flex-row items-center gap-6 mb-8">
-            <div className="relative">
-                <div className="w-24 h-24 rounded-full overflow-hidden border-4 border-white dark:border-gray-800 shadow-sm bg-gray-100 dark:bg-gray-700">
+        {/* Avatar Section */}
+        <div className="flex items-center gap-6 mb-8">
+            <div className="relative group">
+                <div className="h-24 w-24 rounded-full overflow-hidden ring-4 ring-primary/10 bg-slate-100 dark:bg-slate-800">
                     <img
-                        src={user.profilePic}
+                        src={user.profilePic || `https://ui-avatars.com/api/?name=${encodeURIComponent(fullName || 'U')}&background=E2725B&color=fff`}
                         alt="Profile"
-                        className="w-full h-full object-cover"
+                        className="h-full w-full object-cover"
                     />
                 </div>
                 <input
@@ -25,72 +43,85 @@ const PersonalInfoSection = ({ user, fullName, phone, campus, setFullName, setPh
                 />
                 <button
                     onClick={() => fileInputRef.current.click()}
-                    className="absolute bottom-0 right-0 p-1.5 bg-primary text-white rounded-full shadow-lg hover:bg-primary-dark transition-colors border-2 border-white dark:border-gray-800"
+                    className="absolute bottom-0 right-0 bg-primary hover:bg-primary-dark text-white p-1.5 rounded-full shadow-lg transition-colors border-2 border-white dark:border-surface-dark"
+                    title="Change photo"
                 >
-                    <span className="material-icons-round text-xs">edit</span>
+                    <span className="material-icons text-sm">edit</span>
                 </button>
             </div>
-            <div className="text-center md:text-left">
-                <h3 className="font-semibold text-gray-900 dark:text-white mb-1">Profile Photo</h3>
-                <p className="text-xs text-gray-500">Accepts JPG, GIF or PNG. Max size of 800K.</p>
+            <div>
+                <h3 className="font-medium text-slate-900 dark:text-white">Profile Photo</h3>
+                <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">Accepts JPG, GIF or PNG. Max size of 800K.</p>
             </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-            <div className="space-y-1.5">
-                <label className="text-sm font-semibold text-gray-700 dark:text-gray-300">Full Name</label>
-                <input
-                    type="text"
-                    value={fullName}
-                    onChange={(e) => setFullName(e.target.value)}
-                    className="w-full px-4 py-2.5 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all outline-none"
-                />
+        <form className="space-y-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                    <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1" htmlFor="fullName">Full Name</label>
+                    <input
+                        className="block w-full rounded-lg border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 text-slate-900 dark:text-white shadow-sm focus:border-primary focus:ring-primary sm:text-sm p-2.5 border"
+                        id="fullName"
+                        name="fullName"
+                        type="text"
+                        value={fullName}
+                        onChange={(e) => setFullName(e.target.value)}
+                    />
+                </div>
+                <div>
+                    <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1" htmlFor="email">University Email</label>
+                    <input
+                        className="block w-full rounded-lg border-slate-300 dark:border-slate-600 bg-slate-50 dark:bg-slate-900/50 text-slate-500 dark:text-slate-400 shadow-sm focus:border-primary focus:ring-primary sm:text-sm p-2.5 border cursor-not-allowed"
+                        id="email"
+                        name="email"
+                        readonly
+                        type="email"
+                        value={user.email}
+                    />
+                    <p className="mt-1 text-xs text-slate-400">Contact admin to change email.</p>
+                </div>
+                <div>
+                    <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1" htmlFor="phone">Phone Number (Optional)</label>
+                    <input
+                        className="block w-full rounded-lg border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 text-slate-900 dark:text-white shadow-sm focus:border-primary focus:ring-primary sm:text-sm p-2.5 border"
+                        id="phone"
+                        name="phone"
+                        placeholder="+254 700 000000"
+                        type="tel"
+                        value={phone}
+                        onChange={(e) => setPhone(e.target.value)}
+                    />
+                </div>
+                <div>
+                    <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1" htmlFor="university">Campus / University</label>
+                    <select
+                        className="block w-full rounded-lg border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 text-slate-900 dark:text-white shadow-sm focus:border-primary focus:ring-primary sm:text-sm p-2.5 border"
+                        id="university"
+                        name="university"
+                        value={campus}
+                        onChange={(e) => setCampus(e.target.value)}
+                    >
+                        <option>University of Nairobi</option>
+                        <option>Kenyatta University</option>
+                        <option>Strathmore University</option>
+                        <option>JKUAT</option>
+                        <option>USIU Africa</option>
+                    </select>
+                </div>
             </div>
-            <div className="space-y-1.5">
-                <label className="text-sm font-semibold text-gray-700 dark:text-gray-300">University Email</label>
-                <input
-                    type="email"
-                    value={user.email}
-                    disabled
-                    className="w-full px-4 py-2.5 rounded-xl border border-gray-100 dark:border-gray-800 bg-gray-50 dark:bg-gray-900/50 text-gray-400 cursor-not-allowed italic"
-                />
-                <p className="text-[10px] text-gray-400 mt-1">Contact admin to change email.</p>
-            </div>
-            <div className="space-y-1.5">
-                <label className="text-sm font-semibold text-gray-700 dark:text-gray-300">Phone Number (Optional)</label>
-                <input
-                    type="text"
-                    value={phone}
-                    onChange={(e) => setPhone(e.target.value)}
-                    className="w-full px-4 py-2.5 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all outline-none"
-                />
-            </div>
-            <div className="space-y-1.5">
-                <label className="text-sm font-semibold text-gray-700 dark:text-gray-300">Campus / University</label>
-                <select
-                    value={campus}
-                    onChange={(e) => setCampus(e.target.value)}
-                    className="w-full px-4 py-2.5 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all outline-none"
+            <div className="flex justify-end pt-4 border-t border-slate-100 dark:border-slate-800">
+                <button
+                    className="bg-primary hover:bg-primary-dark text-white px-5 py-2 rounded-lg font-medium text-sm transition-colors shadow-sm shadow-primary/30"
+                    type="button"
+                    onClick={handleSaveChanges}
                 >
-                    <option>University of Nairobi</option>
-                    <option>Kenyatta University</option>
-                    <option>Strathmore University</option>
-                    <option>Jomo Kenyatta University</option>
-                    <option>Maseno University</option>
-                    <option>Masinde Muliro University of Science and Technology</option>
-                </select>
+                    Save Changes
+                </button>
             </div>
-        </div>
-
-        <div className="flex justify-end">
-            <button
-                onClick={handleSaveChanges}
-                className="px-6 py-2.5 bg-primary text-white rounded-xl font-semibold hover:bg-primary-dark shadow-sm transition-all transform hover:scale-[1.02]"
-            >
-                Save Changes
-            </button>
-        </div>
-    </section>
+        </form>
+    </div>
 );
 
 export default PersonalInfoSection;
+
+
