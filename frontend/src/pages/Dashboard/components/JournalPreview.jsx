@@ -1,12 +1,13 @@
-import React from 'react';
+import { memo } from 'react';
 import { Link } from 'react-router-dom';
+import { Card, Button } from '../../../shared/components';
 
 /**
  * JournalPreview Component
  * Restored to exact mockup specifications with Material Icons.
  */
-const JournalPreview = ({ entries = [] }) => (
-    <div className="bg-white dark:bg-surface-dark rounded-[2.5rem] p-10 shadow-premium border border-gray-50 dark:border-gray-800 flex flex-col h-full">
+const JournalPreview = memo(({ entries = [] }) => (
+    <Card className="flex flex-col h-full">
         <div className="flex items-center justify-between mb-8">
             <h3 className="font-black text-xl text-text-main dark:text-white tracking-tight">Recent Journal</h3>
             <Link className="text-primary text-[10px] font-black uppercase tracking-widest hover:underline" to="/journal">
@@ -33,15 +34,15 @@ const JournalPreview = ({ entries = [] }) => (
             )}
         </div>
 
-        <Link
-            to="/log-mood"
-            className="mt-10 w-full flex items-center justify-center gap-3 py-4 rounded-2xl border border-primary/20 text-primary hover:bg-primary hover:text-white transition-all text-[11px] font-black uppercase tracking-widest shadow-sm hover:shadow-md"
-        >
-            <span className="material-icons-outlined text-sm">edit_note</span>
-            Write Entry
+        <Link to="/log-mood" className="mt-10">
+            <Button variant="outline" fullWidth icon="edit_note" iconPosition="left">
+                Write Entry
+            </Button>
         </Link>
-    </div>
-);
+    </Card>
+));
+
+JournalPreview.displayName = 'JournalPreview';
 
 export default JournalPreview;
 

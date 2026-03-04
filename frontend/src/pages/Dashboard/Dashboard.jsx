@@ -1,6 +1,7 @@
-import React from 'react';
+import { useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useUser } from '../../context/UserContext';
+import { IconButton } from '../../shared/components';
 import MoodHero from './components/MoodHero';
 import WeekReviewChart from './components/WeekReviewChart';
 import DailyQuote from './components/DailyQuote';
@@ -14,6 +15,10 @@ const Dashboard = () => {
     const navigate = useNavigate();
     const { user } = useUser();
     const firstName = user?.fullName?.split(' ')[0] || 'Student';
+
+    const handleNavigateToAI = useCallback(() => {
+        navigate('/ai-assistant');
+    }, [navigate]);
 
     // Mock data matching mockup visuals
     const weekData = [
@@ -55,13 +60,15 @@ const Dashboard = () => {
                     <p className="text-neutral-warm font-medium mt-2">Here's your daily well-being overview.</p>
                 </div>
                 <div className="flex items-center gap-6">
-                    <button className="relative p-4 text-neutral-warm hover:text-primary transition-all rounded-2xl bg-white shadow-sm hover:shadow-md border border-gray-50">
-                        <span className="material-icons-outlined text-xl">notifications</span>
-                        <span className="absolute top-4 right-4 h-2 w-2 bg-secondary rounded-full border-2 border-white"></span>
-                    </button>
-                    <button className="p-4 text-neutral-warm hover:text-primary transition-all rounded-2xl bg-white shadow-sm hover:shadow-md border border-gray-50">
-                        <span className="material-icons-outlined text-xl">settings</span>
-                    </button>
+                    <IconButton 
+                        icon="notifications" 
+                        label="View notifications"
+                        badge={true}
+                    />
+                    <IconButton 
+                        icon="settings" 
+                        label="Open settings"
+                    />
                 </div>
             </div>
 
@@ -112,7 +119,11 @@ const Dashboard = () => {
                         <div className="space-y-10">
 
                             {/* MindAI Companion Shortcut Card */}
-                            <div className="bg-white rounded-[2.5rem] p-8 border border-primary/10 shadow-premium relative overflow-hidden group cursor-pointer hover:shadow-2xl transition-all animate-in fade-in slide-in-from-right-6 duration-1000" onClick={() => navigate('/ai-assistant')}>
+                            <button 
+                                className="bg-white rounded-[2.5rem] p-8 border border-primary/10 shadow-premium relative overflow-hidden group cursor-pointer hover:shadow-2xl transition-all animate-in fade-in slide-in-from-right-6 duration-1000 text-left w-full" 
+                                onClick={handleNavigateToAI}
+                                type="button"
+                            >
                                 <div className="absolute top-0 right-0 w-48 h-48 bg-primary/5 rounded-full -mr-24 -mt-24 blur-3xl group-hover:scale-125 transition-transform duration-700"></div>
                                 <div className="relative z-10 space-y-6">
                                     <div className="w-16 h-16 rounded-2xl bg-primary flex items-center justify-center shadow-lg shadow-primary/20">
@@ -124,7 +135,7 @@ const Dashboard = () => {
                                         <p className="text-sm text-neutral-warm font-medium">MindAI is ready to listen and provide support anytime.</p>
                                     </div>
                                 </div>
-                            </div>
+                            </button>
 
                             {/* Daily Affirmation Card */}
                             <div className="animate-in fade-in slide-in-from-right-6 duration-1000 delay-200">
