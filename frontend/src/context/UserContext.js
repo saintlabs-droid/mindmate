@@ -1,4 +1,5 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import { createContext, useContext, useState, useEffect } from 'react';
+import logger from '../shared/utils/logger';
 
 const UserContext = createContext();
 
@@ -68,7 +69,7 @@ export const UserProvider = ({ children }) => {
     }, []);
 
     const logout = () => {
-        console.log("LOGOUT INITIATED: Clearing all state and performing hard navigaton.");
+        logger.info("Logout initiated: Clearing all state and performing hard navigation.");
 
         // 1. ATOMIC PURGE: Nuke EVERYTHING in browser storage
         localStorage.clear();
@@ -76,8 +77,6 @@ export const UserProvider = ({ children }) => {
         setUser(null);
 
         // 2. HARD REDIRECT: Bypass React router entirely.
-        //    Goes to Django, who clears the cookie and redirects to /
-        //    We use the trailing slash to ensure it matches our proxy pattern.
         window.location.href = '/logout/';
     };
 
