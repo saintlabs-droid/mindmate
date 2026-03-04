@@ -1,9 +1,9 @@
-import React from 'react';
 import StatsCards from '../components/layout/StatsCards';
 import MoodChart from '../components/layout/Moodchart';
 import PatternCard from '../components/layout/PatternCard';
 import RecentLogs from '../components/layout/Recentlogs';
 import InfluenceCards from '../components/layout/InfluenceCards';
+import { IconButton } from '../shared/components';
 
 /**
  * Insights Page
@@ -30,9 +30,13 @@ const Insights = () => {
             </button>
           </div>
           {/* Export Button */}
-          <button className="bg-primary text-white h-14 w-14 rounded-2xl hover:brightness-105 active:scale-95 transition-all shadow-premium flex items-center justify-center group">
-            <span className="material-icons-outlined text-xl group-hover:translate-y-[2px] transition-transform">download</span>
-          </button>
+          <IconButton 
+            icon="download" 
+            label="Export data" 
+            variant="primary" 
+            size="lg"
+            className="h-14 w-14"
+          />
         </div>
       </header>
 
@@ -63,8 +67,11 @@ const Insights = () => {
             {/* Recent Logs List */}
             <RecentLogs />
 
-            {/* NEW RESOURCE CTA */}
-            <div className="bg-primary text-white p-10 rounded-[2.5rem] shadow-premium relative overflow-hidden group cursor-pointer border border-white/10 hover:translate-y-[-4px] transition-all">
+            {/* Resource CTA */}
+            <button 
+              type="button"
+              className="bg-primary text-white p-10 rounded-[2.5rem] shadow-premium relative overflow-hidden group cursor-pointer border border-white/10 hover:translate-y-[-4px] transition-all text-left w-full"
+            >
               <div className="absolute top-0 right-0 w-48 h-48 bg-white/5 rounded-full -mr-24 -mt-24 blur-3xl group-hover:scale-125 transition-transform duration-700"></div>
               <div className="relative z-10 space-y-6">
                 <span className="bg-white/20 text-white text-[10px] font-black px-4 py-1.5 rounded-full border border-white/10 inline-block uppercase tracking-widest">Editor's Pick</span>
@@ -72,11 +79,11 @@ const Insights = () => {
                   <h3 className="font-black text-2xl mb-3 tracking-tight">Campus Survival Guide</h3>
                   <p className="text-white/80 text-sm font-medium leading-relaxed">Master the art of maintaining mental balance during Kenyan university semesters.</p>
                 </div>
-                <button className="text-[11px] font-black uppercase tracking-widest flex items-center gap-3 group/btn">
-                  Read Module <span className="material-icons-outlined text-sm group-hover/btn:translate-x-2 transition-transform">arrow_forward</span>
-                </button>
+                <span className="text-[11px] font-black uppercase tracking-widest flex items-center gap-3 group/btn">
+                  Read Module <span className="material-icons-outlined text-sm group-hover:translate-x-2 transition-transform">arrow_forward</span>
+                </span>
               </div>
-            </div>
+            </button>
           </aside>
         </div>
 
