@@ -1,5 +1,3 @@
-import React from 'react';
-
 /**
  * LandingFooter: Structured foundation for the landing page.
  * Includes sitemap, university partners, and critical crisis links.

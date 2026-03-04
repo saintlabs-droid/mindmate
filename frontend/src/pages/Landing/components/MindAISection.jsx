@@ -1,4 +1,3 @@
-import React from 'react';
 import mindaiImage from '../../../assets/mindai-feature.png';
 
 const MindAISection = () => {

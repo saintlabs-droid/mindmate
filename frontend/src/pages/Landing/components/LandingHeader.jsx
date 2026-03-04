@@ -79,7 +79,9 @@ const LandingHeader = () => {
                     <div className="hidden md:block pb-6 animate-in fade-in slide-in-from-top-2 duration-300">
                         <div className="relative max-w-2xl mx-auto">
                             <span className="absolute left-5 top-1/2 -translate-y-1/2 material-icons-outlined text-neutral-warm">search</span>
+                            <label htmlFor="landing-search" className="sr-only">Search wellness resources</label>
                             <input
+                                id="landing-search"
                                 autoFocus
                                 type="search"
                                 placeholder="Search wellness resources, clinical paths..."

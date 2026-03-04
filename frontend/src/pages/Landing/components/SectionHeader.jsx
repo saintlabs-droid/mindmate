@@ -1,5 +1,3 @@
-import React from 'react';
-
 /**
  * SectionHeader: A reusable component to standardize heading styles across the landing page.
  * Supports badges, titles, subtitles, and optional actions (like "View All" links).

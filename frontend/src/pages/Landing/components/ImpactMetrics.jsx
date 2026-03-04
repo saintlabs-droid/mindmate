@@ -1,5 +1,3 @@
-import React from 'react';
-
 const ImpactMetrics = () => {
     const stats = [
         { value: "15K+", label: "Active Students", desc: "Across 12 campuses" },

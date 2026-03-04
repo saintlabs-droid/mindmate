@@ -1,5 +1,3 @@
-import React from 'react';
-
 /**
  * TrustStrip: Grayscale logo marquee for institutional credibility.
  */
