@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useUser } from '../../context/UserContext';
+import { IconButton } from '../../shared/components';
 
 /**
  * AIAssistant Page
@@ -68,12 +69,18 @@ const AIAssistant = () => {
                     </div>
                 </div>
                 <div className="flex items-center gap-1 group">
-                    <button className="p-2 text-gray-400 hover:text-primary transition-colors rounded-lg hover:bg-primary/5">
-                        <span className="material-icons text-lg">settings</span>
-                    </button>
-                    <button className="p-2 text-gray-400 hover:text-primary transition-colors rounded-lg hover:bg-primary/5">
-                        <span className="material-icons text-lg">history</span>
-                    </button>
+                    <IconButton 
+                        icon="settings" 
+                        label="Chat settings"
+                        variant="ghost"
+                        size="sm"
+                    />
+                    <IconButton 
+                        icon="history" 
+                        label="Chat history"
+                        variant="ghost"
+                        size="sm"
+                    />
                 </div>
             </div>
 
@@ -132,20 +139,30 @@ const AIAssistant = () => {
             <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-white dark:from-background-dark via-white/80 dark:via-background-dark/80 to-transparent">
                 <div className="max-w-2xl mx-auto">
                     <div className="relative flex items-center gap-2 bg-white dark:bg-surface-dark rounded-2xl shadow-xl border border-gray-200 dark:border-white/10 p-1.5 transition-all focus-within:ring-2 focus-within:ring-primary/20 focus-within:border-primary/40">
-                        <button className="p-2.5 text-gray-400 hover:text-primary transition-colors rounded-xl flex-shrink-0">
+                        <button 
+                            className="p-2.5 text-gray-400 hover:text-primary transition-colors rounded-xl flex-shrink-0"
+                            aria-label="Add attachment"
+                            type="button"
+                        >
                             <span className="material-icons text-lg font-light">add_circle_outline</span>
                         </button>
+                        <label htmlFor="message-input" className="sr-only">Message MindAI</label>
                         <input
+                            id="message-input"
                             className="flex-1 bg-transparent border-none focus:ring-0 text-gray-800 dark:text-gray-200 placeholder-gray-400 text-sm py-2 px-1 font-medium"
                             placeholder="Message MindAI..."
                             value={message}
                             onChange={(e) => setMessage(e.target.value)}
                             onKeyPress={(e) => e.key === 'Enter' && setMessage('')}
                         />
-                        <button className={`
-                            p-2.5 rounded-xl transition-all flex-shrink-0 flex items-center justify-center
-                            ${message ? 'bg-primary text-white shadow-lg shadow-primary/20 scale-100 rotate-0' : 'text-gray-300 scale-90 rotate-45'}
-                        `}>
+                        <button 
+                            className={`
+                                p-2.5 rounded-xl transition-all flex-shrink-0 flex items-center justify-center
+                                ${message ? 'bg-primary text-white shadow-lg shadow-primary/20 scale-100 rotate-0' : 'text-gray-300 scale-90 rotate-45'}
+                            `}
+                            aria-label="Send message"
+                            type="button"
+                        >
                             <span className="material-icons text-lg">send</span>
                         </button>
                     </div>
