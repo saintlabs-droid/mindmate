@@ -2,6 +2,7 @@ import React from "react";
 import LandingHeader from "./components/LandingHeader";
 import HeroSection from "./components/HeroSection";
 import StepsSection from "./components/StepsSection";
+import MindAISection from "./components/MindAISection";
 import ArticlesSection from "./components/ArticlesSection";
 import AboutSection from "./components/AboutSection";
 
@@ -26,6 +27,8 @@ const Landing = () => {
                 <div className="max-w-7xl mx-auto px-6 md:px-12">
                     <StepsSection />
                 </div>
+
+                <MindAISection />
 
                 <WhyUsSection />
 
