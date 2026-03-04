@@ -9,7 +9,6 @@
         --charcoal: #2D2D2D;
 
         /* Typography Scale (Major Third - 1.25 ratio)
-           Edit these to change font sizes globally
            Base: 16px -> 20px -> 25px -> 31px -> 39px -> 49px */
         --font-size-h1: clamp(2.441rem, 4vw, 3.052rem);   /* 39px to 49px */
         --font-size-h2: clamp(1.953rem, 3vw, 2.441rem);   /* 31px to 39px */
