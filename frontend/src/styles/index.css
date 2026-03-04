@@ -7,6 +7,27 @@
         --sage: #6A8E7F;
         --warm-white: #FBF9F7;
         --charcoal: #2D2D2D;
+
+        /* Typography Scale (Major Third - 1.25 ratio)
+           Edit these to change font sizes globally
+           Base: 16px -> 20px -> 25px -> 31px -> 39px -> 49px */
+        --font-size-h1: clamp(2.441rem, 4vw, 3.052rem);   /* 39px to 49px */
+        --font-size-h2: clamp(1.953rem, 3vw, 2.441rem);   /* 31px to 39px */
+        --font-size-h3: clamp(1.563rem, 2.5vw, 1.953rem); /* 25px to 31px */
+        --font-size-h4: clamp(1.25rem, 2vw, 1.563rem);    /* 20px to 25px */
+        --font-size-h5: 1.125rem;                          /* 18px */
+        --font-size-h6: 1rem;                              /* 16px - never smaller than body */
+        --font-size-body: 1rem;                            /* 16px */
+        --font-size-small: 0.875rem;                       /* 14px */
+        --font-size-xs: 0.75rem;                           /* 12px - captions only */
+
+        /* Line Heights - optimized for readability */
+        --line-height-heading: 1.2;    /* Headings need slightly more than 1.1 */
+        --line-height-normal: 1.5;     /* Body text standard */
+        --line-height-relaxed: 1.75;   /* Long-form content */
+
+        /* Spacing for vertical rhythm */
+        --spacing-heading: 0.5em;      /* Space below headings */
     }
 
     html {
@@ -18,23 +39,66 @@
         color: var(--charcoal);
         margin: 0;
         background-color: var(--warm-white);
+        font-size: var(--font-size-body);
+        line-height: var(--line-height-normal);
     }
 
-    /* Global Typography Consistency */
+    /* ============================================
+       GLOBAL TYPOGRAPHY - Single Source of Truth
+       Edit these styles to update ALL pages at once
+       ============================================ */
+
     h1 {
-        @apply text-4xl md:text-5xl lg:text-7xl font-bold tracking-tight text-text-main leading-tight transition-all;
+        font-size: var(--font-size-h1);
+        line-height: var(--line-height-heading);
+        margin-bottom: var(--spacing-heading);
+        @apply font-bold tracking-tight text-text-main;
     }
 
     h2 {
-        @apply text-3xl md:text-4xl font-bold tracking-tight text-text-main transition-all;
+        font-size: var(--font-size-h2);
+        line-height: var(--line-height-heading);
+        margin-bottom: var(--spacing-heading);
+        @apply font-bold tracking-tight text-text-main;
     }
 
     h3 {
-        @apply text-xl md:text-2xl font-bold text-text-main transition-all;
+        font-size: var(--font-size-h3);
+        line-height: var(--line-height-heading);
+        margin-bottom: var(--spacing-heading);
+        @apply font-semibold text-text-main;
+    }
+
+    h4 {
+        font-size: var(--font-size-h4);
+        line-height: var(--line-height-heading);
+        margin-bottom: var(--spacing-heading);
+        @apply font-semibold text-text-main;
+    }
+
+    h5 {
+        font-size: var(--font-size-h5);
+        line-height: var(--line-height-normal);
+        margin-bottom: var(--spacing-heading);
+        @apply font-medium text-text-main;
+    }
+
+    h6 {
+        font-size: var(--font-size-h6);
+        line-height: var(--line-height-normal);
+        margin-bottom: var(--spacing-heading);
+        @apply font-medium text-text-main;
     }
 
     p {
-        @apply text-base text-neutral-warm leading-relaxed transition-all;
+        font-size: var(--font-size-body);
+        line-height: var(--line-height-relaxed);
+        margin-bottom: 1em;
+        @apply text-neutral-warm;
+    }
+
+    small {
+        font-size: var(--font-size-small);
     }
 }
 
