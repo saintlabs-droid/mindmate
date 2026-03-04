@@ -43,7 +43,7 @@ const LandingFooter = () => {
                 </div>
 
                 <div className="flex flex-col md:flex-row justify-between items-center gap-6 text-[10px] font-black uppercase tracking-[0.3em] text-neutral-warm/40">
-                    <p>© 2026 MindMate Clinical Systems. Made with ❤️ in Kenya.</p>
+                    <p>© 2026 MindMate Clinical Systems.</p>
                     <div className="flex gap-8">
                         <a className="hover:text-primary transition-colors" href="#">Privacy & Anonymity</a>
                         <a className="hover:text-primary transition-colors" href="#">Clinical Governance</a>
