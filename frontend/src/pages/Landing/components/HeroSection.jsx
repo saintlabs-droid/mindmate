@@ -33,7 +33,7 @@ const HeroSection = () => {
                 <div className="pt-6">
                     <a
                         href="/signup/"
-                        className="inline-block bg-primary hover:bg-primary-dark text-white px-8 py-3 rounded-lg font-medium transition-all hover:scale-[1.02] active:scale-95"
+                        className="inline-block bg-primary hover:bg-primary-dark text-white px-8 py-3 rounded-none font-medium transition-all hover:scale-[1.02] active:scale-95"
                     >
                         Get started
                     </a>

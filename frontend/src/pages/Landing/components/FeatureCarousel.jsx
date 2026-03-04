@@ -5,28 +5,28 @@ const slides = [
     {
         title: "Always on, always there",
         desc: "No matter the time of day, MindMate is ready to help: no appointments, no waiting, just instant access to care.",
-        image: "https://images.unsplash.com/photo-1512428559087-560fa5ceab42?auto=format&fit=crop&q=80&w=800",
+        image: "https://images.unsplash.com/photo-1516251193007-45ef944ab0c6?auto=format&fit=crop&q=80&w=800",
         blobClass: "bg-blue-100/50",
         accent: "text-blue-600"
     },
     {
         title: "Anonymous and secure",
         desc: "Stigma-free and anonymous, MindMate is designed to feel safe, supportive, and judgment-free for every student.",
-        image: "https://images.unsplash.com/photo-1523240715639-960c18d483b5?auto=format&fit=crop&q=80&w=800",
+        image: "https://images.unsplash.com/photo-1531123897727-8f129e16fd3c?auto=format&fit=crop&q=80&w=800",
         blobClass: "bg-green-100/50",
         accent: "text-green-600"
     },
     {
         title: "Evidence-based support",
         desc: "Our platform uses techniques from CBT and mindfulness to help you manage stress and build emotional resilience.",
-        image: "https://images.unsplash.com/photo-1493839523149-2864fca44919?auto=format&fit=crop&q=80&w=800",
+        image: "https://images.unsplash.com/photo-1523240715639-960c18d483b5?auto=format&fit=crop&q=80&w=800",
         blobClass: "bg-purple-100/50",
         accent: "text-purple-600"
     },
     {
         title: "Clinical grounding",
         desc: "Developed in collaboration with mental health professionals to ensure your safety and the quality of care provided.",
-        image: "https://images.unsplash.com/photo-1576091160550-217359f42f8c?auto=format&fit=crop&q=80&w=800",
+        image: "https://images.unsplash.com/photo-1559192823-74ad3d7ef448?auto=format&fit=crop&q=80&w=800",
         blobClass: "bg-orange-100/50",
         accent: "text-orange-600"
     },
@@ -89,10 +89,10 @@ const FeatureCarousel = () => {
                         <div
                             key={index}
                             className={`absolute inset-0 grid md:grid-cols-2 gap-12 items-center transition-all duration-700 ease-in-out ${index === currentIndex
-                                    ? "opacity-100 translate-x-0 z-10"
-                                    : index < currentIndex
-                                        ? "opacity-0 -translate-x-full z-0"
-                                        : "opacity-0 translate-x-full z-0"
+                                ? "opacity-100 translate-x-0 z-10"
+                                : index < currentIndex
+                                    ? "opacity-0 -translate-x-full z-0"
+                                    : "opacity-0 translate-x-full z-0"
                                 }`}
                         >
                             <div className="space-y-6">
@@ -134,8 +134,8 @@ const FeatureCarousel = () => {
                                 setCurrentIndex(index);
                             }}
                             className={`w-3 h-3 rounded-full transition-all duration-300 ${index === currentIndex
-                                    ? "bg-text-main w-8"
-                                    : "bg-gray-200 hover:bg-gray-300"
+                                ? "bg-text-main w-8"
+                                : "bg-gray-200 hover:bg-gray-300"
                                 }`}
                         />
                     ))}

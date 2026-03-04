@@ -55,7 +55,7 @@ const LandingHeader = () => {
                         </Link>
                         <Link
                             to="/signup/"
-                            className="px-8 py-3 bg-primary text-white text-[15px] font-bold rounded-2xl hover:brightness-105 hover:scale-[1.02] active:scale-95 transition-all shadow-premium"
+                            className="px-8 py-3 bg-primary text-white text-[15px] font-bold rounded-none hover:brightness-105 hover:scale-[1.02] active:scale-95 transition-all shadow-premium"
                         >
                             Join MindMate
                         </Link>
@@ -108,14 +108,14 @@ const LandingHeader = () => {
                             <Link
                                 to="/login/"
                                 onClick={() => setIsMenuOpen(false)}
-                                className="w-full text-center py-4 text-lg font-bold text-text-main border-2 border-gray-100 rounded-2xl hover:bg-gray-50 transition-colors"
+                                className="w-full text-center py-4 text-lg font-bold text-text-main border-2 border-gray-100 rounded-none hover:bg-gray-50 transition-colors"
                             >
                                 Log In
                             </Link>
                             <Link
                                 to="/signup/"
                                 onClick={() => setIsMenuOpen(false)}
-                                className="w-full text-center py-4 text-lg font-bold text-white bg-primary rounded-2xl hover:brightness-105 transition-all shadow-premium"
+                                className="w-full text-center py-4 text-lg font-bold text-white bg-primary rounded-none hover:brightness-105 transition-all shadow-premium"
                             >
                                 Join MindMate
                             </Link>

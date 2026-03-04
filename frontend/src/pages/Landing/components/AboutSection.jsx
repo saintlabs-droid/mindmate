@@ -1,5 +1,6 @@
 import React from 'react';
 import SectionHeader from './SectionHeader';
+import supportImage from '../../../assets/wellbeing-support.png';
 
 const AboutSection = () => {
     return (
@@ -45,7 +46,7 @@ const AboutSection = () => {
                     <div>
                         <a
                             href="/login/"
-                            className="inline-block bg-primary hover:bg-primary-dark text-white px-8 py-3 rounded-lg font-medium transition-all hover:scale-[1.02] active:scale-95"
+                            className="inline-block bg-primary hover:bg-primary-dark text-white px-8 py-3 rounded-none font-medium transition-all hover:scale-[1.02] active:scale-95"
                         >
                             Login to start logging today
                         </a>
@@ -56,7 +57,7 @@ const AboutSection = () => {
                         <img
                             alt="Student wellbeing support"
                             className="w-full h-full object-cover"
-                            src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&q=80&w=800"
+                            src={supportImage}
                         />
                     </div>
                 </div>

@@ -30,7 +30,7 @@ const WhyUsSection = () => {
     {
       title: 'Professional guidance',
       description: 'Connect with licensed therapists and coaches when you need human support. Seamlessly transition from AI support to professional care when needed.',
-      image: 'https://images.unsplash.com/photo-1573497019236-17f8177b81e8?auto=format&fit=crop&q=80&w=800',
+      image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=800',
       label: 'Expert Care'
     },
     {

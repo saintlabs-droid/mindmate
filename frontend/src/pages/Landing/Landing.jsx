@@ -4,7 +4,7 @@ import HeroSection from "./components/HeroSection";
 import StepsSection from "./components/StepsSection";
 import ArticlesSection from "./components/ArticlesSection";
 import AboutSection from "./components/AboutSection";
-import ContactSection from "./components/ContactSection";
+
 import LandingFooter from "./components/LandingFooter";
 import WhyUsSection from "./components/WhyUsSection";
 
@@ -32,7 +32,6 @@ const Landing = () => {
                 <div className="max-w-7xl mx-auto px-6 md:px-12">
                     <AboutSection />
                     <ArticlesSection />
-                    <ContactSection />
                 </div>
             </main>
 

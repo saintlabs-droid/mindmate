@@ -22,7 +22,7 @@ const InfiniteCarousel = ({ items, interval = 5000 }) => {
           {items.map((item, index) => {
             const isActive = index === currentIndex;
             const isPrev = index === (currentIndex - 1 + items.length) % items.length;
-            
+
             let transformClass = '';
             if (isActive) {
               transformClass = 'translate-x-0 opacity-100';
@@ -57,7 +57,7 @@ const InfiniteCarousel = ({ items, interval = 5000 }) => {
                             <img
                               src={item.image}
                               alt={item.title}
-                              className="w-full h-full object-cover grayscale-[0.3]"
+                              className="w-full h-full object-cover"
                             />
                           </div>
                           {item.label && (
@@ -85,11 +85,10 @@ const InfiniteCarousel = ({ items, interval = 5000 }) => {
             <button
               key={index}
               onClick={() => handleDotClick(index)}
-              className={`transition-all duration-300 rounded-full ${
-                index === currentIndex
+              className={`transition-all duration-300 rounded-full ${index === currentIndex
                   ? 'w-10 h-3 bg-primary'
                   : 'w-3 h-3 bg-gray-300 hover:bg-gray-400'
-              }`}
+                }`}
               aria-label={`Go to slide ${index + 1}`}
             />
           ))}

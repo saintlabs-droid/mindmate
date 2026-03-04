@@ -7,8 +7,8 @@ import React from 'react';
 const LandingFooter = () => {
     return (
         <footer className="bg-[#fcfbf9] border-t border-gray-100">
-            <div className="max-w-7xl mx-auto px-6 py-24 lg:px-12">
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-20">
+            <div className="max-w-7xl mx-auto px-6 pt-12 pb-10 lg:px-12">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
                     <div className="space-y-8">
                         <div className="flex items-center gap-3">
                             <div className="w-10 h-10 rounded-xl bg-primary flex items-center justify-center text-white shadow-lg shadow-primary/20">
