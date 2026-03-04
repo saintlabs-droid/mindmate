@@ -1,10 +1,11 @@
-import React from 'react';
+import { memo } from 'react';
+import { Card, Button } from '../../../shared/components';
 
 /**
  * PersonalInfoSection Component
  * Restored to exact mockup specifications.
  */
-const PersonalInfoSection = ({
+const PersonalInfoSection = memo(({
     user,
     fullName,
     phone,
@@ -16,7 +17,7 @@ const PersonalInfoSection = ({
     fileInputRef,
     handleSaveChanges
 }) => (
-    <div className="bg-surface-light dark:bg-surface-dark rounded-lg shadow-sm border border-slate-100 dark:border-slate-800 p-6">
+    <Card padding="sm" className="rounded-lg p-6">
         <div className="flex items-center justify-between mb-6">
             <h2 className="text-lg font-medium text-slate-900 dark:text-white flex items-center gap-2">
                 <span className="material-icons text-primary text-xl">person</span>
@@ -40,11 +41,13 @@ const PersonalInfoSection = ({
                     onChange={handleProfilePicChange}
                     accept="image/*"
                     className="hidden"
+                    aria-label="Upload profile photo"
                 />
                 <button
+                    type="button"
                     onClick={() => fileInputRef.current.click()}
                     className="absolute bottom-0 right-0 bg-primary hover:bg-primary-dark text-white p-1.5 rounded-full shadow-lg transition-colors border-2 border-white dark:border-surface-dark"
-                    title="Change photo"
+                    aria-label="Change profile photo"
                 >
                     <span className="material-icons text-sm">edit</span>
                 </button>
@@ -74,7 +77,7 @@ const PersonalInfoSection = ({
                         className="block w-full rounded-lg border-slate-300 dark:border-slate-600 bg-slate-50 dark:bg-slate-900/50 text-slate-500 dark:text-slate-400 shadow-sm focus:border-primary focus:ring-primary sm:text-sm p-2.5 border cursor-not-allowed"
                         id="email"
                         name="email"
-                        readonly
+                        readOnly
                         type="email"
                         value={user.email}
                     />
@@ -110,17 +113,15 @@ const PersonalInfoSection = ({
                 </div>
             </div>
             <div className="flex justify-end pt-4 border-t border-slate-100 dark:border-slate-800">
-                <button
-                    className="bg-primary hover:bg-primary-dark text-white px-5 py-2 rounded-lg font-medium text-sm transition-colors shadow-sm shadow-primary/30"
-                    type="button"
-                    onClick={handleSaveChanges}
-                >
+                <Button type="button" onClick={handleSaveChanges} size="sm">
                     Save Changes
-                </button>
+                </Button>
             </div>
         </form>
-    </div>
-);
+    </Card>
+));
+
+PersonalInfoSection.displayName = 'PersonalInfoSection';
 
 export default PersonalInfoSection;
 

@@ -1,11 +1,12 @@
-import React from 'react';
+import { memo } from 'react';
+import { Card, Button } from '../../../shared/components';
 
 /**
  * SecuritySection Component
  * Restored to exact mockup specifications.
  */
-const SecuritySection = () => (
-    <div className="bg-surface-light dark:bg-surface-dark rounded-lg shadow-sm border border-slate-100 dark:border-slate-800 p-6">
+const SecuritySection = memo(() => (
+    <Card padding="sm" className="rounded-lg p-6">
         <div className="flex items-center justify-between mb-6">
             <h2 className="text-lg font-medium text-slate-900 dark:text-white flex items-center gap-2">
                 <span className="material-icons text-primary text-xl">lock</span>
@@ -20,6 +21,7 @@ const SecuritySection = () => (
                     id="currentPassword"
                     name="currentPassword"
                     type="password"
+                    autoComplete="current-password"
                 />
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -30,6 +32,7 @@ const SecuritySection = () => (
                         id="newPassword"
                         name="newPassword"
                         type="password"
+                        autoComplete="new-password"
                     />
                 </div>
                 <div>
@@ -39,17 +42,20 @@ const SecuritySection = () => (
                         id="confirmPassword"
                         name="confirmPassword"
                         type="password"
+                        autoComplete="new-password"
                     />
                 </div>
             </div>
             <div className="pt-2">
-                <button className="text-primary hover:text-primary-dark font-medium text-sm transition-colors" type="button">
+                <Button variant="ghost" type="button" size="sm">
                     Update Password
-                </button>
+                </Button>
             </div>
         </form>
-    </div>
-);
+    </Card>
+));
+
+SecuritySection.displayName = 'SecuritySection';
 
 export default SecuritySection;
 
