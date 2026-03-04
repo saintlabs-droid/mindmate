@@ -1,6 +1,6 @@
 /**
  * Card Component
- * Reusable card container with consistent styling across the app.
+ * Reusable card container with sharp edges matching Landing page design.
  */
 const Card = ({ 
     children, 
@@ -9,16 +9,16 @@ const Card = ({
     hover = false,
     onClick = null
 }) => {
-    const baseClasses = 'bg-white dark:bg-surface-dark rounded-[2.5rem] shadow-premium border border-gray-50 dark:border-white/5';
+    const baseClasses = 'bg-white dark:bg-surface-dark rounded-none shadow-sm border border-gray-100 dark:border-white/5';
     
     const paddingClasses = {
         none: '',
-        sm: 'p-6',
-        md: 'p-8',
-        lg: 'p-10'
+        sm: 'p-4',
+        md: 'p-6',
+        lg: 'p-8'
     };
 
-    const hoverClasses = hover ? 'hover:translate-y-[-4px] transition-all duration-500 cursor-pointer' : '';
+    const hoverClasses = hover ? 'hover:shadow-md hover:border-gray-200 transition-all duration-300 cursor-pointer' : '';
     
     const Component = onClick ? 'button' : 'div';
 

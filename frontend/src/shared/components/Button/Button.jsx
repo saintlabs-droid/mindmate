@@ -1,6 +1,7 @@
 /**
  * Button Component
  * Reusable button with consistent styling variants.
+ * Primary buttons use sharp edges (rounded-none) to match Landing page design.
  */
 const Button = ({ 
     children, 
@@ -13,28 +14,28 @@ const Button = ({
     ...props 
 }) => {
     const variants = {
-        primary: 'bg-primary hover:brightness-105 text-white shadow-premium shadow-primary/20',
-        secondary: 'bg-secondary hover:brightness-110 text-white shadow-lg shadow-secondary/20',
-        outline: 'border-2 border-primary/20 text-primary hover:bg-primary hover:text-white',
-        ghost: 'text-neutral-warm hover:text-primary hover:bg-primary/5',
-        danger: 'bg-secondary/60 hover:bg-secondary text-white'
+        primary: 'bg-primary hover:bg-primary-dark text-white rounded-none',
+        secondary: 'bg-secondary hover:brightness-110 text-white shadow-lg shadow-secondary/20 rounded-2xl',
+        outline: 'border border-gray-200 text-text-main hover:border-primary hover:text-primary rounded-2xl',
+        ghost: 'text-neutral-warm hover:text-primary hover:bg-primary/5 rounded-xl',
+        danger: 'bg-crisis/10 text-crisis hover:bg-crisis hover:text-white rounded-2xl'
     };
 
     const sizes = {
-        sm: 'py-2 px-4 text-[10px]',
-        md: 'py-4 px-6 text-[11px]',
-        lg: 'py-5 px-10 text-[11px]'
+        sm: 'py-2.5 px-5 text-xs',
+        md: 'py-3 px-6 text-sm',
+        lg: 'py-4 px-8 text-sm'
     };
 
     const iconElement = icon && (
-        <span className="material-icons-outlined text-sm">{icon}</span>
+        <span className="material-icons-outlined text-base">{icon}</span>
     );
 
     return (
         <button
             className={`
-                font-black uppercase tracking-widest rounded-2xl transition-all
-                active:scale-95 flex items-center justify-center gap-3
+                font-medium transition-all active:scale-[0.98] 
+                flex items-center justify-center gap-2
                 ${variants[variant]} ${sizes[size]} 
                 ${fullWidth ? 'w-full' : ''}
                 ${className}

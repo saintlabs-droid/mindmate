@@ -2,7 +2,7 @@ import Sidebar from './Sidebar';
 
 const MainLayout = ({ children }) => {
   return (
-    <div className="flex h-screen bg-background-light dark:bg-background-dark overflow-hidden font-display">
+    <div className="min-h-screen bg-background-light dark:bg-background-dark font-display">
       {/* Skip Navigation Link for Accessibility */}
       <a 
         href="#main-content" 
@@ -11,18 +11,19 @@ const MainLayout = ({ children }) => {
         Skip to main content
       </a>
 
-      {/* Functional responsive Sidebar */}
-      <Sidebar />
+      {/* Desktop: Side-by-side layout | Mobile: Stacked layout */}
+      <div className="flex">
+        {/* Sidebar - hidden on mobile, visible on md+ */}
+        <Sidebar />
 
-      <main id="main-content" className="flex-1 flex flex-col overflow-hidden relative min-w-0">
-        {/* 
-                  * Note: Mobile Header is now integrated into Sidebar's hamburger toggle 
-                  * for a cleaner, unified navigation experience.
-                  */}
-        <div className="flex-1 overflow-y-auto w-full">
-          {children}
-        </div>
-      </main>
+        {/* Main Content Area */}
+        <main id="main-content" className="flex-1 flex flex-col min-h-screen min-w-0">
+          {/* Content scrolls independently */}
+          <div className="flex-1 overflow-y-auto">
+            {children}
+          </div>
+        </main>
+      </div>
     </div>
   );
 };

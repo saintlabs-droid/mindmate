@@ -6,9 +6,9 @@ import { Card } from '../../../shared/components';
  * Restored to exact mockup specifications.
  */
 const PrivacyCard = memo(() => (
-    <Card padding="sm" className="bg-primary/5 dark:bg-primary/10 border-primary/20 relative overflow-hidden rounded-lg p-6">
+    <Card padding="sm" className="bg-primary/5 dark:bg-primary/10 border-primary/20 relative overflow-hidden p-6">
         {/* Decorative bg element */}
-        <div className="absolute top-0 right-0 -mt-4 -mr-4 w-24 h-24 bg-primary/10 rounded-full blur-2xl"></div>
+        <div className="absolute top-0 right-0 -mt-4 -mr-4 w-24 h-24 bg-primary/10 blur-2xl"></div>
         <div className="flex items-center gap-2 mb-4">
             <span className="material-icons text-primary">security</span>
             <h3 className="text-lg font-bold text-slate-900 dark:text-white">Your Privacy Matters</h3>
@@ -18,7 +18,7 @@ const PrivacyCard = memo(() => (
         </p>
         <ul className="space-y-4">
             <li className="flex gap-3 items-start">
-                <div className="mt-0.5 h-5 w-5 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center flex-shrink-0">
+                <div className="mt-0.5 h-5 w-5 bg-green-100 dark:bg-green-900/30 flex items-center justify-center flex-shrink-0">
                     <span className="material-icons text-green-600 dark:text-green-400 text-xs">check</span>
                 </div>
                 <div>
@@ -27,7 +27,7 @@ const PrivacyCard = memo(() => (
                 </div>
             </li>
             <li className="flex gap-3 items-start">
-                <div className="mt-0.5 h-5 w-5 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center flex-shrink-0">
+                <div className="mt-0.5 h-5 w-5 bg-green-100 dark:bg-green-900/30 flex items-center justify-center flex-shrink-0">
                     <span className="material-icons text-green-600 dark:text-green-400 text-xs">check</span>
                 </div>
                 <div>
@@ -36,7 +36,7 @@ const PrivacyCard = memo(() => (
                 </div>
             </li>
             <li className="flex gap-3 items-start">
-                <div className="mt-0.5 h-5 w-5 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center flex-shrink-0">
+                <div className="mt-0.5 h-5 w-5 bg-green-100 dark:bg-green-900/30 flex items-center justify-center flex-shrink-0">
                     <span className="material-icons text-green-600 dark:text-green-400 text-xs">check</span>
                 </div>
                 <div>
@@ -46,11 +46,11 @@ const PrivacyCard = memo(() => (
             </li>
         </ul>
         <nav className="mt-8 pt-6 border-t border-primary/20 space-y-3" aria-label="Legal links">
-            <a href="#" className="flex items-center justify-between text-sm text-slate-700 dark:text-slate-300 hover:text-primary dark:hover:text-primary group bg-white dark:bg-slate-800 p-3 rounded-lg border border-slate-200 dark:border-slate-700 hover:border-primary/50 transition-all">
+            <a href="#" className="flex items-center justify-between text-sm text-slate-700 dark:text-slate-300 hover:text-primary dark:hover:text-primary group bg-white dark:bg-slate-800 p-3 border border-slate-200 dark:border-slate-700 hover:border-primary/50 transition-all">
                 <span>Privacy Policy</span>
                 <span className="material-icons text-slate-400 text-sm group-hover:text-primary">arrow_forward</span>
             </a>
-            <a href="#" className="flex items-center justify-between text-sm text-slate-700 dark:text-slate-300 hover:text-primary dark:hover:text-primary group bg-white dark:bg-slate-800 p-3 rounded-lg border border-slate-200 dark:border-slate-700 hover:border-primary/50 transition-all">
+            <a href="#" className="flex items-center justify-between text-sm text-slate-700 dark:text-slate-300 hover:text-primary dark:hover:text-primary group bg-white dark:bg-slate-800 p-3 border border-slate-200 dark:border-slate-700 hover:border-primary/50 transition-all">
                 <span>Terms of Service</span>
                 <span className="material-icons text-slate-400 text-sm group-hover:text-primary">arrow_forward</span>
             </a>

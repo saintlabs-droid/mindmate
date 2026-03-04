@@ -25,13 +25,13 @@ const CounselingCard = memo(({ title, subtitle, location, locationNote, time, ty
             </div>
 
             <div className="flex items-start gap-5 mb-8">
-                <div className={`w-14 h-14 rounded-2xl flex items-center justify-center ${iconData.color} group-hover:scale-110 transition-transform duration-500`}>
+                <div className={`w-14 h-14 flex items-center justify-center ${iconData.color} group-hover:scale-110 transition-transform duration-500`}>
                     <span className="material-icons-outlined text-2xl">{iconData.name}</span>
                 </div>
             </div>
 
             <div className="mb-8">
-                <h3 className="font-black text-text-main dark:text-white text-xl tracking-tight mb-2">{title}</h3>
+                <h3 className="font-medium text-text-main dark:text-white text-xl tracking-tight mb-2">{title}</h3>
                 <p className="text-sm text-neutral-warm font-medium leading-relaxed italic mb-8">
                     {subtitle}
                 </p>
@@ -42,7 +42,7 @@ const CounselingCard = memo(({ title, subtitle, location, locationNote, time, ty
                         <span className="font-medium">{location}</span>
                     </div>
                     {locationNote && (
-                        <p className="text-[10px] uppercase font-black text-neutral-warm/50 pl-9 -mt-2 tracking-widest">
+                        <p className="text-[10px] uppercase font-medium text-neutral-warm/50 pl-9 -mt-2 tracking-widest">
                             {locationNote}
                         </p>
                     )}

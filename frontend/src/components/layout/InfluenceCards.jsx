@@ -17,18 +17,18 @@ const InfluenceCards = memo(() => {
   };
 
   const InfluenceSection = ({ title, items }) => (
-    <Card padding="sm" className="rounded-2xl">
-      <h4 className="font-bold text-gray-900 dark:text-white mb-4">{title}</h4>
+    <Card padding="sm">
+      <h4 className="font-medium text-gray-900 dark:text-white mb-4">{title}</h4>
       <div className="space-y-4">
         {items.map((item, idx) => (
           <div key={idx} className="flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <div className={`p-2 ${item.bgColor} rounded-lg ${item.textColor}`}>
+              <div className={`p-2 ${item.bgColor} ${item.textColor}`}>
                 <span className="material-icons text-sm">{item.icon}</span>
               </div>
               <span className="text-sm font-medium text-gray-700 dark:text-gray-300">{item.label}</span>
             </div>
-            <div className="h-2 w-24 bg-gray-100 dark:bg-gray-800 rounded-full overflow-hidden">
+            <div className="h-2 w-24 bg-gray-100 dark:bg-gray-800 overflow-hidden">
               <div className={`h-full ${item.barColor} transition-all duration-1000`} style={{ width: item.value }}></div>
             </div>
           </div>

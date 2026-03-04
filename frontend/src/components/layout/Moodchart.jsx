@@ -37,9 +37,9 @@ const MoodChart = memo(() => {
   const [activeTab, setActiveTab] = useState("Mood");
 
   return (
-    <Card padding="md" className="flex flex-col h-full rounded-2xl">
-      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 gap-4">
-        <h3 className="font-bold text-lg text-gray-900 dark:text-white">Your Mood Timeline</h3>
+    <Card padding="md" className="flex flex-col">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
+        <h3 className="font-medium text-lg text-gray-900 dark:text-white">Your Mood Timeline</h3>
         <div className="flex flex-wrap gap-2" role="tablist" aria-label="Chart categories">
           {categories.map((cat) => (
             <button
@@ -47,7 +47,7 @@ const MoodChart = memo(() => {
               role="tab"
               aria-selected={activeTab === cat}
               onClick={() => setActiveTab(cat)}
-              className={`px-3 py-1.5 text-xs font-medium rounded-full transition-all duration-200
+              className={`px-3 py-1.5 text-xs font-medium transition-all duration-200
                 ${activeTab === cat
                   ? "bg-primary text-white shadow-md shadow-primary/20"
                   : "bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700"
@@ -60,7 +60,7 @@ const MoodChart = memo(() => {
         </div>
       </div>
 
-      <div className="flex-1 w-full min-h-[300px]">
+      <div className="w-full h-[200px]">
         <ResponsiveContainer width="100%" height="100%">
           <AreaChart
             data={moodData}
@@ -96,7 +96,7 @@ const MoodChart = memo(() => {
             <Tooltip
               contentStyle={{
                 backgroundColor: "#1f2937",
-                borderRadius: "8px",
+                borderRadius: "0",
                 border: "none",
                 color: "#fff",
                 fontSize: "12px"

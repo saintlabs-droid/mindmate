@@ -36,16 +36,16 @@ const StatsCards = memo(({ data }) => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
       {stats.map((stat) => (
-        <Card key={stat.label} padding="sm" className="flex items-center gap-4 rounded-2xl">
-          <div className={`w-12 h-12 rounded-full ${stat.iconBg} flex items-center justify-center ${stat.iconColor}`}>
+        <Card key={stat.label} padding="sm" className="flex items-center gap-4">
+          <div className={`w-12 h-12 ${stat.iconBg} flex items-center justify-center ${stat.iconColor}`}>
             <span className="material-icons-outlined">{stat.icon}</span>
           </div>
           <div>
             <p className="text-sm text-neutral-warm font-medium">{stat.label}</p>
             <div className="flex items-baseline gap-2">
-              <h3 className="text-2xl font-bold text-gray-900 dark:text-white">{stat.value}</h3>
+              <h3 className="text-2xl font-medium text-gray-900 dark:text-white">{stat.value}</h3>
               {stat.change && (
-                <span className="text-xs font-medium text-green-600 bg-green-100 dark:bg-green-900/30 px-2 py-0.5 rounded-full">
+                <span className="text-xs font-medium text-green-600 bg-green-100 dark:bg-green-900/30 px-2 py-0.5">
                   {stat.change}
                 </span>
               )}
