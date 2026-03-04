@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState, memo } from "react";
 import {
   ResponsiveContainer,
   AreaChart,
@@ -8,6 +8,7 @@ import {
   CartesianGrid,
   Tooltip,
 } from "recharts";
+import { Card } from "../../shared/components";
 
 const moodData = [
   { day: "Mon", value: 4 },
@@ -32,17 +33,19 @@ const moodLabels = {
 /**
  * MoodChart: Restored to exact mockup specifications.
  */
-const MoodChart = () => {
+const MoodChart = memo(() => {
   const [activeTab, setActiveTab] = useState("Mood");
 
   return (
-    <div className="bg-white dark:bg-surface-dark p-6 md:p-8 rounded-2xl shadow-sm border border-primary/10 flex flex-col h-full">
+    <Card padding="md" className="flex flex-col h-full rounded-2xl">
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 gap-4">
         <h3 className="font-bold text-lg text-gray-900 dark:text-white">Your Mood Timeline</h3>
-        <div className="flex flex-wrap gap-2">
+        <div className="flex flex-wrap gap-2" role="tablist" aria-label="Chart categories">
           {categories.map((cat) => (
             <button
               key={cat}
+              role="tab"
+              aria-selected={activeTab === cat}
               onClick={() => setActiveTab(cat)}
               className={`px-3 py-1.5 text-xs font-medium rounded-full transition-all duration-200
                 ${activeTab === cat
@@ -114,9 +117,11 @@ const MoodChart = () => {
           </AreaChart>
         </ResponsiveContainer>
       </div>
-    </div>
+    </Card>
   );
-};
+});
+
+MoodChart.displayName = 'MoodChart';
 
 export default MoodChart;
 

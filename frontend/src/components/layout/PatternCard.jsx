@@ -1,15 +1,16 @@
-import React from "react";
+import { memo } from "react";
 import { useUser } from "../../context/UserContext";
+import { Card, Button } from "../../shared/components";
 
 /**
  * PatternCard: Restored to exact mockup specifications.
  */
-const PatternCard = () => {
+const PatternCard = memo(() => {
   const { user } = useUser();
   const firstName = user?.fullName?.split(' ')[0] || 'Wanjiku';
 
   return (
-    <div className="bg-gradient-to-br from-primary/10 to-transparent dark:from-primary/20 dark:to-surface-dark border border-primary/20 p-6 rounded-2xl relative overflow-hidden group">
+    <Card padding="sm" className="bg-gradient-to-br from-primary/10 to-transparent dark:from-primary/20 dark:to-surface-dark border-primary/20 relative overflow-hidden group rounded-2xl">
       {/* Decor element */}
       <div className="absolute -top-6 -right-6 w-24 h-24 bg-primary/10 rounded-full blur-2xl"></div>
 
@@ -27,12 +28,16 @@ const PatternCard = () => {
         <p className="text-sm text-gray-600 dark:text-gray-300">Consider scheduling a short "chai break" or walk on Tuesday afternoons to reset.</p>
       </div>
 
-      <div className="mt-4 flex gap-2 relative z-10">
-        <button className="text-xs text-neutral-warm hover:text-primary underline">Is this helpful?</button>
+      <div className="mt-4 relative z-10">
+        <Button variant="ghost" size="sm" className="text-xs underline">
+          Is this helpful?
+        </Button>
       </div>
-    </div>
+    </Card>
   );
-};
+});
+
+PatternCard.displayName = 'PatternCard';
 
 export default PatternCard;
 

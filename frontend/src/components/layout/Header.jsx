@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { CalendarDays, ChevronDown, Bell, Zap } from "lucide-react";
+import { useState } from "react";
+import logger from "../../shared/utils/logger";
 
 /**
  * Header Component: Contextual title & temporal scope controls.
@@ -49,7 +49,7 @@ const Header = ({ title = "Dashboard", subtitle = "Your mental wellness overview
         {/* AI Insight Trigger */}
         <button
           className="rounded-2xl bg-primary text-white px-6 py-4 shadow-premium hover:brightness-105 active:scale-95 transition-all flex items-center gap-3 font-black text-[11px] uppercase tracking-widest"
-          onClick={() => console.info('[User Engagement] Manual AI recalc triggered.')}
+          onClick={() => logger.info('[User Engagement] Manual AI recalc triggered.')}
         >
           <span className="material-icons-outlined text-sm">smart_toy</span>
           <span className="hidden sm:inline">Daily Recap</span>

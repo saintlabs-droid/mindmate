@@ -1,10 +1,11 @@
-import React from "react";
+import { memo } from "react";
 import { Link } from "react-router-dom";
+import { Card } from "../../shared/components";
 
 /**
  * RecentLogs: Restored to exact mockup specifications.
  */
-const RecentLogs = ({ logs: data }) => {
+const RecentLogs = memo(({ logs: data }) => {
   const logs = data || [
     {
       month: "OCT",
@@ -26,7 +27,7 @@ const RecentLogs = ({ logs: data }) => {
   ];
 
   return (
-    <div className="bg-white dark:bg-surface-dark p-6 rounded-2xl shadow-sm border border-primary/10">
+    <Card padding="sm" className="rounded-2xl">
       <div className="flex justify-between items-center mb-4">
         <h3 className="font-bold text-gray-900 dark:text-white">Recent Logs</h3>
         <Link className="text-xs font-semibold text-primary hover:text-primary-dark" to="/journal">
@@ -54,9 +55,11 @@ const RecentLogs = ({ logs: data }) => {
           </div>
         ))}
       </div>
-    </div>
+    </Card>
   );
-};
+});
+
+RecentLogs.displayName = 'RecentLogs';
 
 export default RecentLogs;
 

@@ -1,9 +1,10 @@
-import React from 'react';
+import { memo } from 'react';
+import { Card } from '../../shared/components';
 
 /**
  * StatsCards Component: Restored to exact mockup specifications.
  */
-const StatsCards = ({ data }) => {
+const StatsCards = memo(({ data }) => {
   const stats = data || [
     {
       icon: "mood",
@@ -35,10 +36,7 @@ const StatsCards = ({ data }) => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
       {stats.map((stat) => (
-        <div
-          key={stat.label}
-          className="bg-white dark:bg-surface-dark p-6 rounded-2xl shadow-sm border border-primary/10 flex items-center gap-4 transition-all hover:shadow-md"
-        >
+        <Card key={stat.label} padding="sm" className="flex items-center gap-4 rounded-2xl">
           <div className={`w-12 h-12 rounded-full ${stat.iconBg} flex items-center justify-center ${stat.iconColor}`}>
             <span className="material-icons-outlined">{stat.icon}</span>
           </div>
@@ -56,11 +54,13 @@ const StatsCards = ({ data }) => {
               )}
             </div>
           </div>
-        </div>
+        </Card>
       ))}
     </div>
   );
-};
+});
+
+StatsCards.displayName = 'StatsCards';
 
 export default StatsCards;
 

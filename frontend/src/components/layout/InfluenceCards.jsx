@@ -1,9 +1,10 @@
-import React from "react";
+import { memo } from "react";
+import { Card } from "../../shared/components";
 
 /**
  * InfluenceCards: Restored to exact mockup specifications.
  */
-const InfluenceCards = () => {
+const InfluenceCards = memo(() => {
   const data = {
     positive: [
       { icon: "fitness_center", label: "Morning Run", value: "85%", bgColor: "bg-green-100 dark:bg-green-900/30", textColor: "text-green-600", barColor: "bg-green-500" },
@@ -16,7 +17,7 @@ const InfluenceCards = () => {
   };
 
   const InfluenceSection = ({ title, items }) => (
-    <div className="bg-white dark:bg-surface-dark p-6 rounded-2xl shadow-sm border border-primary/10">
+    <Card padding="sm" className="rounded-2xl">
       <h4 className="font-bold text-gray-900 dark:text-white mb-4">{title}</h4>
       <div className="space-y-4">
         {items.map((item, idx) => (
@@ -33,7 +34,7 @@ const InfluenceCards = () => {
           </div>
         ))}
       </div>
-    </div>
+    </Card>
   );
 
   return (
@@ -42,7 +43,9 @@ const InfluenceCards = () => {
       <InfluenceSection title="Stress Factors" items={data.stress} />
     </div>
   );
-};
+});
+
+InfluenceCards.displayName = 'InfluenceCards';
 
 export default InfluenceCards;
 
