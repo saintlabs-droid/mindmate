@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import { useState, useCallback } from 'react';
 import { useUser } from '../../context/UserContext';
 import { MOODS, INFLUENCES } from '../../constants/wellness';
 import MoodButton from './components/MoodButton';
 import InfluenceButton from './components/InfluenceButton';
 import { useNavigate, Link } from 'react-router-dom';
+import { Card, Button } from '../../shared/components';
 
 /**
  * LogMood Page
@@ -18,18 +19,22 @@ const LogMood = () => {
 
     const firstName = user?.fullName?.split(' ')[0] || 'there';
 
-    const toggleInfluence = (name) => {
+    const toggleInfluence = useCallback((name) => {
         setSelectedInfluences(prev =>
             prev.includes(name)
                 ? prev.filter(i => i !== name)
                 : [...prev, name]
         );
-    };
+    }, []);
 
-    const handleLogEntry = () => {
+    const handleLogEntry = useCallback(() => {
         // Logic for logging entry to backend can be added here
         navigate('/dashboard');
-    };
+    }, [navigate]);
+
+    const handleNoteChange = useCallback((e) => {
+        setNote(e.target.value);
+    }, []);
 
     return (
         <div className="flex-1 overflow-y-auto bg-background-light dark:bg-background-dark scroll-smooth">
@@ -46,13 +51,13 @@ const LogMood = () => {
                 </div>
 
                 {/* Form Card */}
-                <div className="bg-white dark:bg-surface-dark rounded-[2.5rem] shadow-premium border border-gray-50 dark:border-white/5 p-10 sm:p-16 animate-in fade-in zoom-in-95 duration-1000">
+                <Card padding="lg" className="p-10 sm:p-16 animate-in fade-in zoom-in-95 duration-1000">
 
                     {/* Section 1: Mood Scale */}
-                    <div className="mb-16">
-                        <label className="block text-[11px] font-black text-text-main dark:text-gray-200 mb-8 uppercase tracking-[0.25em]">
+                    <fieldset className="mb-16">
+                        <legend className="block text-[11px] font-black text-text-main dark:text-gray-200 mb-8 uppercase tracking-[0.25em]">
                             How would you rate your mood today?
-                        </label>
+                        </legend>
                         <div className="grid grid-cols-5 gap-4 sm:gap-6">
                             {MOODS.map((m) => (
                                 <MoodButton
@@ -63,17 +68,17 @@ const LogMood = () => {
                                 />
                             ))}
                         </div>
-                    </div>
+                    </fieldset>
 
                     {/* Divider */}
                     <div className="h-px bg-gray-50 dark:bg-white/10 w-full mb-14"></div>
 
                     {/* Section 2: Influence Categories */}
-                    <div className="mb-14">
+                    <fieldset className="mb-14">
                         <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3 mb-8">
-                            <label className="block text-[11px] font-black text-text-main dark:text-gray-200 uppercase tracking-[0.25em]">
+                            <legend className="block text-[11px] font-black text-text-main dark:text-gray-200 uppercase tracking-[0.25em]">
                                 What's shaping your mood?
-                            </label>
+                            </legend>
                             <span className="text-[10px] font-black text-neutral-warm/50 uppercase tracking-widest">Select all that apply</span>
                         </div>
                         <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
@@ -86,7 +91,7 @@ const LogMood = () => {
                                 />
                             ))}
                         </div>
-                    </div>
+                    </fieldset>
 
                     {/* Optional: Notes Field */}
                     <div className="mb-14">
@@ -99,7 +104,7 @@ const LogMood = () => {
                             placeholder="Anything specific happening? E.g. 'Upcoming exams are stressing me out...'"
                             rows="4"
                             value={note}
-                            onChange={(e) => setNote(e.target.value)}
+                            onChange={handleNoteChange}
                         ></textarea>
                     </div>
 
@@ -111,15 +116,11 @@ const LogMood = () => {
                         >
                             Cancel
                         </Link>
-                        <button
-                            onClick={handleLogEntry}
-                            className="bg-primary hover:brightness-105 text-white font-black py-5 px-10 rounded-2xl shadow-premium shadow-primary/20 transform transition hover:-translate-y-1 active:translate-y-0 flex items-center gap-3 uppercase tracking-widest text-[11px]"
-                        >
-                            <span>Save Entry</span>
-                            <span className="material-icons-outlined text-sm">arrow_forward</span>
-                        </button>
+                        <Button onClick={handleLogEntry} size="lg" icon="arrow_forward">
+                            Save Entry
+                        </Button>
                     </div>
-                </div>
+                </Card>
 
                 {/* Supportive Text */}
                 <div className="mt-12 text-center animate-in fade-in duration-1000 delay-700">

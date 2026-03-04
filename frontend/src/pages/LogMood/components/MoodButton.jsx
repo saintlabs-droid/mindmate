@@ -1,14 +1,15 @@
-import React from 'react';
+import { memo } from 'react';
 
 /**
  * MoodButton Component
- * Restored to exact mockup specifications.
+ * Memoized for performance - only re-renders when props change.
  */
-const MoodButton = ({ mood, isSelected, onClick }) => (
+const MoodButton = memo(({ mood, isSelected, onClick }) => (
     <button
         onClick={onClick}
-        className="group flex flex-col items-center gap-3 p-2 rounded-xl transition-colors hover:bg-gray-50 dark:hover:bg-white/5 focus:outline-none"
+        className="group flex flex-col items-center gap-3 p-2 rounded-xl transition-colors hover:bg-gray-50 dark:hover:bg-white/5 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
         aria-pressed={isSelected}
+        type="button"
     >
         <div className={`w-14 h-14 sm:w-16 sm:h-16 rounded-full flex items-center justify-center text-3xl transition-all 
             ${isSelected
@@ -23,8 +24,8 @@ const MoodButton = ({ mood, isSelected, onClick }) => (
             {mood.label}
         </span>
     </button>
-);
+));
+
+MoodButton.displayName = 'MoodButton';
 
 export default MoodButton;
-
-
