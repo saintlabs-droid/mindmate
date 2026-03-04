@@ -1,16 +1,18 @@
-import React, { useEffect } from 'react';
+import { useEffect, lazy, Suspense } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import Landing from './pages/Landing/Landing';
-import Dashboard from './pages/Dashboard/Dashboard';
-import LogMood from './pages/LogMood/LogMood';
-import Support from './pages/Support/Support';
-import Insights from './pages/Insights';
-import AIAssistant from './pages/AIAssistant/AIAssistant';
-import AccountSettings from './pages/AccountSettings/AccountSettings';
-import About from './pages/About/About';
-import MainLayout from './components/layout/MainLayout';
 import { UserProvider, useUser } from './context/UserContext';
 import { Construction, Loader2 } from 'lucide-react';
+
+// Lazy load pages for better performance
+const Landing = lazy(() => import('./pages/Landing/Landing'));
+const Dashboard = lazy(() => import('./pages/Dashboard/Dashboard'));
+const LogMood = lazy(() => import('./pages/LogMood/LogMood'));
+const Support = lazy(() => import('./pages/Support/Support'));
+const Insights = lazy(() => import('./pages/Insights'));
+const AIAssistant = lazy(() => import('./pages/AIAssistant/AIAssistant'));
+const AccountSettings = lazy(() => import('./pages/AccountSettings/AccountSettings'));
+const About = lazy(() => import('./pages/About/About'));
+const MainLayout = lazy(() => import('./components/layout/MainLayout'));
 
 /**
  * DjangoRedirect: Escapes React Router and hands the browser to a
@@ -55,6 +57,22 @@ const AuthGuard = ({ children }) => {
 };
 
 /**
+ * PageLoader Component
+ * Shown while lazy-loaded pages are being fetched.
+ */
+const PageLoader = () => (
+    <div className="flex h-screen items-center justify-center bg-white dark:bg-background-dark">
+        <div className="flex flex-col items-center gap-6 animate-in fade-in duration-700">
+            <div className="relative">
+                <div className="w-16 h-16 border-4 border-primary/20 rounded-[2rem] animate-pulse" />
+                <Loader2 className="absolute inset-0 w-16 h-16 text-primary animate-spin" />
+            </div>
+            <span className="text-[11px] font-black uppercase tracking-[0.3em] text-gray-900 dark:text-white">Loading</span>
+        </div>
+    </div>
+);
+
+/**
  * Placeholder Component
  * Standardized for development visibility across the distributed system.
  */
@@ -78,28 +96,30 @@ function App() {
     return (
         <UserProvider>
             <Router>
-                <Routes>
-                    <Route path="/" element={<Landing />} />
-                    <Route path="/about" element={<About />} />
+                <Suspense fallback={<PageLoader />}>
+                    <Routes>
+                        <Route path="/" element={<Landing />} />
+                        <Route path="/about" element={<About />} />
 
-                    {/* Protected App Routes wrapped in AuthGuard + MainLayout */}
-                    <Route path="/dashboard" element={<AuthGuard><MainLayout><Dashboard /></MainLayout></AuthGuard>} />
-                    <Route path="/journal" element={<AuthGuard><MainLayout><LogMood /></MainLayout></AuthGuard>} />
-                    <Route path="/support" element={<AuthGuard><MainLayout><Support /></MainLayout></AuthGuard>} />
-                    <Route path="/insights" element={<AuthGuard><MainLayout><Insights /></MainLayout></AuthGuard>} />
-                    <Route path="/community" element={<AuthGuard><MainLayout><Placeholder name="Community Hub" dev="Social Systems Team" /></MainLayout></AuthGuard>} />
+                        {/* Protected App Routes wrapped in AuthGuard + MainLayout */}
+                        <Route path="/dashboard" element={<AuthGuard><MainLayout><Dashboard /></MainLayout></AuthGuard>} />
+                        <Route path="/journal" element={<AuthGuard><MainLayout><LogMood /></MainLayout></AuthGuard>} />
+                        <Route path="/support" element={<AuthGuard><MainLayout><Support /></MainLayout></AuthGuard>} />
+                        <Route path="/insights" element={<AuthGuard><MainLayout><Insights /></MainLayout></AuthGuard>} />
+                        <Route path="/community" element={<AuthGuard><MainLayout><Placeholder name="Community Hub" dev="Social Systems Team" /></MainLayout></AuthGuard>} />
 
-                    <Route path="/ai-assistant" element={<AuthGuard><MainLayout><AIAssistant /></MainLayout></AuthGuard>} />
-                    <Route path="/account" element={<AuthGuard><MainLayout><AccountSettings /></MainLayout></AuthGuard>} />
+                        <Route path="/ai-assistant" element={<AuthGuard><MainLayout><AIAssistant /></MainLayout></AuthGuard>} />
+                        <Route path="/account" element={<AuthGuard><MainLayout><AccountSettings /></MainLayout></AuthGuard>} />
 
-                    {/* Django auth pages — escape React Router entirely */}
-                    <Route path="/login" element={<DjangoRedirect to="/login/" />} />
-                    <Route path="/login/" element={<DjangoRedirect to="/login/" />} />
-                    <Route path="/signup" element={<DjangoRedirect to="/signup/" />} />
-                    <Route path="/signup/" element={<DjangoRedirect to="/signup/" />} />
+                        {/* Django auth pages - escape React Router entirely */}
+                        <Route path="/login" element={<DjangoRedirect to="/login/" />} />
+                        <Route path="/login/" element={<DjangoRedirect to="/login/" />} />
+                        <Route path="/signup" element={<DjangoRedirect to="/signup/" />} />
+                        <Route path="/signup/" element={<DjangoRedirect to="/signup/" />} />
 
-                    <Route path="*" element={<Navigate to="/" replace />} />
-                </Routes>
+                        <Route path="*" element={<Navigate to="/" replace />} />
+                    </Routes>
+                </Suspense>
             </Router>
         </UserProvider>
     );
