@@ -40,7 +40,9 @@ const Support = () => {
 
                     <div className="relative w-full lg:w-96">
                         <span className="material-icons-outlined absolute left-5 top-1/2 -translate-y-1/2 text-neutral-warm/60 text-lg">search</span>
+                        <label htmlFor="support-search" className="sr-only">Search counselor or helpline</label>
                         <input
+                            id="support-search"
                             type="text"
                             placeholder="Search counselor, helpline..."
                             className="w-full pl-14 pr-6 py-5 bg-white dark:bg-surface-dark border border-gray-50 dark:border-white/10 rounded-2xl text-sm font-medium focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all outline-none shadow-premium"

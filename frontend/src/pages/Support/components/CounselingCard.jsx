@@ -1,10 +1,11 @@
-import React from 'react';
+import { memo } from 'react';
+import { Card, Button } from '../../../shared/components';
 
 /**
  * CounselingCard Component
- * Restored to exact mockup specifications.
+ * Memoized for performance.
  */
-const CounselingCard = ({ title, subtitle, location, locationNote, time, type }) => {
+const CounselingCard = memo(({ title, subtitle, location, locationNote, time, type }) => {
     const getIcon = () => {
         switch (type) {
             case 'health': return { name: 'local_hospital', color: 'bg-primary/10 text-primary' };
@@ -17,7 +18,7 @@ const CounselingCard = ({ title, subtitle, location, locationNote, time, type })
     const iconData = getIcon();
 
     return (
-        <div className="bg-white dark:bg-surface-dark rounded-[2.5rem] p-10 shadow-premium border border-gray-50 dark:border-white/5 relative overflow-hidden group hover:translate-y-[-4px] transition-all duration-500">
+        <Card hover className="relative overflow-hidden group">
             {/* Background Icon Accent */}
             <div className="absolute -right-6 -top-6 opacity-[0.03] dark:opacity-[0.05] pointer-events-none group-hover:scale-110 transition-transform duration-700">
                 <span className="material-icons-outlined text-[120px] rotate-12">{iconData.name}</span>
@@ -53,20 +54,18 @@ const CounselingCard = ({ title, subtitle, location, locationNote, time, type })
             </div>
 
             {type === 'peer' ? (
-                <button className="w-full flex items-center justify-center gap-3 py-4 border-2 border-primary/20 text-primary rounded-2xl font-black text-[11px] uppercase tracking-widest hover:bg-primary/5 transition-all">
-                    <span className="material-icons-outlined text-sm">event_note</span>
+                <Button variant="outline" fullWidth icon="event_note" iconPosition="left">
                     View Schedule
-                </button>
+                </Button>
             ) : (
-                <button className="w-full flex items-center justify-center gap-3 py-4 bg-primary text-white rounded-2xl font-black text-[11px] uppercase tracking-widest hover:brightness-105 active:scale-95 transition-all shadow-lg shadow-primary/20">
-                    <span className="material-icons-outlined text-sm">calendar_today</span>
+                <Button variant="primary" fullWidth icon="calendar_today" iconPosition="left">
                     Book Appointment
-                </button>
+                </Button>
             )}
-        </div>
+        </Card>
     );
-};
+});
+
+CounselingCard.displayName = 'CounselingCard';
 
 export default CounselingCard;
-
-

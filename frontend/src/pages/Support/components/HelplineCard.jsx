@@ -1,10 +1,11 @@
-import React from 'react';
+import { memo } from 'react';
+import { Card } from '../../../shared/components';
 
 /**
  * HelplineCard Component
- * Restored to exact mockup specifications.
+ * Memoized for performance.
  */
-const HelplineCard = ({ title, description, buttonColor, badgeColor, badgeText, callNumber, timeInfo }) => {
+const HelplineCard = memo(({ title, description, buttonColor, badgeColor, badgeText, callNumber, timeInfo }) => {
     const getIcon = () => {
         if (title.includes('Befrienders')) return 'volunteer_activism';
         if (title.includes('Red Cross')) return 'emergency_share';
@@ -12,7 +13,7 @@ const HelplineCard = ({ title, description, buttonColor, badgeColor, badgeText, 
     };
 
     return (
-        <div className="bg-white dark:bg-surface-dark rounded-[2.5rem] p-10 shadow-premium border border-gray-50 dark:border-white/5 flex flex-col h-full hover:translate-y-[-4px] transition-all duration-500 group">
+        <Card hover className="flex flex-col h-full">
             <div className="flex justify-between items-start mb-8">
                 <div className="flex-1">
                     <h3 className="font-black text-text-main dark:text-white text-xl tracking-tight mb-3">{title}</h3>
@@ -29,7 +30,11 @@ const HelplineCard = ({ title, description, buttonColor, badgeColor, badgeText, 
                 "{description}"
             </p>
 
-            <button className={`w-full py-4 rounded-2xl font-black text-[11px] uppercase tracking-widest text-white flex items-center justify-center gap-3 mb-6 shadow-lg hover:brightness-110 active:scale-95 transition-all ${buttonColor}`}>
+            <button 
+                className={`w-full py-4 rounded-2xl font-black text-[11px] uppercase tracking-widest text-white flex items-center justify-center gap-3 mb-6 shadow-lg hover:brightness-110 active:scale-95 transition-all ${buttonColor}`}
+                type="button"
+                aria-label={`Call ${title}`}
+            >
                 <span className="material-icons-outlined text-sm">call</span>
                 {callNumber}
             </button>
@@ -38,10 +43,10 @@ const HelplineCard = ({ title, description, buttonColor, badgeColor, badgeText, 
                 <span className="material-icons-outlined text-sm">schedule</span>
                 {timeInfo}
             </div>
-        </div>
+        </Card>
     );
-};
+});
+
+HelplineCard.displayName = 'HelplineCard';
 
 export default HelplineCard;
-
-
