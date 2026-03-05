@@ -1,36 +1,32 @@
 """
 AI Service Layer Module
 
-This module provides the service layer for all Gemini AI interactions in MindMate.
-Services encapsulate business logic and AI communication, following the service
-layer pattern for clean separation of concerns.
-
-Services:
-    - GeminiService: Base service class for Gemini API interactions
-    - VoiceAnalysisService: Audio emotional tone analysis
-    - SpaceAnalysisService: Environment/space wellness assessment
-    - InsightsGeneratorService: Weekly mood insights generation
-    - ChatService: Stateful AI chatbot conversations
-
-Usage:
-    from mindmate.backend.apps.ai_service.services import (
-        GeminiService,
-        VoiceAnalysisService,
-        SpaceAnalysisService,
-    )
+Re-exports services from base.py.
+Handles missing google-genai package gracefully for testing.
 """
 
-# Service exports will be added as services are implemented
-# from .base import GeminiService
-# from .voice_analysis import VoiceAnalysisService
-# from .space_analysis import SpaceAnalysisService
-# from .insights import InsightsGeneratorService
-# from .chat import ChatService
-
-__all__ = [
-    # 'GeminiService',
-    # 'VoiceAnalysisService',
-    # 'SpaceAnalysisService',
-    # 'InsightsGeneratorService',
-    # 'ChatService',
-]
+try:
+    from .base import (
+        GeminiService,
+        GeminiServiceError,
+        VoiceAnalysisService,
+        SpaceAnalysisService,
+        InsightsGeneratorService,
+        ChatService,
+    )
+    
+    __all__ = [
+        'GeminiService',
+        'GeminiServiceError',
+        'VoiceAnalysisService',
+        'SpaceAnalysisService',
+        'InsightsGeneratorService',
+        'ChatService',
+    ]
+except ImportError as e:
+    # google-genai package not installed - services unavailable
+    # This allows tests to run without the package
+    import warnings
+    warnings.warn(f"AI services unavailable: {e}. Install google-genai package.")
+    
+    __all__ = []
