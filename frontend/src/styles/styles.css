@@ -1,0 +1,170 @@
+:root {
+    /* Principal's Functional Palette - Centralized Source of Truth */
+    --brand-primary: #4f46e5;
+    /* Deep Indigo: Stability & Trust */
+    --brand-primary-hover: #4338ca;
+    --brand-primary-soft: rgba(79, 70, 229, 0.1);
+
+    --brand-success: #059669;
+    /* Sage Green: Growth & Success */
+    --brand-success-hover: #047857;
+    --brand-success-soft: #f0fdf4;
+
+    --brand-accent: #f08a5d;
+    /* Soft Coral: Motivation & Accents */
+    --brand-accent-hover: #e67e50;
+    --brand-accent-soft: #fff7ed;
+
+    --brand-crisis: #e11d48;
+    /* Rose Red: Emergency & Crisis */
+    --brand-crisis-hover: #be123e;
+    --brand-crisis-soft: #fff1f2;
+
+    /* System Visual Tokens */
+    --glass-bg: rgba(255, 255, 255, 0.85);
+    --glass-border: rgba(255, 255, 255, 0.4);
+    --brand-surface-glow: #f8faff;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+body.mindmate-bg {
+    background: radial-gradient(circle at top right, #f8faff 0%, #fff 50%, var(--brand-surface-glow) 100%);
+    min-height: 100vh;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+/* Premium Glass Architecture */
+.auth-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: 2rem;
+    box-shadow: 0 25px 50px -12px rgba(79, 70, 229, 0.12);
+    border: 1px solid var(--glass-border);
+    animation: fadeIn 0.6s ease-out forwards;
+}
+
+/* Reusable Styled Inputs */
+.mindmate-input {
+    width: 100%;
+    padding: 0.9rem 1.2rem;
+    background-color: rgba(249, 250, 251, 0.8);
+    border: 1px solid #e5e7eb;
+    border-radius: 1rem;
+    font-size: 0.95rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.mindmate-input:focus {
+    outline: none;
+    border-color: var(--brand-primary);
+    background-color: white;
+    box-shadow: 0 0 0 4px var(--brand-primary-soft);
+    transform: translateY(-1px);
+}
+
+/* 
+   Functional Button System 
+   Usage: apply these classes to any button for instant thematic styling
+*/
+.btn-primary {
+    background: linear-gradient(135deg, var(--brand-primary) 0%, #7c3aed 100%);
+    color: white;
+    font-weight: 700;
+    padding: 1rem;
+    border-radius: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 15px -3px rgba(79, 70, 229, 0.3);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 20px 25px -5px rgba(79, 70, 229, 0.4);
+    filter: brightness(1.05);
+}
+
+.btn-success {
+    background: linear-gradient(135deg, var(--brand-success) 0%, #10b981 100%);
+    color: white;
+    font-weight: 700;
+    padding: 1rem;
+    border-radius: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 15px -3px rgba(5, 150, 105, 0.2);
+}
+
+.btn-success:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 20px 25px -5px rgba(5, 150, 105, 0.3);
+}
+
+.btn-crisis {
+    background: linear-gradient(135deg, var(--brand-crisis) 0%, #fb7185 100%);
+    color: white;
+    font-weight: 700;
+    padding: 1rem;
+    border-radius: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 15px -3px rgba(225, 29, 72, 0.3);
+}
+
+.btn-crisis:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 20px 25px -5px rgba(225, 29, 72, 0.4);
+}
+
+/* Semantic Utility Classes */
+.text-brand {
+    color: var(--brand-primary);
+}
+
+.text-success {
+    color: var(--brand-success);
+}
+
+.text-accent {
+    color: var(--brand-accent);
+}
+
+.text-crisis {
+    color: var(--brand-crisis);
+}
+
+.bg-success-soft {
+    background-color: var(--brand-success-soft);
+}
+
+.bg-accent-soft {
+    background-color: var(--brand-accent-soft);
+}
+
+.bg-crisis-soft {
+    background-color: var(--brand-crisis-soft);
+}
+
+.border-brand {
+    border-color: var(--brand-primary);
+}
