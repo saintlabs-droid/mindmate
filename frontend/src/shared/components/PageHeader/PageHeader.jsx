@@ -1,39 +1,50 @@
+import { memo } from 'react';
+import PropTypes from 'prop-types';
+
 /**
- * PageHeader Component
- * Consistent page header styling across all logged-in pages.
- * Matches Landing page design system with light font weights.
+ * Reusable Page Header Component
+ * Provides consistent header styling across all pages with sharp-edged design.
  */
-const PageHeader = ({
-    badge,
-    title,
-    subtitle,
-    actions,
-    className = ''
+const PageHeader = memo(({ 
+    title, 
+    subtitle, 
+    badge, 
+    badgeColor = 'bg-primary/10 text-primary',
+    accentColor = 'bg-primary',
+    children 
 }) => {
     return (
-        <header className={`flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 ${className}`}>
-            <div className="flex-1">
-                {badge && (
-                    <p className="text-xs font-medium uppercase tracking-widest text-primary mb-3">
-                        {badge}
-                    </p>
-                )}
-                <h1 className="text-4xl lg:text-5xl font-normal text-text-main dark:text-white tracking-tight leading-tight">
-                    {title}
-                </h1>
-                {subtitle && (
-                    <p className="text-lg text-neutral-warm mt-3 leading-relaxed">
-                        {subtitle}
-                    </p>
-                )}
-            </div>
-            {actions && (
-                <div className="flex items-center gap-4">
-                    {actions}
+        <div className="flex items-center justify-between gap-4 mb-6">
+            <div className="flex items-center gap-4">
+                <div className={`w-1 h-8 ${accentColor}`}></div>
+                <div>
+                    <h2 className="text-xl font-normal text-text-main dark:text-white flex items-center gap-3">
+                        {title}
+                        {badge && (
+                            <span className={`px-3 py-1 text-xs font-medium ${badgeColor}`}>
+                                {badge}
+                            </span>
+                        )}
+                    </h2>
+                    {subtitle && (
+                        <p className="text-neutral-warm text-sm mt-1">{subtitle}</p>
+                    )}
                 </div>
-            )}
-        </header>
+            </div>
+            {children}
+        </div>
     );
+});
+
+PageHeader.displayName = 'PageHeader';
+
+PageHeader.propTypes = {
+    title: PropTypes.string.isRequired,
+    subtitle: PropTypes.string,
+    badge: PropTypes.string,
+    badgeColor: PropTypes.string,
+    accentColor: PropTypes.string,
+    children: PropTypes.node
 };
 
 export default PageHeader;
