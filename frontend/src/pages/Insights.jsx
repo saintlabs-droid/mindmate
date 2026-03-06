@@ -11,87 +11,62 @@
  * ┌──────────┬────────────────────────────────────────────┐
  * │          │  Header (title + date filter)              │
  * │          ├────────────────────────────────────────────┤
- * │ Sidebar  │  Stats Cards (3 metric cards)             │
+ * │ Sidebar  │  Stats Cards (3 metric cards)              │
  * │          ├──────────────────────┬─────────────────────┤
  * │          │  Mood Chart          │  Pattern Card       │
  * │          │                      │  Recent Logs        │
  * │          ├──────────────────────┴─────────────────────┤
  * │          │  Influence Cards (positive + stress)       │
  * └──────────┴────────────────────────────────────────────┘
- *
- * HOW TO ADD ROUTING:
- * - This page is rendered at "/" currently. To add proper routing:
- *   1. In App.tsx, add: <Route path="/insights" element={<Insights />} />
- *   2. Update Sidebar links to use <NavLink to="/insights">.
- *
- * HOW TO ADD GLOBAL STATE:
- * - Wrap the app with a context provider (e.g., MoodContext).
- * - Or use Redux: create a moodSlice with actions for fetching/filtering data.
- * - Pass shared state (like date range filter) down through context.
- *
- * HOW TO SECURE ROUTE:
- * - Wrap this route with a ProtectedRoute component that checks auth state.
- * - Example: <Route path="/insights" element={<ProtectedRoute><Insights /></ProtectedRoute>} />
- *
- * PERFORMANCE TIPS:
- * - Use React.lazy() for code splitting: const MoodChart = lazy(() => import('./MoodChart'));
- * - Memoize expensive components with React.memo().
- * - Use React Query for server-state caching and background refetching.
- * =============================================================================
  */
 
-import Sidebar from "@/components/Sidebar";
-import Header from "@/components/Header";
-import StatsCards from "@/components/StatsCards";
-import MoodChart from "@/components/MoodChart";
-import PatternCard from "@/components/PatternCard";
-import RecentLogs from "@/components/RecentLogs";
-import InfluenceCards from "@/components/InfluenceCards";
+import { memo } from 'react';
+import Header from '../components/layout/Header';
+import StatsCards from '../components/layout/StatsCards';
+import MoodChart from '../components/layout/Moodchart';
+import PatternCard from '../components/layout/PatternCard';
+import RecentLogs from '../components/layout/Recentlogs';
+import InfluenceCards from '../components/layout/InfluenceCards';
 
-const Insights = () => {
+/**
+ * Insights Page: Data visualization and AI patterns.
+ */
+const Insights = memo(() => {
   return (
-    <div className="flex min-h-screen bg-background">
-      {/* --- Left Sidebar Navigation --- */}
-      <Sidebar />
+    <div className="flex-1 p-6 md:p-8 lg:p-12 overflow-y-auto bg-background-light dark:bg-background-dark">
+      <Header
+        title="Mood Insights"
+        subtitle="Track your emotional journey and discover patterns."
+      />
 
-      {/* --- Main Content Area --- */}
-      <main className="flex-1 p-4 sm:p-6 lg:p-8 lg:ml-0 overflow-auto">
-        {/* Spacer for mobile hamburger button */}
-        <div className="h-10 lg:hidden" />
-
-        {/* Page header with title and date filter */}
-        <Header />
-
-        {/* Summary stats cards */}
-        <section className="mt-6">
+      <div className="max-w-7xl mx-auto space-y-10 mt-10">
+        {/* Top Tier: Critical Metrics */}
+        <section aria-label="Summary Statistics">
           <StatsCards />
         </section>
 
-        {/*
-         * Main content grid: Chart + Pattern/Logs on the right.
-         * Desktop: 2 columns (chart takes ~60%, right panel ~40%).
-         * Mobile: stacked vertically.
-         */}
-        <section className="mt-6 grid grid-cols-1 lg:grid-cols-5 gap-4">
-          {/* Left: Mood Timeline Chart (spans 3 of 5 columns) */}
-          <div className="lg:col-span-3">
+        {/* Second Tier: Timeline and Patterns */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <section className="lg:col-span-2" aria-label="Mood Timeline">
             <MoodChart />
-          </div>
-
-          {/* Right: Pattern Card + Recent Logs (spans 2 of 5 columns) */}
-          <div className="lg:col-span-2 space-y-4">
+          </section>
+          <section aria-label="AI Pattern Recognition">
             <PatternCard />
-            <RecentLogs />
-          </div>
-        </section>
+          </section>
+        </div>
 
-        {/* Bottom: Positive Influences & Stress Factors */}
-        <section className="mt-4">
-          <InfluenceCards />
-        </section>
-      </main>
+        {/* Third Tier: Deep Dives */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <section className="lg:col-span-1" aria-label="Recent Journal Entries">
+            <RecentLogs />
+          </section>
+          <section className="lg:col-span-2" aria-label="Behavioral Influences">
+            <InfluenceCards />
+          </section>
+        </div>
+      </div>
     </div>
   );
-};
+});
 
 export default Insights;

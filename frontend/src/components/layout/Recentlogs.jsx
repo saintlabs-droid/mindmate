@@ -1,104 +1,64 @@
-/**
- * =============================================================================
- * RecentLogs Component - Recent Journal Log Entries
- * =============================================================================
- *
- * PURPOSE:
- * Displays a compact list of recent mood journal entries with date, mood
- * indicator, title, and preview text.
- *
- * HOW TO MAKE DYNAMIC:
- * - Replace the static `logs` array with data from an API.
- *   Example: GET /api/journal/recent?limit=3
- * - Map each log entry to the shape: { date, month, day, mood, moodColor, title, preview }
- *
- * HOW TO CONNECT BACKEND:
- * - Use React Query: const { data } = useQuery(['recentLogs'], fetchLogs);
- * - Each log could link to a full journal entry page: /journal/:id
- *
- * LAYOUT:
- * - Vertical stack of compact cards with date badges on the left.
- * =============================================================================
- */
+import { memo } from "react";
+import { Link } from "react-router-dom";
+import { Card } from "../../shared/components";
 
 /**
- * Static recent log data.
- * TO MAKE DYNAMIC: Fetch from /api/journal/recent and map to this shape.
+ * RecentLogs: Restored to exact mockup specifications.
  */
-const logs = [
-  {
-    month: "OCT",
-    day: 24,
-    mood: "Feeling confident",
-    moodColor: "bg-success",
-    preview: "Finally finished the project for CS. The team was...",
-  },
-  {
-    month: "OCT",
-    day: 23,
-    mood: "A bit tired",
-    moodColor: "bg-warning",
-    preview: "Long lectures today. Need to sleep early.",
-  },
-];
+const RecentLogs = memo(({ logs: data }) => {
+  const logs = data || [
+    {
+      month: "OCT",
+      day: "24",
+      mood: "Feeling confident",
+      icon: "sentiment_satisfied",
+      iconColor: "text-yellow-500",
+      preview: "Finally finished the project for CS. The team was great...",
+      active: true
+    },
+    {
+      month: "OCT",
+      day: "23",
+      mood: "A bit tired",
+      icon: "sentiment_neutral",
+      iconColor: "text-blue-400",
+      preview: "Long lectures today. Need to sleep early."
+    },
+  ];
 
-const RecentLogs = () => {
   return (
-    <article
-      className="rounded-xl bg-card border border-border p-5 shadow-sm"
-      role="region"
-      aria-label="Recent journal logs"
-    >
-      {/* --- Header with link --- */}
-      <div className="flex items-center justify-between mb-4">
-        <h3 className="text-sm font-semibold text-foreground">Recent Logs</h3>
-        {/*
-         * "View Journal" link.
-         * TO ADD ROUTING: Change href to /journal and use <Link> from react-router-dom.
-         */}
-        <a
-          href="#"
-          className="text-xs text-primary font-medium hover:underline"
-        >
+    <Card padding="sm">
+      <div className="flex justify-between items-center mb-4">
+        <h3 className="font-medium text-gray-900 dark:text-white">Recent Logs</h3>
+        <Link className="text-xs font-medium text-primary hover:text-primary-dark" to="/journal">
           View Journal
-        </a>
+        </Link>
       </div>
 
-      {/* --- Log entries list --- */}
-      <div className="space-y-3">
+      <div className="space-y-4">
         {logs.map((log, index) => (
           <div
             key={index}
-            className="flex items-start gap-3 p-2 rounded-lg hover:bg-muted/50 transition-colors"
+            className="flex gap-4 p-3 hover:bg-background-light dark:hover:bg-background-dark/50 transition-colors cursor-pointer group"
           >
-            {/* Date badge */}
-            <div className="flex flex-col items-center bg-muted rounded-lg px-2.5 py-1.5 min-w-[48px]">
-              <span className="text-[10px] font-semibold text-primary uppercase">
-                {log.month}
-              </span>
-              <span className="text-lg font-bold text-foreground leading-tight">
-                {log.day}
-              </span>
+            <div className={`flex flex-col items-center justify-center min-w-[50px] py-2 ${log.active ? 'bg-primary/10' : 'bg-neutral-warm/10'}`}>
+              <span className={`text-xs font-bold ${log.active ? 'text-primary' : 'text-neutral-warm'}`}>{log.month}</span>
+              <span className="text-lg font-bold text-gray-800 dark:text-white">{log.day}</span>
             </div>
-
-            {/* Log content */}
-            <div className="flex-1 min-w-0">
-              <div className="flex items-center gap-2">
-                {/* Mood indicator dot */}
-                <div className={`h-2 w-2 rounded-full ${log.moodColor}`} />
-                <p className="text-sm font-medium text-foreground">
-                  {log.mood}
-                </p>
+            <div>
+              <div className="flex items-center gap-2 mb-1">
+                <span className={`material-icons-outlined ${log.iconColor} text-sm`}>mood</span>
+                <span className="font-semibold text-sm text-gray-900 dark:text-white">{log.mood}</span>
               </div>
-              <p className="text-xs text-muted-foreground mt-0.5 truncate">
-                {log.preview}
-              </p>
+              <p className="text-xs text-gray-500 line-clamp-2">{log.preview}</p>
             </div>
           </div>
         ))}
       </div>
-    </article>
+    </Card>
   );
-};
+});
+
+RecentLogs.displayName = 'RecentLogs';
 
 export default RecentLogs;

@@ -1,133 +1,127 @@
-import React, { useState } from 'react';
+import { useState, useCallback } from 'react';
+import { useUser } from '../../context/UserContext';
+import { MOODS, INFLUENCES } from '../../constants/wellness';
+import MoodButton from './components/MoodButton';
+import InfluenceButton from './components/InfluenceButton';
+import { useNavigate, Link } from 'react-router-dom';
+import { Card, Button } from '../../shared/components';
 
+/**
+ * LogMood Page
+ * Clean design matching Landing page aesthetic.
+ */
 const LogMood = () => {
+    const navigate = useNavigate();
+    const { user } = useUser();
     const [selectedMood, setSelectedMood] = useState(3);
     const [selectedInfluences, setSelectedInfluences] = useState(['Academics']);
+    const [note, setNote] = useState('');
 
-    const moods = [
-        { level: 1, emoji: '😔', label: 'Struggling' },
-        { level: 2, emoji: '😕', label: 'Low' },
-        { level: 3, emoji: '😐', label: 'Okay' },
-        { level: 4, emoji: '🙂', label: 'Good' },
-        { level: 5, emoji: '😁', label: 'Thriving' },
-    ];
+    const firstName = user?.fullName?.split(' ')[0] || 'there';
 
-    const influences = [
-        { name: 'Academics', icon: 'school' },
-        { name: 'Finances', icon: 'account_balance_wallet' },
-        { name: 'Relationships', icon: 'favorite' },
-        { name: 'Family', icon: 'home' },
-        { name: 'Career', icon: 'work' },
-    ];
+    const toggleInfluence = useCallback((name) => {
+        setSelectedInfluences(prev =>
+            prev.includes(name)
+                ? prev.filter(i => i !== name)
+                : [...prev, name]
+        );
+    }, []);
 
-    const toggleInfluence = (name) => {
-        if (selectedInfluences.includes(name)) {
-            setSelectedInfluences(selectedInfluences.filter(i => i !== name));
-        } else {
-            setSelectedInfluences([...selectedInfluences, name]);
-        }
-    };
+    const handleLogEntry = useCallback(() => {
+        navigate('/dashboard');
+    }, [navigate]);
+
+    const handleNoteChange = useCallback((e) => {
+        setNote(e.target.value);
+    }, []);
 
     return (
-        <main className="flex-grow container max-w-4xl mx-auto px-4 py-8 sm:py-12">
-            <div className="text-center mb-8">
-                <span className="inline-flex items-center rounded-full bg-primary/10 px-2.5 py-0.5 text-[11px] font-bold text-primary ring-1 ring-inset ring-primary/20 mb-3 uppercase tracking-wider">
-                    Step 1 of 2
-                </span>
-                <h1 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-2">Hi Imani, how are you feeling right now?</h1>
-                <p className="text-gray-500 dark:text-gray-400 text-sm">Take a moment to check in with yourself.</p>
-            </div>
+        <div className="flex-1 overflow-y-auto bg-background-light dark:bg-background-dark">
+            <main className="container max-w-3xl mx-auto px-6 py-8">
+                {/* Form Card */}
+                <Card padding="lg" className="p-8 sm:p-10">
+                    {/* Mood Scale */}
+                    <fieldset className="mb-10">
+                        <legend className="block text-sm font-medium text-text-main dark:text-gray-200 mb-6">
+                            How would you rate your mood?
+                        </legend>
+                        <div className="grid grid-cols-5 gap-3 sm:gap-4">
+                            {MOODS.map((m) => (
+                                <MoodButton
+                                    key={m.level}
+                                    mood={m}
+                                    isSelected={selectedMood === m.level}
+                                    onClick={() => setSelectedMood(m.level)}
+                                />
+                            ))}
+                        </div>
+                    </fieldset>
 
-            <div className="bg-white dark:bg-surface-dark rounded-xl shadow-sm border border-gray-100 dark:border-white/5 p-5 sm:p-8">
-                <div className="mb-8">
-                    <label className="block text-sm font-bold text-gray-700 dark:text-gray-200 mb-4 uppercase tracking-wider">Rate your mood (1-5)</label>
-                    <div className="grid grid-cols-5 gap-2 sm:gap-4">
-                        {moods.map((m) => (
-                            <button
-                                key={m.level}
-                                onClick={() => setSelectedMood(m.level)}
-                                className="group flex flex-col items-center gap-2 p-1.5 rounded-xl transition-colors hover:bg-gray-50 dark:hover:bg-white/5 focus:outline-none"
-                            >
-                                <div className={`w-12 h-12 sm:w-14 sm:h-14 rounded-full flex items-center justify-center text-2xl transition-all ${selectedMood === m.level
-                                    ? 'bg-primary text-white shadow-lg shadow-primary/30 transform scale-110 ring-4 ring-primary/20'
-                                    : 'bg-gray-100 dark:bg-white/5'
-                                    }`}>
-                                    {m.emoji}
-                                </div>
-                                <span className={`text-[11px] transition-colors ${selectedMood === m.level ? 'font-bold text-primary dark:text-primary' : 'font-medium text-gray-500 dark:text-gray-400'
-                                    }`}>
-                                    {m.label}
-                                </span>
-                            </button>
-                        ))}
-                    </div>
-                </div>
+                    {/* Divider */}
+                    <div className="h-px bg-gray-100 dark:bg-gray-800 w-full mb-10"></div>
 
-                <div className="h-px bg-gray-100 dark:bg-white/10 w-full mb-8"></div>
-
-                <div className="mb-8">
-                    <div className="flex justify-between items-end mb-4">
-                        <label className="block text-sm font-bold text-gray-700 dark:text-gray-200 uppercase tracking-wider">What's influencing your mood?</label>
-                        <span className="text-[11px] text-gray-400 dark:text-gray-500">Pick all that apply</span>
-                    </div>
-                    <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
-                        {influences.map((inf) => {
-                            const isSelected = selectedInfluences.includes(inf.name);
-                            return (
-                                <button
+                    {/* Influences */}
+                    <fieldset className="mb-10">
+                        <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2 mb-6">
+                            <legend className="block text-sm font-medium text-text-main dark:text-gray-200">
+                                What's shaping your mood?
+                            </legend>
+                            <span className="text-xs text-gray-400">Select all that apply</span>
+                        </div>
+                        <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
+                            {INFLUENCES.map((inf) => (
+                                <InfluenceButton
                                     key={inf.name}
+                                    influence={inf}
+                                    isSelected={selectedInfluences.includes(inf.name)}
                                     onClick={() => toggleInfluence(inf.name)}
-                                    className={`group relative p-3 h-28 flex flex-col justify-between items-start rounded-lg border-2 transition-all text-left focus:outline-none ${isSelected
-                                        ? 'border-primary bg-primary/5 dark:bg-primary/10'
-                                        : 'border-gray-100 dark:border-white/5 bg-white dark:bg-surface-dark hover:border-primary/50 hover:bg-gray-50 dark:hover:bg-white/5'
-                                        }`}
-                                >
-                                    <div className={`w-7 h-7 rounded-full flex items-center justify-center transition-colors ${isSelected ? 'bg-white dark:bg-surface-dark text-primary' : 'bg-gray-100 dark:bg-white/10 text-gray-500 dark:text-gray-400'
-                                        }`}>
-                                        <span className="material-icons-round text-base">{inf.icon}</span>
-                                    </div>
-                                    <span className={`block text-sm transition-colors ${isSelected ? 'font-bold text-primary' : 'font-medium text-gray-600 dark:text-gray-300'
-                                        }`}>
-                                        {inf.name}
-                                    </span>
-                                    {isSelected && (
-                                        <div className="absolute top-2 right-2 w-3.5 h-3.5 bg-primary rounded-full flex items-center justify-center">
-                                            <span className="material-icons-round text-white text-[10px]">check</span>
-                                        </div>
-                                    )}
-                                </button>
-                            );
-                        })}
+                                />
+                            ))}
+                        </div>
+                    </fieldset>
+
+                    {/* Notes */}
+                    <div className="mb-10">
+                        <label className="block text-sm font-medium text-text-main dark:text-gray-200 mb-3" htmlFor="notes">
+                            Add a private note (optional)
+                        </label>
+                        <textarea
+                            id="notes"
+                            className="w-full border border-gray-200 dark:border-gray-700 bg-gray-50/50 dark:bg-gray-800/50 text-text-main dark:text-white placeholder-gray-400 focus:border-primary focus:ring-2 focus:ring-primary/10 transition-all resize-none p-5 text-sm outline-none leading-relaxed"
+                            placeholder="Anything specific happening? E.g. 'Upcoming exams are stressing me out...'"
+                            rows="4"
+                            value={note}
+                            onChange={handleNoteChange}
+                        ></textarea>
                     </div>
-                </div>
 
-                <div className="mb-8">
-                    <label className="block text-sm font-bold text-gray-700 dark:text-gray-200 mb-2 uppercase tracking-wider" htmlFor="notes">Personal Note</label>
-                    <textarea
-                        className="w-full rounded-lg border-gray-100 dark:border-white/5 bg-gray-50 dark:bg-white/5 text-gray-900 dark:text-white placeholder-gray-400 focus:border-primary focus:ring-primary/20 dark:focus:ring-primary/20 transition-all resize-none p-3 text-sm"
-                        id="notes"
-                        placeholder="Write down any thoughts..."
-                        rows="2"
-                    ></textarea>
-                </div>
+                    {/* Actions */}
+                    <div className="flex items-center justify-between pt-6 border-t border-gray-100 dark:border-gray-800">
+                        <Link
+                            className="text-sm text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
+                            to="/dashboard"
+                        >
+                            Cancel
+                        </Link>
+                        <Button onClick={handleLogEntry} icon="arrow_forward">
+                            Save Entry
+                        </Button>
+                    </div>
+                </Card>
 
-                <div className="flex items-center justify-between pt-4 border-t border-gray-100 dark:border-white/10">
-                    <button className="text-xs font-bold text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors uppercase tracking-widest">Cancel</button>
-                    <button className="bg-primary hover:bg-primary/90 text-white text-sm font-bold py-2.5 px-6 rounded-lg shadow-md shadow-primary/20 transform transition hover:-translate-y-0.5 active:translate-y-0 flex items-center gap-2 uppercase tracking-wider">
-                        <span>Log Entry</span>
-                        <span className="material-icons-outlined text-sm">arrow_forward</span>
-                    </button>
+                {/* Privacy Note */}
+                <div className="mt-6 text-center">
+                    <p className="text-xs text-gray-400 flex items-center justify-center gap-2">
+                        <span className="material-icons-outlined text-sm">lock</span>
+                        Your entries are 100% private and encrypted.
+                    </p>
                 </div>
-            </div>
-
-            <div className="mt-8 text-center">
-                <p className="text-xs text-gray-400 dark:text-gray-500 flex items-center justify-center gap-1">
-                    <span className="material-icons-outlined text-sm">lock</span>
-                    Your entries are private and secure.
-                </p>
-            </div>
-        </main>
+            </main>
+        </div>
     );
 };
 
 export default LogMood;
+
+
+

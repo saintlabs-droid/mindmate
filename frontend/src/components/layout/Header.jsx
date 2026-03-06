@@ -1,91 +1,43 @@
-/**
- * =============================================================================
- * Header Component - Mood Insights Page Header
- * =============================================================================
- *
- * PURPOSE:
- * Displays the page title, subtitle, and a date-range filter dropdown.
- * Also includes a user avatar button on the right.
- *
- * HOW TO MAKE DYNAMIC:
- * - The date filter dropdown is currently static. To make it functional:
- *   1. Lift `selectedRange` state to the parent (Insights page).
- *   2. Pass it as a prop along with an `onRangeChange` callback.
- *   3. Use the selected range to filter chart/log data via API or local filter.
- *
- * HOW TO CONNECT BACKEND:
- * - When the filter changes, call an API like:
- *   GET /api/insights?range=7d
- *   and update the dashboard data accordingly.
- * =============================================================================
- */
-
 import { useState } from "react";
-import { CalendarDays, ChevronDown, Bell } from "lucide-react";
+import logger from "../../shared/utils/logger";
 
 /**
- * Static filter options for the date range dropdown.
- * TO MAKE DYNAMIC: These could come from a config or be kept static.
+ * Header Component: Contextual title & temporal scope controls.
  */
-const dateRanges = ["Last 7 Days", "Last 30 Days", "Last 90 Days"];
-
-const Header = () => {
-  // Currently selected date range (static, non-functional filter)
+const Header = ({ title = "Dashboard", subtitle = "Your mental wellness overview." }) => {
+  const dateRanges = ["Last 7 Days", "Last 30 Days", "Last 90 Days"];
   const [selectedRange, setSelectedRange] = useState(dateRanges[0]);
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
   return (
-    <header className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-      {/* --- Title & Subtitle --- */}
-      <div>
-        <h1 className="text-2xl font-bold text-foreground">Mood Insights</h1>
-        <p className="text-sm text-muted-foreground mt-1">
-          Track your emotional journey and discover patterns.
-        </p>
+    <header className="flex flex-col md:flex-row md:items-center justify-between gap-8 pb-10 border-b border-gray-100 dark:border-border/40">
+      <div className="space-y-2 min-w-0">
+        <h1 className="text-4xl font-black text-text-main dark:text-white tracking-tight truncate">{title}</h1>
+        <p className="text-sm text-neutral-warm font-medium">{subtitle}</p>
       </div>
 
-      {/* --- Right side controls --- */}
-      <div className="flex items-center gap-3">
-        {/*
-         * Date Range Dropdown
-         * TO MAKE FUNCTIONAL:
-         * - On selection, call props.onRangeChange(range)
-         * - Parent should re-fetch/filter data based on the new range.
-         */}
+      <div className="flex items-center gap-4">
+        {/* Temporal Filter Dropdown */}
         <div className="relative">
           <button
             onClick={() => setDropdownOpen(!dropdownOpen)}
-            className="flex items-center gap-2 rounded-lg border border-border bg-card px-3 py-2 text-sm font-medium text-foreground shadow-sm hover:bg-muted transition-colors"
+            className="flex items-center gap-3 rounded-2xl border border-gray-100 bg-white px-5 py-3.5 text-[11px] font-black uppercase tracking-widest text-text-main hover:bg-gray-50 transition-all duration-200 shadow-sm hover:shadow-md outline-none"
             aria-haspopup="listbox"
             aria-expanded={dropdownOpen}
           >
-            <CalendarDays className="h-4 w-4 text-muted-foreground" />
+            <span className="material-icons-outlined text-sm text-primary">calendar_today</span>
             {selectedRange}
-            <ChevronDown className="h-3.5 w-3.5 text-muted-foreground" />
+            <span className="material-icons-outlined text-sm transition-transform duration-300 group-hover:translate-y-0.5">expand_more</span>
           </button>
 
           {dropdownOpen && (
-            <ul
-              className="absolute right-0 mt-1 w-full rounded-lg border border-border bg-card shadow-lg z-10"
-              role="listbox"
-            >
+            <ul className="absolute right-0 mt-3 w-56 rounded-3xl border border-gray-50 bg-white shadow-premium z-50 overflow-hidden animate-in fade-in slide-in-from-top-2 duration-300 p-2">
               {dateRanges.map((range) => (
                 <li
                   key={range}
-                  role="option"
-                  aria-selected={range === selectedRange}
-                  className={`px-3 py-2 text-sm cursor-pointer transition-colors
-                    ${
-                      range === selectedRange
-                        ? "bg-accent text-accent-foreground font-medium"
-                        : "text-foreground hover:bg-muted"
-                    }
-                    first:rounded-t-lg last:rounded-b-lg
-                  `}
-                  onClick={() => {
-                    setSelectedRange(range);
-                    setDropdownOpen(false);
-                  }}
+                  className={`px-5 py-3 rounded-2xl text-[11px] font-black uppercase tracking-widest cursor-pointer transition-all ${range === selectedRange ? "bg-primary text-white shadow-md shadow-primary/20" : "text-neutral-warm hover:bg-gray-50"
+                    }`}
+                  onClick={() => { setSelectedRange(range); setDropdownOpen(false); }}
                 >
                   {range}
                 </li>
@@ -94,12 +46,13 @@ const Header = () => {
           )}
         </div>
 
-        {/* Notification bell (decorative) */}
+        {/* AI Insight Trigger */}
         <button
-          className="rounded-full bg-primary p-2.5 shadow-sm hover:opacity-90 transition-opacity"
-          aria-label="Notifications"
+          className="rounded-2xl bg-primary text-white px-6 py-4 shadow-premium hover:brightness-105 active:scale-95 transition-all flex items-center gap-3 font-black text-[11px] uppercase tracking-widest"
+          onClick={() => logger.info('[User Engagement] Manual AI recalc triggered.')}
         >
-          <Bell className="h-4 w-4 text-primary-foreground" />
+          <span className="material-icons-outlined text-sm">smart_toy</span>
+          <span className="hidden sm:inline">Daily Recap</span>
         </button>
       </div>
     </header>
