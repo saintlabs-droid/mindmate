@@ -9,6 +9,12 @@ import base64
 import logging
 from typing import Optional, Type, TypeVar
 from pydantic import BaseModel
+from tenacity import (
+    retry,
+    stop_after_attempt,
+    wait_exponential,
+    retry_if_exception_type,
+)
 
 from apps.ai_service.ai_config import (
     get_gemini_client,
@@ -41,6 +47,12 @@ class GeminiService:
         self.model = model
         self._conversation_id: Optional[str] = None
     
+    @retry(
+        stop=stop_after_attempt(3),
+        wait=wait_exponential(multiplier=1, min=2, max=10),
+        retry=retry_if_exception_type(Exception),
+        reraise=True,
+    )
     def _create_interaction(
         self,
         input_data: list | str,
@@ -48,8 +60,19 @@ class GeminiService:
         previous_id: Optional[str] = None,
     ) -> dict:
         """
-        Base method for creating Gemini interactions.
-        Reused by all analysis methods.
+        Base method for creating Gemini interactions with retry logic.
+        Retries up to 3 times with exponential backoff for transient failures.
+        
+        Args:
+            input_data: Text prompt or list of multimodal inputs
+            response_schema: Optional Pydantic schema for structured output
+            previous_id: Optional previous interaction ID for conversation context
+            
+        Returns:
+            Gemini interaction response object
+            
+        Raises:
+            GeminiServiceError: If all retry attempts fail
         """
         try:
             kwargs = {
@@ -63,11 +86,13 @@ class GeminiService:
             if previous_id:
                 kwargs["previous_interaction_id"] = previous_id
             
+            logger.info(f"Creating Gemini interaction with model {self.model}")
             interaction = self.client.interactions.create(**kwargs)
+            logger.info(f"Gemini interaction created successfully: {interaction.id}")
             return interaction
             
         except Exception as e:
-            logger.error(f"Gemini interaction failed: {e}")
+            logger.error(f"Gemini interaction failed: {e}", exc_info=True)
             raise GeminiServiceError(f"AI service unavailable: {str(e)}")
     
     def _parse_response(self, interaction, schema: Type[T]) -> T:
