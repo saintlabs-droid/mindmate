@@ -1,230 +1,100 @@
 """
 AI Service Custom Exceptions
 
-This module defines a hierarchy of custom exceptions for the AI service layer.
-All exceptions inherit from GeminiServiceError and include error codes for
-consistent API error responses.
-
-Exception Hierarchy:
-    GeminiServiceError (base)
-    ├── GeminiTimeoutError
-    ├── GeminiRateLimitError
-    ├── GeminiUnavailableError
-    └── ValidationError
-
-Error Codes:
-    - AI_SERVICE_ERROR: Generic AI service failure
-    - AI_SERVICE_TIMEOUT: Gemini API timeout
-    - AI_RATE_LIMIT_EXCEEDED: Rate limit exceeded
-    - AI_SERVICE_UNAVAILABLE: Gemini API unavailable
-    - VALIDATION_ERROR: Input validation failure
-    - INVALID_AUDIO_FORMAT: Audio file format/corruption error
-    - INVALID_IMAGE_FORMAT: Image file format/corruption error
+This module defines custom exceptions for the AI service layer to handle
+different error scenarios gracefully. These exceptions provide structured
+error information that can be caught and handled appropriately in API views.
 """
-
-from typing import Optional
 
 
 class GeminiServiceError(Exception):
     """
-    Base exception for all Gemini AI service errors.
+    Base exception for all Gemini service errors.
     
-    Provides a consistent interface for error handling with message and
-    error code attributes for API response formatting.
+    This is the parent class for all AI service-related exceptions,
+    providing a consistent interface with message and error code attributes.
     
     Attributes:
-        message: Human-readable error description
-        code: Machine-readable error code for API responses
-    
-    Example:
-        raise GeminiServiceError(
-            message="Failed to process audio",
-            code="AI_SERVICE_ERROR"
-        )
+        message (str): Human-readable error message
+        code (str): Machine-readable error code for API responses
     """
     
-    def __init__(
-        self,
-        message: str,
-        code: str = "AI_SERVICE_ERROR"
-    ) -> None:
+    def __init__(self, message: str, code: str = "AI_SERVICE_ERROR"):
+        """
+        Initialize the GeminiServiceError.
+        
+        Args:
+            message: Human-readable error message
+            code: Machine-readable error code (default: "AI_SERVICE_ERROR")
+        """
         self.message = message
         self.code = code
         super().__init__(message)
-    
-    def __str__(self) -> str:
-        return f"[{self.code}] {self.message}"
-    
-    def to_dict(self) -> dict:
-        """
-        Convert exception to dictionary for API response formatting.
-        
-        Returns:
-            Dictionary with code and message keys
-        """
-        return {
-            "code": self.code,
-            "message": self.message,
-        }
 
 
 class GeminiTimeoutError(GeminiServiceError):
     """
-    Raised when the Gemini API request times out.
+    Exception raised when Gemini API times out.
     
-    This exception indicates a transient failure that may succeed on retry.
-    The default message provides user-friendly guidance.
+    This exception is raised when the Gemini API takes longer than expected
+    to respond, indicating a timeout condition. It provides a user-friendly
+    message suggesting retry.
     """
     
-    def __init__(
-        self,
-        message: str = "The AI service is taking longer than expected. Please try again.",
-        code: str = "AI_SERVICE_TIMEOUT"
-    ) -> None:
-        super().__init__(message=message, code=code)
+    def __init__(self):
+        """Initialize the GeminiTimeoutError with a predefined message."""
+        super().__init__(
+            message="The AI service is taking longer than expected. Please try again.",
+            code="AI_SERVICE_TIMEOUT"
+        )
 
 
 class GeminiRateLimitError(GeminiServiceError):
     """
-    Raised when the Gemini API rate limit is exceeded.
+    Exception raised when Gemini API rate limit is exceeded.
     
-    Includes retry_after attribute to inform clients when they can retry.
+    This exception is raised when too many requests have been made to the
+    Gemini API within a given time period. It includes a retry_after
+    attribute to indicate when the client can retry.
     
     Attributes:
-        retry_after: Seconds until the rate limit resets
+        retry_after (int): Number of seconds to wait before retrying
     """
     
-    def __init__(
-        self,
-        message: str = "AI service is temporarily busy. Please wait a moment.",
-        code: str = "AI_RATE_LIMIT_EXCEEDED",
-        retry_after: int = 60
-    ) -> None:
+    def __init__(self, retry_after: int = 60):
+        """
+        Initialize the GeminiRateLimitError.
+        
+        Args:
+            retry_after: Number of seconds to wait before retrying (default: 60)
+        """
         self.retry_after = retry_after
-        super().__init__(message=message, code=code)
-    
-    def to_dict(self) -> dict:
-        """Include retry_after in the response dictionary."""
-        result = super().to_dict()
-        result["retry_after"] = self.retry_after
-        return result
+        super().__init__(
+            message="AI service is temporarily busy. Please wait a moment.",
+            code="AI_RATE_LIMIT_EXCEEDED"
+        )
 
 
-class GeminiUnavailableError(GeminiServiceError):
+class ValidationError(Exception):
     """
-    Raised when the Gemini API is unavailable or returns a server error.
+    Exception raised for input validation failures.
     
-    This exception indicates a service-level failure that requires
-    user notification and potential retry.
-    """
-    
-    def __init__(
-        self,
-        message: str = "AI service is temporarily unavailable. Please try again later.",
-        code: str = "AI_SERVICE_UNAVAILABLE"
-    ) -> None:
-        super().__init__(message=message, code=code)
-
-
-class AIValidationError(GeminiServiceError):
-    """
-    Raised for input validation failures in AI service requests.
-    
-    Extends GeminiServiceError with an optional field attribute to
-    identify which input field caused the validation failure.
+    This exception is used when user input fails validation checks,
+    such as invalid file formats, size limits, or missing required fields.
     
     Attributes:
-        field: Optional name of the field that failed validation
+        message (str): Human-readable error message
+        field (str): Optional field name that failed validation
     """
     
-    def __init__(
-        self,
-        message: str,
-        code: str = "VALIDATION_ERROR",
-        field: Optional[str] = None
-    ) -> None:
+    def __init__(self, message: str, field: str = None):
+        """
+        Initialize the ValidationError.
+        
+        Args:
+            message: Human-readable error message
+            field: Optional field name that failed validation
+        """
+        self.message = message
         self.field = field
-        super().__init__(message=message, code=code)
-    
-    def to_dict(self) -> dict:
-        """Include field in the response dictionary if present."""
-        result = super().to_dict()
-        if self.field:
-            result["field"] = self.field
-        return result
-
-
-class InvalidAudioFormatError(AIValidationError):
-    """
-    Raised when an audio file is corrupted or in an unsupported format.
-    
-    Supported formats: WAV, MP3, WebM
-    """
-    
-    def __init__(
-        self,
-        message: str = "Audio file is corrupted or in an unsupported format. Supported formats: WAV, MP3, WebM.",
-        field: str = "audio_file"
-    ) -> None:
-        super().__init__(
-            message=message,
-            code="INVALID_AUDIO_FORMAT",
-            field=field
-        )
-
-
-class InvalidImageFormatError(AIValidationError):
-    """
-    Raised when an image file is corrupted or in an unsupported format.
-    
-    Supported formats: JPEG, PNG, WebP
-    """
-    
-    def __init__(
-        self,
-        message: str = "Image file is corrupted or in an unsupported format. Supported formats: JPEG, PNG, WebP.",
-        field: str = "image_file"
-    ) -> None:
-        super().__init__(
-            message=message,
-            code="INVALID_IMAGE_FORMAT",
-            field=field
-        )
-
-
-class AudioDurationExceededError(AIValidationError):
-    """
-    Raised when an audio recording exceeds the maximum allowed duration.
-    
-    Default maximum duration is 5 minutes (300 seconds).
-    """
-    
-    def __init__(
-        self,
-        message: str = "Audio recording must be under 5 minutes.",
-        field: str = "audio_file"
-    ) -> None:
-        super().__init__(
-            message=message,
-            code="VALIDATION_ERROR",
-            field=field
-        )
-
-
-class ImageSizeExceededError(AIValidationError):
-    """
-    Raised when an image file exceeds the maximum allowed size.
-    
-    Default maximum size is 10MB.
-    """
-    
-    def __init__(
-        self,
-        message: str = "Image must be under 10MB.",
-        field: str = "image_file"
-    ) -> None:
-        super().__init__(
-            message=message,
-            code="VALIDATION_ERROR",
-            field=field
-        )
+        super().__init__(message)
