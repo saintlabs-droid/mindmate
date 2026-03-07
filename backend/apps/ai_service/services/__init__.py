@@ -11,9 +11,9 @@ try:
         GeminiServiceError,
         VoiceAnalysisService,
         SpaceAnalysisService,
-        InsightsGeneratorService,
         ChatService,
     )
+    from .insights import InsightsGeneratorService
     
     __all__ = [
         'GeminiService',
