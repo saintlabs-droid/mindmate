@@ -48,4 +48,3 @@ const InfluenceCards = memo(() => {
 InfluenceCards.displayName = 'InfluenceCards';
 
 export default InfluenceCards;
-

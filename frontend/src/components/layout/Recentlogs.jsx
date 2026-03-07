@@ -62,4 +62,3 @@ const RecentLogs = memo(({ logs: data }) => {
 RecentLogs.displayName = 'RecentLogs';
 
 export default RecentLogs;
-
