@@ -21,13 +21,13 @@ Usage:
 
 from .voice import VoiceAnalysisView
 from .space import SpaceAnalysisView
-# from .insights import WeeklyInsightsView
+from .insights import WeeklyInsightsView
 # from .chat import ChatView, ChatHistoryView
 
 __all__ = [
     'VoiceAnalysisView',
     'SpaceAnalysisView',
-    # 'WeeklyInsightsView',
+    'WeeklyInsightsView',
     # 'ChatView',
     # 'ChatHistoryView',
 ]
