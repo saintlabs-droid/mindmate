@@ -4,6 +4,7 @@ import PatternCard from '../components/layout/PatternCard';
 import RecentLogs from '../components/layout/Recentlogs';
 import InfluenceCards from '../components/layout/InfluenceCards';
 import { IconButton } from '../shared/components';
+import AIInsightsCard from '../features/ai/components/AIInsights';
 
 /**
  * Insights Page
@@ -24,6 +25,9 @@ const Insights = () => {
 
       {/* Main Content */}
       <div className="max-w-7xl mx-auto space-y-10">
+        {/* AI Weekly Insights - Featured at top */}
+        <AIInsightsCard />
+
         <StatsCards />
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
