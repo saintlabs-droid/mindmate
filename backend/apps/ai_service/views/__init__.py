@@ -19,14 +19,13 @@ Usage:
     )
 """
 
-# View exports will be added as views are implemented
-# from .voice import VoiceAnalysisView
+from .voice import VoiceAnalysisView
 # from .space import SpaceAnalysisView
 # from .insights import WeeklyInsightsView
 # from .chat import ChatView, ChatHistoryView
 
 __all__ = [
-    # 'VoiceAnalysisView',
+    'VoiceAnalysisView',
     # 'SpaceAnalysisView',
     # 'WeeklyInsightsView',
     # 'ChatView',
