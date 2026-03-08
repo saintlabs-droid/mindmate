@@ -20,13 +20,13 @@ Usage:
 """
 
 from .voice import VoiceAnalysisView
-# from .space import SpaceAnalysisView
+from .space import SpaceAnalysisView
 # from .insights import WeeklyInsightsView
 # from .chat import ChatView, ChatHistoryView
 
 __all__ = [
     'VoiceAnalysisView',
-    # 'SpaceAnalysisView',
+    'SpaceAnalysisView',
     # 'WeeklyInsightsView',
     # 'ChatView',
     # 'ChatHistoryView',
