@@ -18,7 +18,7 @@ class InsightsGeneratorService(GeminiService):
     INSIGHTS_PROMPT = """
 [Persona] You are a compassionate mental wellness analyst helping users understand their emotional patterns.
 
-[Action] Analyze the provided mood data and generate comprehensive weekly insights.
+[Action] Analyze the provided mood data and generate comprehensive weekly insights WITH EVIDENCE.
 
 [Context] The user has logged mood entries over the past week.
 
@@ -33,7 +33,16 @@ class InsightsGeneratorService(GeminiService):
     "weekly_summary": "<string: 2-4 sentence summary>",
     "focus_areas": [<list of 2-3 improvement areas>],
     "achievements": [<list of 2-3 positive observations>],
-    "chart_data": {"labels": [], "mood_scores": [], "energy_levels": []}
+    "chart_data": {"labels": [], "mood_scores": [], "energy_levels": []},
+    "evidence": [
+        {
+            "source_type": "mood_entry",
+            "date": "2026-03-08",
+            "detail": "Mood score was 2/5 with 'anxious' emotion",
+            "confidence": 0.95
+        }
+    ],
+    "overall_confidence": <float 0.0-1.0>
 }
 
 [Constraints]
@@ -47,6 +56,14 @@ class InsightsGeneratorService(GeminiService):
 - focus_areas: Array of 2-3 specific, actionable improvement suggestions
 - achievements: Array of 2-3 positive observations from the week
 - chart_data: Object with labels, mood_scores, and energy_levels arrays
+- evidence: Array of 3-5 key data points supporting your conclusions (REQUIRED)
+- overall_confidence: Float 0.0-1.0 indicating confidence in analysis
+
+[Evidence Requirements]
+- Link each major insight to specific mood entries
+- Include date, mood score, and emotions for each evidence item
+- Confidence score per evidence item (0.0-1.0)
+- Focus on most impactful data points
 
 [Special Case] If fewer than 3 entries provided, return partial analysis with encouragement.
 """
@@ -176,5 +193,7 @@ class InsightsGeneratorService(GeminiService):
                 "labels": [],
                 "mood_scores": [],
                 "energy_levels": []
-            }
+            },
+            evidence=[],
+            overall_confidence=0.3
         )
