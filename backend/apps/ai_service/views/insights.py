@@ -277,6 +277,8 @@ class WeeklyInsightsView(ProcessingTimeMixin, AIResponseMixin, APIView):
                 focus_areas=insights_result.focus_areas,
                 achievements=insights_result.achievements,
                 chart_data=insights_result.chart_data,
+                evidence=insights_result.evidence,
+                overall_confidence=insights_result.overall_confidence,
                 interaction_id=interaction_id
             )
             
