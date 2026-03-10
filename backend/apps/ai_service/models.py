@@ -229,6 +229,17 @@ class WeeklyInsights(models.Model):
         help_text="Formatted data for frontend chart components"
     )
     
+    # Evidence-based insights (enterprise AI transparency)
+    evidence = models.JSONField(
+        default=list,
+        help_text="Supporting evidence linking insights to source data"
+    )
+    overall_confidence = models.FloatField(
+        default=0.85,
+        validators=[MinValueValidator(0), MaxValueValidator(1)],
+        help_text="Overall confidence score for the analysis (0.0-1.0)"
+    )
+    
     # Gemini interaction tracking
     interaction_id = models.CharField(max_length=255, blank=True)
     
