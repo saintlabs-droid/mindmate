@@ -2,6 +2,7 @@ import useWeeklyInsights from '../../hooks/useWeeklyInsights';
 import WeeklySummary from './WeeklySummary';
 import FocusAreas from './FocusAreas';
 import Achievements from './Achievements';
+import EvidenceSection from './EvidenceSection';
 
 /**
  * AIInsightsCard Component
@@ -11,6 +12,7 @@ import Achievements from './Achievements';
  * - Auto-fetches insights on mount
  * - Displays mood trends and dominant emotions
  * - Shows weekly summary, focus areas, and achievements
+ * - Evidence-based transparency with confidence scores
  * - Handles loading and error states
  * - Displays encouraging message when insufficient data
  */
@@ -102,6 +104,12 @@ const AIInsightsCard = () => {
                             <WeeklySummary summary={insights.weekly_summary} />
                             <FocusAreas focusAreas={insights.focus_areas} />
                             <Achievements achievements={insights.achievements} />
+                            
+                            {/* Evidence-Based Transparency */}
+                            <EvidenceSection 
+                                evidence={insights.evidence} 
+                                overallConfidence={insights.overall_confidence}
+                            />
                         </div>
                     </>
                 )}
