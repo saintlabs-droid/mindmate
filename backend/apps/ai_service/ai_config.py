@@ -71,6 +71,14 @@ class MoodAnalysisResult(BaseModel):
     journal_prompt: str = Field(description="Follow-up journaling question")
 
 
+class EvidenceItem(BaseModel):
+    """Evidence supporting an AI insight."""
+    source_type: str = Field(description="mood_entry, voice_analysis, chat_message, space_analysis")
+    date: str = Field(description="When this evidence was recorded")
+    detail: str = Field(description="Specific detail from the source")
+    confidence: float = Field(ge=0, le=1, description="Confidence in this evidence")
+
+
 class WeeklyInsightsResult(BaseModel):
     """Schema for aggregated weekly insights."""
     average_mood: float = Field(description="Average mood score")
@@ -83,6 +91,8 @@ class WeeklyInsightsResult(BaseModel):
     focus_areas: list[str] = Field(description="Areas to work on")
     achievements: list[str] = Field(description="Positive progress noted")
     chart_data: dict = Field(description="Data formatted for UI charts")
+    evidence: list[EvidenceItem] = Field(default=[], description="Supporting evidence for insights")
+    overall_confidence: float = Field(default=0.85, ge=0, le=1, description="Overall confidence score")
 
 
 class ChatResponseResult(BaseModel):
