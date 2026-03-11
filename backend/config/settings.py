@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'apps.mood_tracking',
     'apps.insights',
     'apps.ai_service',
+    'apps.chat_bridge',
     'apps.support_resources',
     'apps.users',
 ]
