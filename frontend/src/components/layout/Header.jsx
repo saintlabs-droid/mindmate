@@ -60,4 +60,3 @@ const Header = ({ title = "Dashboard", subtitle = "Your mental wellness overview
 };
 
 export default Header;
-

@@ -29,6 +29,7 @@ urlpatterns = [
     path('api/moods/', include('apps.mood_tracking.urls')),
     path('api/insights/', include('apps.insights.urls')),
     path('api/ai/', include('apps.ai_service.urls')),
+    path('api/chat-bridge/', include('apps.chat_bridge.urls')),
     path('api/resources/', include('apps.support_resources.urls')),
     path('api/users/', include('apps.users.urls')),
 ]

@@ -124,4 +124,3 @@ const MoodChart = memo(() => {
 MoodChart.displayName = 'MoodChart';
 
 export default MoodChart;
-

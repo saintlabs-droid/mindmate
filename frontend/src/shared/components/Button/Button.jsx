@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 /**
  * Button Component
  * Reusable button with consistent styling variants.
@@ -11,6 +13,7 @@ const Button = ({
     icon = null,
     iconPosition = 'right',
     fullWidth = false,
+    to = null,
     ...props 
 }) => {
     const variants = {
@@ -31,17 +34,29 @@ const Button = ({
         <span className="material-icons-outlined text-base">{icon}</span>
     );
 
+    const commonProps = {
+        className: `
+            font-medium transition-all active:scale-[0.98] 
+            flex items-center justify-center gap-2
+            ${variants[variant]} ${sizes[size]} 
+            ${fullWidth ? 'w-full' : ''}
+            ${className}
+        `,
+        ...props
+    };
+
+    if (to) {
+        return (
+            <Link to={to} {...commonProps}>
+                {iconPosition === 'left' && iconElement}
+                {children}
+                {iconPosition === 'right' && iconElement}
+            </Link>
+        );
+    }
+
     return (
-        <button
-            className={`
-                font-medium transition-all active:scale-[0.98] 
-                flex items-center justify-center gap-2
-                ${variants[variant]} ${sizes[size]} 
-                ${fullWidth ? 'w-full' : ''}
-                ${className}
-            `}
-            {...props}
-        >
+        <button {...commonProps}>
             {iconPosition === 'left' && iconElement}
             {children}
             {iconPosition === 'right' && iconElement}

@@ -28,8 +28,9 @@ class StudentSignUpForm(forms.ModelForm):
 
     def clean_email(self):
         email = self.cleaned_data.get('email').lower()
-        if not email.endswith('.ac.ke'):
-            raise ValidationError("Please use your university email (.ac.ke)")
+        # Temporarily allow any email for development
+        # if not email.endswith('.ac.ke'):
+        #     raise ValidationError("Please use your university email (.ac.ke)")
         if User.objects.filter(email=email).exists():
             raise ValidationError("A user with this email already exists.")
         return email

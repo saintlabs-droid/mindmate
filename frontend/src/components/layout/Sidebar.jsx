@@ -118,10 +118,9 @@ const Sidebar = () => {
                                 fullWidth
                                 onClick={closeMobile}
                                 className="rounded-none"
+                                to="/support"
                             >
-                                <Link to="/support" className="w-full">
-                                    Get Support
-                                </Link>
+                                Get Support
                             </Button>
                         </div>
 
@@ -146,7 +145,10 @@ const Sidebar = () => {
 
                         {/* Logout */}
                         <button
-                            onClick={logout}
+                            onClick={() => {
+                                logout();
+                                closeMobile();
+                            }}
                             className="w-full flex items-center justify-center gap-2 py-2.5 text-sm text-gray-400 hover:text-secondary transition-colors"
                         >
                             <span className="material-icons-outlined text-lg">logout</span>
