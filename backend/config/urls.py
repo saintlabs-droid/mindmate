@@ -21,13 +21,23 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/auth/', include('apps.authentication.urls')),
+    
+    # --- Frontend/Page Routes ---
+    # This allows http://127.0.0.1:8000/login and /signup to work
+    path('', include('apps.authentication.urls')),
+
+    # --- Existing API Routes ---
+    path('api/auth/', include('apps.authentication.urls')), # Points to the same app
     path('api/moods/', include('apps.mood_tracking.urls')),
     path('api/insights/', include('apps.insights.urls')),
     path('api/ai/', include('apps.ai_service.urls')),
     path('api/resources/', include('apps.support_resources.urls')),
     path('api/users/', include('apps.users.urls')),
+<<<<<<< HEAD
 ]
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+=======
+]
+>>>>>>> 0c03dc4cec3fd516e9669103368782fccd43cffb

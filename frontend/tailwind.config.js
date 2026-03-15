@@ -7,19 +7,42 @@ module.exports = {
     theme: {
         extend: {
             colors: {
-                "primary": "#e2715a",
-                "primary-dark": "#c55e49",
-                "background-light": "#F5F5F0",
-                "background-dark": "#201412",
-                "text-main": "#2D2D2D",
+                "primary": "#6A8E7F", // Serene Sage Green
+                "primary-dark": "#506B60",
+                "primary-light": "#E8EFEC",
+                "secondary": "#E2725B", // Terracotta (Accent only)
+                "background-light": "#FBF9F7", // Warm Off-White
+                "background-dark": "#1A2421",
                 "surface-light": "#FFFFFF",
-                "surface-dark": "#2C2422",
-                "terracotta": "#E2725B",
-                "deep-charcoal": "#2D2D2D",
+                "surface-dark": "#242D2A",
+                "text-main": "#2D2D2D",
+                "crisis": "#E11D48",
+                "neutral-warm": "#7A8A83",
             },
             fontFamily: {
-                "display": ["Inter", "sans-serif"]
+                "display": ["Inter", "sans-serif"],
+                "body": ["Inter", "sans-serif"]
             },
+            borderRadius: {
+                "DEFAULT": "0.75rem",
+                "lg": "1rem",
+                "xl": "1.5rem",
+                "2xl": "2rem", // 32px
+                "3xl": "2.5rem", // 40px
+                "full": "9999px"
+            },
+            boxShadow: {
+                'premium': '0 20px 50px -12px rgba(106, 142, 127, 0.12)',
+            },
+            animation: {
+                'scroll-left': 'scroll-left 30s linear infinite',
+            },
+            keyframes: {
+                'scroll-left': {
+                    '0%': { transform: 'translateX(0)' },
+                    '100%': { transform: 'translateX(-50%)' },
+                }
+            }
         },
     },
     plugins: [
